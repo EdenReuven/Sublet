@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/card.xml" value="0.1" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_homelogo.xml" value="0.1" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_main.xml" value="0.29846014492753625" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_log_in.xml" value="0.4" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/menu/base_menu.xml" value="0.4" />
       </map>
     </option>
   </component>
@@ -12,5 +16,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.4" />
+      </ProjectState>
+    </option>
   </component>
 </project>
