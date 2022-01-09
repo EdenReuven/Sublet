@@ -8,14 +8,14 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity {
     NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
 
-        NavHost navHost = (NavHost)getSupportFragmentManager().findFragmentById(R.id.base_navhost);
+        NavHost navHost = (NavHost)getSupportFragmentManager().findFragmentById(R.id.home_navhost);
         navController = navHost.getNavController();
         NavigationUI.setupActionBarWithNavController(this,navController);
     }
