@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 
 public class LogInActivity extends AppCompatActivity {
-//    NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

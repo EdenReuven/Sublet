@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_addicon.xml" value="0.2203125" />
+        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_homelogo.xml" value="0.2203125" />
+        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_locationicon.xml" value="0.2203125" />
+        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/menu/base_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/card.xml" value="0.1" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_homelogo.xml" value="0.1" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_home.xml" value="0.25271739130434784" />

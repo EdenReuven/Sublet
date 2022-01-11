@@ -10,4 +10,12 @@
         android:name="com.example.sublet.HomePageFragment"
         android:label="Home Page"
         tools:layout="@layout/fragment_home_page" />
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.sublet.AddPostFragment"
+        android:label="Add New Post"
+        tools:layout="@layout/fragment_add_post" />
+    <action
+        android:id="@+id/action_global_addPostFragment"
+        app:destination="@id/addPostFragment" />
 </navigation>
