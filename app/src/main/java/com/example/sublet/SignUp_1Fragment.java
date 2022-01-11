@@ -26,7 +26,7 @@ public class SignUp_1Fragment extends Fragment {
         userName_et=view.findViewById(R.id.signUp_freg_userName_et);
         email_et=view.findViewById(R.id.signUp_freg_email_et);
         phone_et=view.findViewById(R.id.signUp_freg_phone_et);
-        continue_btn=view.findViewById(R.id.signUp2_freg_continue_btn);
+        continue_btn=view.findViewById(R.id.signUp3_freg_continue_btn);
 
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override

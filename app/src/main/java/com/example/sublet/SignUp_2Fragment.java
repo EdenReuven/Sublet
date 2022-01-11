@@ -3,6 +3,7 @@ package com.example.sublet;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +20,16 @@ public class SignUp_2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up_2, container, false);
-        password_ed =view.findViewById(R.id.signUp2_freg_password_et);
-        confirmPassword_ed=view.findViewById(R.id.signUp2_freg_conPassword_et);
-        continue_btn=view.findViewById(R.id.signUp2_freg_continue_btn);
+        password_ed = view.findViewById(R.id.signUp2_freg_password_et);
+        confirmPassword_ed = view.findViewById(R.id.signUp2_freg_conPassword_et);
+        continue_btn = view.findViewById(R.id.signUp3_freg_continue_btn);
 
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                Navigation.findNavController(v).navigate(SignUp_2FragmentDirections.actionSignUp2FragmentToSignUp3Fragment());
             }
         });
-
         return view;
     }
 }

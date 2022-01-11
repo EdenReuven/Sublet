@@ -32,6 +32,7 @@ public class LogInFragment extends Fragment {
         forget_tv = view.findViewById(R.id.loginFragment_forgetPassword_TV);
 
         login_btn.setOnClickListener(new View.OnClickListener() {
+            //TODO: check validation
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), HomePageActivity.class);
