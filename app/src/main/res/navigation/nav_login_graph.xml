@@ -9,5 +9,14 @@
         android:id="@+id/logIn_fragment"
         android:name="com.example.sublet.LogInFragment"
         android:label="Log In"
-        tools:layout="@layout/fragment_log_in" />
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logIn_fragment_to_signUp_1Fragment"
+            app:destination="@id/signUp_1Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp_1Fragment"
+        android:name="com.example.sublet.SignUp_1Fragment"
+        android:label="Sign Up"
+        tools:layout="@layout/fragment_sing_up_1" />
 </navigation>

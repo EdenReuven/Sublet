@@ -129,7 +129,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="50dp"
-                android:text="SING UP"
+                android:text="SIGN UP"
                 android:textAlignment="center"
                 android:textColor="#BCA3AC"
                 android:textSize="18dp"

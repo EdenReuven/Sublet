@@ -3,19 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_addicon.xml" value="0.2203125" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_homelogo.xml" value="0.2203125" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_locationicon.xml" value="0.2203125" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/menu/base_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/card.xml" value="0.1" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_homelogo.xml" value="0.1" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_home.xml" value="0.25271739130434784" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_home_page.xml" value="0.2907608695652174" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_main.xml" value="0.29846014492753625" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_home_page.xml" value="0.1" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_log_in.xml" value="0.264" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/menu/base_menu.xml" value="0.4" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_circle_empty_24dp.xml" value="0.37916666666666665" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_circle_full_24dp.xml" value="0.37916666666666665" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_main.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_log_in.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_sing_up_1.xml" value="0.36302083333333335" />
       </map>
     </option>
   </component>
@@ -24,12 +16,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.4" />
-      </ProjectState>
-    </option>
   </component>
 </project>

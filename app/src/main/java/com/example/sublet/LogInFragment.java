@@ -41,6 +41,13 @@ public class LogInFragment extends Fragment {
             }
         });
 
+        singUp_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(LogInFragmentDirections.actionLogInFragmentToSignUp1Fragment());
+            }
+        });
+
         return view;
 
     }
