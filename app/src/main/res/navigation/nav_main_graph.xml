@@ -18,4 +18,12 @@
     <action
         android:id="@+id/action_global_addPostFragment"
         app:destination="@id/addPostFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.sublet.MapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_map" />
+    <action
+        android:id="@+id/action_global_mapFragment"
+        app:destination="@id/mapFragment" />
 </navigation>
