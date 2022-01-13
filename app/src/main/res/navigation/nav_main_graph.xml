@@ -14,7 +14,11 @@
         android:id="@+id/addPostFragment"
         android:name="com.example.sublet.AddPostFragment"
         android:label="Add New Post"
-        tools:layout="@layout/fragment_add_post" />
+        tools:layout="@layout/fragment_add_post" >
+        <action
+            android:id="@+id/action_addPostFragment_to_addPost2"
+            app:destination="@id/addPost2Fragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_addPostFragment"
         app:destination="@id/addPostFragment" />
@@ -26,4 +30,9 @@
     <action
         android:id="@+id/action_global_mapFragment"
         app:destination="@id/mapFragment" />
+    <fragment
+        android:id="@+id/addPost2Fragment"
+        android:name="com.example.sublet.AddPost2Fragment"
+        android:label="Add New Post "
+        tools:layout="@layout/fragment_add_post2" />
 </navigation>

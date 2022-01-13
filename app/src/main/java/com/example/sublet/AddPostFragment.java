@@ -3,6 +3,7 @@ package com.example.sublet;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +29,12 @@ public class AddPostFragment extends Fragment {
         people_et=view.findViewById(R.id.addPost_freg_people_et);
         bathroom_et=view.findViewById(R.id.addPost_freg_bathroom_et);
         bedroom_et=view.findViewById(R.id.addPost_freg_bedroom_et);
-        continue_btn=view.findViewById(R.id.addPost_freg_continue_btn);
+        continue_btn=view.findViewById(R.id.addPost2_freg_post_btn);
 
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: move to next frag
+                Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionAddPostFragmentToAddPost2());
             }
         });
 
