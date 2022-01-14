@@ -33,7 +33,7 @@ public class AddPost2Fragment extends Fragment {
         post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                //TODO : post + home page
             }
         });
 

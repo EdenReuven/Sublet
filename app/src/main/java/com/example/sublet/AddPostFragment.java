@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 
 public class AddPostFragment extends Fragment {
-   EditText  dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et ;
+   EditText  dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et;
    Button continue_btn;
 
     @Override
