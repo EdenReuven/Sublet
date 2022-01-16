@@ -103,17 +103,18 @@ public class HomePageFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            Post post = dataPost.get(position);
+            Post p = dataPost.get(position);
             //TODO: problem the value not from DB only from XML
             //img
             //post img
             //holder.create_post_tv.setText(); //currentDate
             //holder.username_tv.setText(); //username
-            //holder.status_tv.setText();
-//            holder.location_tv.setText(post.getLocation());
-//            holder.numOfPeople_tv.setText(post.getOverallPeople());
-//            holder.price_tv.setText((int) post.getPrice()); // need to be float
-//            holder.dates_tv.setText(post.getFromDate() + post.getToDate());
+
+            holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
+            holder.location_tv.setText(p.getLocation());
+            holder.numOfPeople_tv.setText(Integer.toString(p.getOverallPeople()));
+            holder.price_tv.setText(Integer.toString((int)p.getPrice()));
+            holder.dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
         }
 
         @Override
