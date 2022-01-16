@@ -8,7 +8,7 @@ public class Post {
 
     String fromDate = "";
     String toDate = "";
-    List<Image> images = null;
+//    List<Image> images = null;
     int numRoommate = 0;  // current num of people
     String location = "";
     int overallPeople = 0;
@@ -19,12 +19,11 @@ public class Post {
 
     public Post(){}
 
-    public Post(String fromDate, String toDate, List<Image> images, int numRoommate,
+    public Post(String fromDate, String toDate, int numRoommate,
                 String location, int overallPeople, float price, String postContent,
                 int numOfBathroom, int numOfBedroom) {
         this.fromDate = fromDate;
         this.toDate = toDate;
-        this.images = images;
         this.numRoommate = numRoommate;
         this.location = location;
         this.overallPeople = overallPeople;
@@ -48,14 +47,6 @@ public class Post {
 
     public void setToDate(String toDate) {
         this.toDate = toDate;
-    }
-
-    public List<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
     }
 
     public int getNumRoommate() {

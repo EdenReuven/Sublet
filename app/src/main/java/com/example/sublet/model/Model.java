@@ -10,10 +10,9 @@ public class Model {
 
     private Model() {
         for(int i=0;i<5;i++){
-//            Post post = new Post("from date" + 00/00/2020,"to date" + 10/10/2020,null,i
-//            ,"location - tel-aviv"+i, i,i,"postContect - blabla" +i, i,i);
-//            Log.d("TAG",post.postContent);
-//            postList.add(post);
+            Post post = new Post("from"+10/10/2010,"to"+12/10/2010,2,"location: Ramla",4,120,
+                    "post:myPost",2,3);
+            postList.add(post);
         }
     }
 
