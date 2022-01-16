@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
+import com.example.sublet.model.User;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ import java.util.List;
 public class HomePageFragment extends Fragment {
     RecyclerView postList;
     List<Post> dataPost;
+    List<User> dataUser;
     MyAdapter adapter;
 
     @Override
@@ -31,6 +33,7 @@ public class HomePageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         dataPost = Model.instance.getAllPosts();
+        dataUser = Model.instance.getAllUsers();
         postList = view.findViewById(R.id.homePage_postList_rv);
         postList.setHasFixedSize(true);
         postList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -104,12 +107,14 @@ public class HomePageFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Post p = dataPost.get(position);
-            //TODO: problem the value not from DB only from XML
+            User u = dataUser.get(position);
+            //TODO: add image post + image profile + currentDate
+
             //img
             //post img
             //holder.create_post_tv.setText(); //currentDate
-            //holder.username_tv.setText(); //username
 
+            holder.username_tv.setText(u.getUserName());
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
             holder.location_tv.setText(p.getLocation());
             holder.numOfPeople_tv.setText(Integer.toString(p.getOverallPeople()));
