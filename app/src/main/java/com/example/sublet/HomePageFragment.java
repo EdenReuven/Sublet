@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,6 +46,7 @@ public class HomePageFragment extends Fragment {
             public void onItemClick(View v, int position) {
                 //TODO: open the current post + send the current position
                 Log.d("TAG","id"+position);
+                Navigation.findNavController(v).navigate(HomePageFragmentDirections.actionHomePageFragmentToPostFragment());
             }
         });
 

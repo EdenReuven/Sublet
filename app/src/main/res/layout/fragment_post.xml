@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        app:cardBackgroundColor="#ffffff"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/posr_frag_profilePic_img"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/woman"
+                    app:layout_constraintDimensionRatio=""
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/post_frag_userName_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="UserName"
+                    android:textSize="22dp"
+                    app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/post_frag_phone_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="054-05412312"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_userName_tv" />
+
+                <TextView
+                    android:id="@+id/post_frag_email_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="UserName@gmail.com"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_phone_tv" />
+
+                <ImageView
+                    android:id="@+id/posr_frag_images_img"
+                    android:layout_width="290dp"
+                    android:layout_height="185dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/room"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_email_tv" />
+
+                <ImageView
+                    android:id="@+id/imageView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic__dots"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/posr_frag_images_img" />
+
+                <TextView
+                    android:id="@+id/post_frag_dates_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="22/12/21-22/2/22"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView31"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView20" />
+
+                <ImageView
+                    android:id="@+id/imageView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_home_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView20" />
+
+                <TextView
+                    android:id="@+id/post_frag_roomate_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="You’ll have the house to yourself."
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView26"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_dates_tv" />
+
+                <ImageView
+                    android:id="@+id/imageView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView31"
+                    app:srcCompat="@drawable/ic_home_post" />
+
+                <TextView
+                    android:id="@+id/post_frag_location_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="Tel Aviv Yafo, Israel"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView33"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_roomate_tv" />
+
+                <ImageView
+                    android:id="@+id/imageView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_home_location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView26" />
+
+                <TextView
+                    android:id="@+id/post_frag_people_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="fit for 2 people "
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView35"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_location_tv" />
+
+                <ImageView
+                    android:id="@+id/imageView35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_home_people"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView33" />
+
+                <TextView
+                    android:id="@+id/post_frag_price_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="100 / day"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView36"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_people_tv" />
+
+                <ImageView
+                    android:id="@+id/imageView36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_home_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView35" />
+
+                <ImageView
+                    android:id="@+id/imageView37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_bed_24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView36" />
+
+                <TextView
+                    android:id="@+id/post_frag_bedroom_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="1 bedroom"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView37"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_price_tv" />
+
+                <ImageView
+                    android:id="@+id/imageView38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_bathtub_24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView37" />
+
+                <TextView
+                    android:id="@+id/post_frag_bathroom_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="1 bathroom"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView38"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_bedroom_tv" />
+
+                <TextView
+                    android:id="@+id/post_frag_description_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/dosis"
+                    android:text="The Bedroom includes one king-sized bed and big comfortable flat-screen TV and entire living room, with mini refrigerator, hot water heater and utensils. , relax and breath the sea air and enjoy the sea view. Apartment is on first floor, with no elevator. This apartment can accommodate 2 people -- Perfect for couples, beach lovers and surfers."
+                    android:textSize="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_bathroom_tv" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,11 @@
         android:id="@+id/homePageFragment"
         android:name="com.example.sublet.HomePageFragment"
         android:label="Home Page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.sublet.AddPostFragment"
@@ -35,4 +39,9 @@
         android:name="com.example.sublet.AddPost2Fragment"
         android:label="Add New Post "
         tools:layout="@layout/fragment_add_post2" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.sublet.PostFragment"
+        android:label="Post"
+        tools:layout="@layout/fragment_post" />
 </navigation>
