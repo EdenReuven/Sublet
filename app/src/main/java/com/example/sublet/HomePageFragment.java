@@ -20,6 +20,8 @@ import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import com.example.sublet.model.User;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -28,13 +30,14 @@ public class HomePageFragment extends Fragment {
     List<Post> dataPost;
     List<User> dataUser;
     MyAdapter adapter;
-
+    Date currentDate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         dataPost = Model.instance.getAllPosts();
         dataUser = Model.instance.getAllUsers();
+        currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
         postList.setHasFixedSize(true);
         postList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -45,8 +48,8 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 //TODO: open the current post + send the current position
-                Log.d("TAG","id"+position);
-                Navigation.findNavController(v).navigate(HomePageFragmentDirections.actionHomePageFragmentToPostFragment());
+                int pos = position;
+                Navigation.findNavController(v).navigate(HomePageFragmentDirections.actionHomePageFragmentToPostFragment(pos));
             }
         });
 
@@ -111,11 +114,11 @@ public class HomePageFragment extends Fragment {
             Post p = dataPost.get(position);
             User u = dataUser.get(position);
             //TODO: add image post + image profile + currentDate
-
+            int resultDays = differenceDays(p.getCreateDate(),currentDate);
             //img
             //post img
             //holder.create_post_tv.setText(); //currentDate
-
+            holder.create_post_tv.setText(Integer.toString(resultDays));
             holder.username_tv.setText(u.getUserName());
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
             holder.location_tv.setText(p.getLocation());
@@ -129,5 +132,9 @@ public class HomePageFragment extends Fragment {
             return dataPost.size();
         }
 
+    }
+
+    public int differenceDays(Date fromDate,Date toDate){
+        return (int) ((toDate.getTime() - fromDate.getTime())/(1000*60*60*24));
     }
 }

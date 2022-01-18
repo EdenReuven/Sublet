@@ -43,5 +43,9 @@
         android:id="@+id/postFragment"
         android:name="com.example.sublet.PostFragment"
         android:label="Post"
-        tools:layout="@layout/fragment_post" />
+        tools:layout="@layout/fragment_post" >
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 </navigation>

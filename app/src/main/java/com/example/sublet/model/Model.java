@@ -2,6 +2,8 @@ package com.example.sublet.model;
 
 import android.util.Log;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,13 +13,14 @@ public class Model {
     private Model() {
         for(int i=0;i<5;i++){
             Post post = new Post("10/10/2010"+i,"12/10/2010"+i,i,"Ramla"+i,4,120,
-                    "post:myPost",2,3);
+                    "post:myPost",2,3,currentDate);
             postList.add(post);
-            User user = new User("myName"+i,"myUserName"+i,"myEmail@"+i,"myPhone"+1,"myPassword"+i);
+            User user = new User("myName"+i,"myUserName"+i,"myEmail@"+i,"myPhone"+i,"myPassword"+i);
             usersList.add(user);
         }
     }
 
+    Date currentDate = Calendar.getInstance().getTime(); // bring today date and always = 0 days ago because the db is not correct for now
     List<User> usersList = new LinkedList<>();
     List<Post> postList = new LinkedList<>();
 
@@ -26,8 +29,15 @@ public class Model {
     public List<Post> getAllPosts() {
         return postList;
     }
+    public Post getPost(int pos) {
+        return postList.get(pos);
+    }
 
     public List<User> getAllUsers() {
         return usersList;
+    }
+
+    public User getUser(int pos) {
+        return usersList.get(pos);
     }
 }

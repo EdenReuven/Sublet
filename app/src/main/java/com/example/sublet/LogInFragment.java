@@ -35,6 +35,14 @@ public class LogInFragment extends Fragment {
             //TODO: check validation
             @Override
             public void onClick(View v) {
+                if(userName_et.getText().toString().length() == 0){
+                    userName_et.setError("This field is require");
+                    return;
+                }
+                if(password_et.getText().toString().length() == 0) {
+                    password_et.setError("This field is require");
+                    return;
+                }
                 Intent intent = new Intent(getActivity(), HomePageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

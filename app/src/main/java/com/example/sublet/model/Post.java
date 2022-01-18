@@ -2,10 +2,9 @@ package com.example.sublet.model;
 
 import android.media.Image;
 
+import java.util.Date;
 import java.util.List;
-
 public class Post {
-
     String fromDate = "";
     String toDate = "";
 //    List<Image> images = null;
@@ -16,12 +15,13 @@ public class Post {
     String postContent = "";
     int numOfBathroom = 0;
     int numOfBedroom = 0;
+    private Date createDate = null;
 
     public Post(){}
 
     public Post(String fromDate, String toDate, int numRoommate,
                 String location, int overallPeople, float price, String postContent,
-                int numOfBathroom, int numOfBedroom) {
+                int numOfBathroom, int numOfBedroom, Date createDate) {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.numRoommate = numRoommate;
@@ -31,6 +31,7 @@ public class Post {
         this.postContent = postContent;
         this.numOfBathroom = numOfBathroom;
         this.numOfBedroom = numOfBedroom;
+        this.createDate = createDate;
     }
 
     public String getFromDate() {
@@ -103,5 +104,13 @@ public class Post {
 
     public void setNumOfBedroom(int numOfBedroom) {
         this.numOfBedroom = numOfBedroom;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

@@ -160,11 +160,20 @@
         android:id="@+id/post_createDay_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
+        android:fontFamily="@font/dosis"
+        android:text="2"
+        app:layout_constraintEnd_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/post_profileImg_imageView" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="61dp"
+        android:layout_height="19dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/dosis"
-        android:text="2 Days ago"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/post_profileImg_imageView" />
+        android:text="Days ago"
+        app:layout_constraintBaseline_toBaselineOf="@+id/post_createDay_tv"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
