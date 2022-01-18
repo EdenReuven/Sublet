@@ -1,21 +1,26 @@
 package com.example.sublet.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     String fullName = "";
     String userName = "";
     String email = "";
     String phone = "";
     String password = "";
+    ArrayList<Post> postList = new ArrayList<>();
     //Image
 
     public User(){}
 
-    public User(String fullName, String userName, String email, String phone, String password) {
+    public User(String fullName, String userName, String email, String phone, String password,ArrayList<Post> postList) {
         this.fullName = fullName;
         this.userName = userName;
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.postList = postList;
     }
 
     public String getFullName() {
@@ -48,6 +53,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public ArrayList<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(ArrayList<Post> postList) {
+        this.postList = postList;
     }
 
     public String getPassword() {

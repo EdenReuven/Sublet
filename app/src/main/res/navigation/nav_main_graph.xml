@@ -38,7 +38,15 @@
         android:id="@+id/addPost2Fragment"
         android:name="com.example.sublet.AddPost2Fragment"
         android:label="Add New Post "
-        tools:layout="@layout/fragment_add_post2" />
+        tools:layout="@layout/fragment_add_post2" >
+        <argument
+            android:name="postObj"
+            app:argType="com.example.sublet.model.Post" />
+        <action
+            android:id="@+id/action_addPost2Fragment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/homePageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/postFragment"
         android:name="com.example.sublet.PostFragment"

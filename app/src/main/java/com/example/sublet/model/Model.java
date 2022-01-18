@@ -12,10 +12,10 @@ public class Model {
 
     private Model() {
         for(int i=0;i<5;i++){
-            Post post = new Post("10/10/2010"+i,"12/10/2010"+i,i,"Ramla"+i,4,120,
+            Post post = new Post("10/10/2010"+i,"12/10/2010"+i,3,"Ramla"+i,4,120,
                     "post:myPost",2,3,currentDate);
             postList.add(post);
-            User user = new User("myName"+i,"myUserName"+i,"myEmail@"+i,"myPhone"+i,"myPassword"+i);
+            User user = new User("myName"+i,"myUserName"+i,"myEmail@"+i,"myPhone"+i,"myPassword"+i,null);
             usersList.add(user);
         }
     }
@@ -32,7 +32,9 @@ public class Model {
     public Post getPost(int pos) {
         return postList.get(pos);
     }
-
+    public void addPost(Post newPost) {
+        postList.add(newPost);
+    }
     public List<User> getAllUsers() {
         return usersList;
     }
@@ -40,4 +42,5 @@ public class Model {
     public User getUser(int pos) {
         return usersList.get(pos);
     }
+
 }

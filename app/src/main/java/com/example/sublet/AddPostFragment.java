@@ -38,23 +38,21 @@ public class AddPostFragment extends Fragment {
         continue_btn=view.findViewById(R.id.addPost2_freg_post_btn);
         createTimeDate = Calendar.getInstance().getTime();
 
-        Post newPost = new Post();
-        newPost.setFromDate(dateFrom_et.getText().toString());
-        newPost.setToDate(dateTo_et.getText().toString());
-        newPost.setLocation(location_et.getText().toString());
-        newPost.setNumRoommate(Integer.parseInt(roommate_et.getText().toString()));
-        newPost.setPrice(Integer.parseInt(price_et.getText().toString()));
-        newPost.setOverallPeople(Integer.parseInt(people_et.getText().toString()));
-        newPost.setNumOfBedroom(Integer.parseInt(bedroom_et.getText().toString()));
-        newPost.setNumOfBathroom(Integer.parseInt(bathroom_et.getText().toString()));
-        newPost.setCreateDate(createTimeDate);
-
         //TODO: need to pass the newPost object to the next fragment to continue the add new post
-
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionAddPostFragmentToAddPost2());
+                Post newPost = new Post();
+                newPost.setFromDate(dateFrom_et.getText().toString());
+                newPost.setToDate(dateTo_et.getText().toString());
+                newPost.setLocation(location_et.getText().toString());
+                newPost.setNumRoommate(Integer.parseInt(roommate_et.getText().toString()));
+                newPost.setPrice(Integer.parseInt(price_et.getText().toString()));
+                newPost.setOverallPeople(Integer.parseInt(people_et.getText().toString()));
+                newPost.setNumOfBedroom(Integer.parseInt(bedroom_et.getText().toString()));
+                newPost.setNumOfBathroom(Integer.parseInt(bathroom_et.getText().toString()));
+                newPost.setCreateDate(createTimeDate);
+                Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionAddPostFragmentToAddPost2(newPost));
             }
         });
 

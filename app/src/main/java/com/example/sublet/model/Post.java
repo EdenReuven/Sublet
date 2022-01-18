@@ -1,10 +1,13 @@
 package com.example.sublet.model;
-
+//TODO: connection the user to post list
 import android.media.Image;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-public class Post {
+public class Post implements Parcelable {
     String fromDate = "";
     String toDate = "";
 //    List<Image> images = null;
@@ -33,6 +36,30 @@ public class Post {
         this.numOfBedroom = numOfBedroom;
         this.createDate = createDate;
     }
+
+    protected Post(Parcel in) {
+        fromDate = in.readString();
+        toDate = in.readString();
+        numRoommate = in.readInt();
+        location = in.readString();
+        overallPeople = in.readInt();
+        price = in.readFloat();
+        postContent = in.readString();
+        numOfBathroom = in.readInt();
+        numOfBedroom = in.readInt();
+    }
+
+    public static final Creator<Post> CREATOR = new Creator<Post>() {
+        @Override
+        public Post createFromParcel(Parcel in) {
+            return new Post(in);
+        }
+
+        @Override
+        public Post[] newArray(int size) {
+            return new Post[size];
+        }
+    };
 
     public String getFromDate() {
         return fromDate;
@@ -112,5 +139,25 @@ public class Post {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    //Peaceable send obj to fragment
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fromDate);
+        dest.writeString(toDate);
+        dest.writeInt(numRoommate);
+        dest.writeString(location);
+        dest.writeInt(overallPeople);
+        dest.writeFloat(price);
+        dest.writeString(postContent);
+        dest.writeInt(numOfBathroom);
+        dest.writeInt(numOfBedroom);
     }
 }
