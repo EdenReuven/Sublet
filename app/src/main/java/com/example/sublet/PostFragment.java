@@ -75,7 +75,7 @@ public class PostFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.edit_menu:
-                //NavHostFragment.findNavController(getParentFragment()).navigate(R.id.addPostFragment); --> edit post fragment
+                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.editPostFragment);
                 return true;
             case R.id.delete_menu:
                 //TODO: delete post

@@ -16,7 +16,7 @@ public class Model {
             Post post = new Post("10/10/2010"+i,"12/10/2010"+i,3,"Ramla"+i,4,120,
                     "post:myPost",2,3,currentDate);
             postList.add(post);
-            User user = new User("myName"+i,"myUserName"+i,"myEmail@"+i,"myPhone"+i,"myPassword"+i,null);
+            User user = new User("myName"+i,""+i,"myEmail@"+i,"myPhone"+i,""+i,null);
             usersList.add(user);
         }
     }
