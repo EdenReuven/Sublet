@@ -49,6 +49,7 @@ public class LogInFragment extends Fragment {
                 if(!Model.instance.userExists(userName_et.getText().toString(),password_et.getText().toString())){
                     return;
                 }else {
+                    Model.instance.setCurrentUser(userName_et.getText().toString());
                     Intent intent = new Intent(getActivity(), HomePageActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

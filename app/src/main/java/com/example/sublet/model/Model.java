@@ -24,6 +24,7 @@ public class Model {
     Date currentDate = Calendar.getInstance().getTime(); // bring today date and always = 0 days ago because the db is not correct for now
     List<User> usersList = new LinkedList<>();
     List<Post> postList = new LinkedList<>();
+    User currentUser = null;
 
     //TODO: function for user + post
 
@@ -40,9 +41,20 @@ public class Model {
         return usersList;
     }
 
-    public User getUser(int pos) {
-        return usersList.get(pos);
+    public User getCurrentUser(){
+        return currentUser;
     }
+
+    public void setCurrentUser(String userName){
+        for (int i=0;i<usersList.size();i++){
+            if(usersList.get(i).getUserName().equals(userName))
+                currentUser = usersList.get(i);
+        }
+    }
+
+//    public User getUser(int pos) {
+//        return usersList.get(pos);
+//    }
     public boolean userExists(String userName,String password){
         for (int i =0;i<usersList.size();i++){
             if(usersList.get(i).getUserName().equals(userName) && usersList.get(i).getPassword().equals(password))

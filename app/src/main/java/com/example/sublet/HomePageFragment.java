@@ -117,17 +117,13 @@ public class HomePageFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+            //TODO: add image post + image profile
             Post p = dataPost.get(position);
-            //User u = dataUser.get(position);
-            //TODO: add image post + image profile + currentDate
-            //TODO: fix user
-            int resultDays = differenceDays(p.getCreateDate(),currentDate);
-            //img
-            //post img
+            User u = Model.instance.getCurrentUser();
 
-            //holder.create_post_tv.setText(); //currentDate
+            int resultDays = differenceDays(p.getCreateDate(),currentDate);
             holder.create_post_tv.setText(Integer.toString(resultDays));
-            //holder.username_tv.setText(u.getUserName());
+            holder.username_tv.setText(u.getUserName());
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
             holder.location_tv.setText(p.getLocation());
             holder.numOfPeople_tv.setText(Integer.toString(p.getOverallPeople()));

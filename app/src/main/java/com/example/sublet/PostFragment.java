@@ -33,7 +33,7 @@ public class PostFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_post, container, false);
         pos = PostFragmentArgs.fromBundle(getArguments()).getPosition();
         Post post = Model.instance.getPost(pos);
-        User user = Model.instance.getUser(pos);
+        User user = Model.instance.getCurrentUser();
 
         username_tv = view.findViewById(R.id.post_frag_userName_tv);
         phone_tv = view.findViewById(R.id.post_frag_phone_tv);

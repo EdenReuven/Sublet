@@ -17,6 +17,7 @@ public class Post implements Parcelable {
     int numOfBathroom = 0;
     int numOfBedroom = 0;
     Date createDate = null;
+    String userName = "";
 
     public Post(){}
 

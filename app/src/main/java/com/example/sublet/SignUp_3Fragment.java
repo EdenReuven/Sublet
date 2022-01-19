@@ -31,7 +31,6 @@ public class SignUp_3Fragment extends Fragment {
             public void onClick(View v) {
                 // setImage newUser
                 Model.instance.addUser(newUser);
-                Log.d("TAG",Model.instance.getUser(1).getUserName().toString());
                 Intent intent = new Intent(getActivity(), HomePageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
