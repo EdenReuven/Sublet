@@ -2,6 +2,7 @@ package com.example.sublet.model;
 
 import android.util.Log;
 
+import java.security.PublicKey;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -11,7 +12,7 @@ public class Model {
     public static final Model instance = new Model();
 
     private Model() {
-        for(int i=0;i<5;i++){
+        for(int i=0;i<1;i++){
             Post post = new Post("10/10/2010"+i,"12/10/2010"+i,3,"Ramla"+i,4,120,
                     "post:myPost",2,3,currentDate);
             postList.add(post);
@@ -41,6 +42,13 @@ public class Model {
 
     public User getUser(int pos) {
         return usersList.get(pos);
+    }
+    public boolean userExists(String userName,String password){
+        for (int i =0;i<usersList.size();i++){
+            if(usersList.get(i).getUserName().equals(userName) && usersList.get(i).getPassword().equals(password))
+                return true;
+        }
+        return false;
     }
 
 }

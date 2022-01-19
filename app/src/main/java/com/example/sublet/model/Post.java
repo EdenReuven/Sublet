@@ -18,7 +18,7 @@ public class Post implements Parcelable {
     String postContent = "";
     int numOfBathroom = 0;
     int numOfBedroom = 0;
-    private Date createDate = null;
+    Date createDate = null;
 
     public Post(){}
 
@@ -159,5 +159,6 @@ public class Post implements Parcelable {
         dest.writeString(postContent);
         dest.writeInt(numOfBathroom);
         dest.writeInt(numOfBedroom);
+        dest.writeString(createDate.toString());
     }
 }

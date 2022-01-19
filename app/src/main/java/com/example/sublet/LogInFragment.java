@@ -7,12 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.sublet.model.Model;
 
 
 public class LogInFragment extends Fragment {
@@ -43,10 +46,14 @@ public class LogInFragment extends Fragment {
                     password_et.setError("This field is require");
                     return;
                 }
-                Intent intent = new Intent(getActivity(), HomePageActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                getActivity().finish();
+                if(!Model.instance.userExists(userName_et.getText().toString(),password_et.getText().toString())){
+                    return;
+                }else {
+                    Intent intent = new Intent(getActivity(), HomePageActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
             }
         });
 
