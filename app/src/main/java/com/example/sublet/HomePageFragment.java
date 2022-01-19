@@ -4,12 +4,18 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHost;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -31,6 +37,7 @@ public class HomePageFragment extends Fragment {
     List<User> dataUser;
     MyAdapter adapter;
     Date currentDate;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,12 +54,11 @@ public class HomePageFragment extends Fragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                //TODO: open the current post + send the current position
                 int pos = position;
                 Navigation.findNavController(v).navigate(HomePageFragmentDirections.actionHomePageFragmentToPostFragment(pos));
             }
         });
-
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -112,14 +118,16 @@ public class HomePageFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Post p = dataPost.get(position);
-            User u = dataUser.get(position);
+            //User u = dataUser.get(position);
             //TODO: add image post + image profile + currentDate
+            //TODO: fix user
             int resultDays = differenceDays(p.getCreateDate(),currentDate);
             //img
             //post img
+
             //holder.create_post_tv.setText(); //currentDate
             holder.create_post_tv.setText(Integer.toString(resultDays));
-            holder.username_tv.setText(u.getUserName());
+            //holder.username_tv.setText(u.getUserName());
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
             holder.location_tv.setText(p.getLocation());
             holder.numOfPeople_tv.setText(Integer.toString(p.getOverallPeople()));
@@ -136,5 +144,27 @@ public class HomePageFragment extends Fragment {
 
     public int differenceDays(Date fromDate,Date toDate){
         return (int) ((toDate.getTime() - fromDate.getTime())/(1000*60*60*24));
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.home_page_menu,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.add_menu:
+                Log.d("TAG","Add from home page menu");
+                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.addPostFragment);
+                return true;
+            case R.id.map_menu:
+                Log.d("TAG","Map from home page menu");
+                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.mapFragment);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

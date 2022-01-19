@@ -38,12 +38,12 @@ public class HomePageActivity extends AppCompatActivity {
                 case android.R.id.home:
                     navController.navigateUp();
                     return true;
-                case R.id.menu_add:
-                    navController.navigate(R.id.action_global_addPostFragment);
-                    return true;
-                case R.id.menu_map:
-                    navController.navigate(R.id.action_global_mapFragment);
-                    return true;
+//                case R.id.menu_add:
+//                    navController.navigate(R.id.action_global_addPostFragment);
+//                    return true;
+//                case R.id.menu_map:
+//                    navController.navigate(R.id.action_global_mapFragment);
+//                    return true;
             }
         }else{
             return true;

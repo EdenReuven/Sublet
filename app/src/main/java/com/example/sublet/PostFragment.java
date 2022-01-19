@@ -1,10 +1,18 @@
 package com.example.sublet;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -50,7 +58,30 @@ public class PostFragment extends Fragment {
         bathroom_tv.setText(Integer.toString(post.getNumOfBathroom()));
         bedroom_tv.setText(Integer.toString(post.getNumOfBedroom()));
         description_tv.setText(post.getPostContent());
-
+        setHasOptionsMenu(true);
         return view;
+    }
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.post_info_menu,menu);
+        MenuBuilder m = (MenuBuilder) menu;
+        m.setOptionalIconsVisible(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.edit_menu:
+                //NavHostFragment.findNavController(getParentFragment()).navigate(R.id.addPostFragment); --> edit post fragment
+                return true;
+            case R.id.delete_menu:
+                //TODO: delete post
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
