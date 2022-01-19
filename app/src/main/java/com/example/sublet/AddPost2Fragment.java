@@ -3,6 +3,8 @@ package com.example.sublet;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +29,6 @@ public class AddPost2Fragment extends Fragment {
         post_btn=view.findViewById(R.id.addPost2_freg_post_btn);
         Post newPost = AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj();
 
-        newPost.setPostContent(description_et.getText().toString());
-        //set image
-
         addPhoto_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,8 +39,11 @@ public class AddPost2Fragment extends Fragment {
         post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : post + home page
+                newPost.setPostContent(description_et.getText().toString());
+                //set image
                 Model.instance.addPost(newPost);
+                Model.instance.getCurrentUser().getPostList().add(newPost);
+                Log.d("TAG",Model.instance.getCurrentUser().getPostList().toString());
                 Navigation.findNavController(v).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
             }
         });

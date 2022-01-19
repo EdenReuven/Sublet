@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import java.util.Date;
 
 public class Post implements Parcelable {
+    String postId = "";
     String fromDate = "";
     String toDate = "";
 //    List<Image> images = null;
@@ -17,13 +18,12 @@ public class Post implements Parcelable {
     int numOfBathroom = 0;
     int numOfBedroom = 0;
     Date createDate = null;
-    String userName = "";
 
     public Post(){}
 
     public Post(String fromDate, String toDate, int numRoommate,
                 String location, int overallPeople, float price, String postContent,
-                int numOfBathroom, int numOfBedroom, Date createDate) {
+                int numOfBathroom, int numOfBedroom, Date createDate,String postId) {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.numRoommate = numRoommate;
@@ -34,6 +34,7 @@ public class Post implements Parcelable {
         this.numOfBathroom = numOfBathroom;
         this.numOfBedroom = numOfBedroom;
         this.createDate = createDate;
+        this.postId = postId;
     }
 
     protected Post(Parcel in) {
@@ -140,7 +141,13 @@ public class Post implements Parcelable {
         this.createDate = createDate;
     }
 
-    //Peaceable send obj to fragment
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
 
     @Override
     public int describeContents() {
