@@ -1,22 +1,20 @@
 package com.example.sublet;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
+import com.example.sublet.model.User;
 
 public class SignUp_1Fragment extends Fragment {
 
     EditText fullName_et, userName_et, email_et, phone_et;
     Button continue_btn;
-
+    User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,7 +29,13 @@ public class SignUp_1Fragment extends Fragment {
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(SignUp_1FragmentDirections.actionSignUp1FragmentToSignUp2Fragment());
+                user= new User();
+                user.setFullName(fullName_et.getText().toString());
+                user.setUserName(userName_et.getText().toString());
+                user.setEmail(email_et.getText().toString());
+                user.setPhone(phone_et.getText().toString());
+
+                Navigation.findNavController(v).navigate(SignUp_1FragmentDirections.actionSignUp1FragmentToSignUp2Fragment(user));
             }
         });
         return view;

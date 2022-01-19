@@ -1,12 +1,10 @@
 package com.example.sublet.model;
 //TODO: connection the user to post list
-import android.media.Image;
+
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 public class Post implements Parcelable {
     String fromDate = "";
     String toDate = "";

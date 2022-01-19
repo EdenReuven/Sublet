@@ -51,4 +51,7 @@ public class Model {
         return false;
     }
 
+    public void addUser(User newUser) {
+        usersList.add(newUser);
+    }
 }

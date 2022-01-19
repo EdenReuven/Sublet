@@ -31,10 +31,17 @@
         <action
             android:id="@+id/action_signUp_2Fragment_to_signUp_3Fragment"
             app:destination="@id/signUp_3Fragment" />
+        <argument
+            android:name="userObj"
+            app:argType="com.example.sublet.model.User" />
     </fragment>
     <fragment
         android:id="@+id/signUp_3Fragment"
         android:name="com.example.sublet.SignUp_3Fragment"
         android:label="Sign Up"
-        tools:layout="@layout/fragment_sign_up_3" />
+        tools:layout="@layout/fragment_sign_up_3" >
+        <argument
+            android:name="userObj"
+            app:argType="com.example.sublet.model.User" />
+    </fragment>
 </navigation>

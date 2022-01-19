@@ -1,9 +1,11 @@
 package com.example.sublet.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class User {
+import java.util.ArrayList;
+
+public class User implements Parcelable {
     String fullName = "";
     String userName = "";
     String email = "";
@@ -22,6 +24,27 @@ public class User {
         this.password = password;
         this.postList = postList;
     }
+
+    protected User(Parcel in) {
+        fullName = in.readString();
+        userName = in.readString();
+        email = in.readString();
+        phone = in.readString();
+        password = in.readString();
+        postList = in.createTypedArrayList(Post.CREATOR);
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getFullName() {
         return fullName;
@@ -69,5 +92,20 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fullName);
+        dest.writeString(userName);
+        dest.writeString(email);
+        dest.writeString(phone);
+        dest.writeString(password);
+        dest.writeTypedList(postList);
     }
 }
