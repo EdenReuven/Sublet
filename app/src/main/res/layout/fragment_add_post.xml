@@ -88,107 +88,107 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <EditText
-                android:id="@+id/addPost_freg_dateFrom_et"
+                android:id="@+id/editPost_freg_dateFrom_et"
                 android:layout_width="145dp"
                 android:layout_height="44dp"
                 android:layout_marginTop="30dp"
                 android:ems="10"
                 android:hint="From"
                 android:inputType="date"
-                app:layout_constraintEnd_toStartOf="@+id/addPost_freg_dateTo_et"
+                app:layout_constraintEnd_toStartOf="@+id/editPost_freg_dateTo_et"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
             <EditText
-                android:id="@+id/addPost_freg_dateTo_et"
+                android:id="@+id/editPost_freg_dateTo_et"
                 android:layout_width="145dp"
                 android:layout_height="43dp"
                 android:ems="10"
                 android:hint="To"
                 android:inputType="date"
-                app:layout_constraintBottom_toBottomOf="@+id/addPost_freg_dateFrom_et"
+                app:layout_constraintBottom_toBottomOf="@+id/editPost_freg_dateFrom_et"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/addPost_freg_dateFrom_et"
-                app:layout_constraintTop_toTopOf="@+id/addPost_freg_dateFrom_et" />
+                app:layout_constraintStart_toEndOf="@+id/editPost_freg_dateFrom_et"
+                app:layout_constraintTop_toTopOf="@+id/editPost_freg_dateFrom_et" />
 
             <EditText
-                android:id="@+id/addPost_freg_rommaite_et"
+                android:id="@+id/editPost_freg_rommaite_et"
                 android:layout_width="312dp"
                 android:layout_height="50dp"
                 android:ems="10"
                 android:hint="Number of Rommaite"
                 android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@+id/addPost_freg_people_et"
-                app:layout_constraintStart_toStartOf="@+id/addPost_freg_price_et"
-                app:layout_constraintTop_toBottomOf="@+id/addPost_freg_location_et" />
+                app:layout_constraintBottom_toTopOf="@+id/editPost_freg_people_et"
+                app:layout_constraintStart_toStartOf="@+id/editPost_freg_price_et"
+                app:layout_constraintTop_toBottomOf="@+id/editPost_freg_location_et" />
 
             <EditText
-                android:id="@+id/addPost_freg_location_et"
+                android:id="@+id/editPost_freg_location_et"
                 android:layout_width="308dp"
                 android:layout_height="53dp"
                 android:ems="10"
                 android:hint="Location"
                 android:inputType="textPostalAddress"
-                app:layout_constraintBottom_toTopOf="@+id/addPost_freg_rommaite_et"
-                app:layout_constraintStart_toStartOf="@+id/addPost_freg_rommaite_et"
-                app:layout_constraintTop_toBottomOf="@+id/addPost_freg_dateTo_et" />
+                app:layout_constraintBottom_toTopOf="@+id/editPost_freg_rommaite_et"
+                app:layout_constraintStart_toStartOf="@+id/editPost_freg_rommaite_et"
+                app:layout_constraintTop_toBottomOf="@+id/editPost_freg_dateTo_et" />
 
             <EditText
-                android:id="@+id/addPost_freg_price_et"
+                android:id="@+id/editPost_freg_price_et"
                 android:layout_width="145dp"
                 android:layout_height="42dp"
                 android:ems="10"
                 android:hint="Price"
                 android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="@+id/addPost_freg_people_et"
-                app:layout_constraintEnd_toStartOf="@+id/addPost_freg_people_et"
+                app:layout_constraintBottom_toBottomOf="@+id/editPost_freg_people_et"
+                app:layout_constraintEnd_toStartOf="@+id/editPost_freg_people_et"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/addPost_freg_people_et" />
+                app:layout_constraintTop_toTopOf="@+id/editPost_freg_people_et" />
 
             <EditText
-                android:id="@+id/addPost_freg_bedroom_et"
+                android:id="@+id/editPost_freg_bedroom_et"
                 android:layout_width="145dp"
                 android:layout_height="42dp"
                 android:ems="10"
                 android:hint="Bedroom"
                 android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="@+id/addPost_freg_bathroom_et"
-                app:layout_constraintEnd_toStartOf="@+id/addPost_freg_bathroom_et"
+                app:layout_constraintBottom_toBottomOf="@+id/editPost_freg_bathroom_et"
+                app:layout_constraintEnd_toStartOf="@+id/editPost_freg_bathroom_et"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/addPost_freg_bathroom_et" />
+                app:layout_constraintTop_toTopOf="@+id/editPost_freg_bathroom_et" />
 
             <EditText
-                android:id="@+id/addPost_freg_bathroom_et"
+                android:id="@+id/editPost_freg_bathroom_et"
                 android:layout_width="145dp"
                 android:layout_height="42dp"
                 android:ems="10"
                 android:hint="Bathroom"
                 android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
+                app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/addPost_freg_bedroom_et"
-                app:layout_constraintTop_toBottomOf="@+id/addPost_freg_people_et" />
+                app:layout_constraintStart_toEndOf="@+id/editPost_freg_bedroom_et"
+                app:layout_constraintTop_toBottomOf="@+id/editPost_freg_people_et" />
 
             <EditText
-                android:id="@+id/addPost_freg_people_et"
+                android:id="@+id/editPost_freg_people_et"
                 android:layout_width="145dp"
                 android:layout_height="42dp"
                 android:ems="10"
                 android:hint="People"
                 android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@+id/addPost_freg_bathroom_et"
+                app:layout_constraintBottom_toTopOf="@+id/editPost_freg_bathroom_et"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/addPost_freg_price_et"
-                app:layout_constraintTop_toBottomOf="@+id/addPost_freg_rommaite_et" />
+                app:layout_constraintStart_toEndOf="@+id/editPost_freg_price_et"
+                app:layout_constraintTop_toBottomOf="@+id/editPost_freg_rommaite_et" />
 
             <Button
-                android:id="@+id/addPost2_freg_post_btn"
+                android:id="@+id/editPost2_freg_post_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"

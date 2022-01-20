@@ -80,6 +80,7 @@ public class PostFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.edit_menu:
+                Model.instance.setCurrentPostId(postId);
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.editPostFragment);
                 return true;
             case R.id.delete_menu:

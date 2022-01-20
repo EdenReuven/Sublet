@@ -152,11 +152,9 @@ public class HomePageFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.add_menu:
-                Log.d("TAG","Add from home page menu");
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.addPostFragment);
                 return true;
             case R.id.map_menu:
-                Log.d("TAG","Map from home page menu");
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.mapFragment);
                 return true;
             default:

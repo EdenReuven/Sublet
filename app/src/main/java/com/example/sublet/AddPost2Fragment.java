@@ -24,9 +24,9 @@ public class AddPost2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_add_post2, container, false);
-        description_et=view.findViewById(R.id.addPost2_frag_description_et);
-        addPhoto_imgBtn=view.findViewById(R.id.addPost2_frag_photo_btnimg);
-        post_btn=view.findViewById(R.id.addPost2_freg_post_btn);
+        description_et=view.findViewById(R.id.editPost2_frag_description_et);
+        addPhoto_imgBtn=view.findViewById(R.id.editPost2_frag_photo_btnimg);
+        post_btn=view.findViewById(R.id.editPost2_freg_post_btn);
         Post newPost = AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj();
 
         addPhoto_imgBtn.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +43,6 @@ public class AddPost2Fragment extends Fragment {
                 //set image
                 Model.instance.addPost(newPost);
                 Model.instance.getCurrentUser().getPostList().add(newPost);
-                Log.d("TAG",Model.instance.getCurrentUser().getPostList().toString());
                 Navigation.findNavController(v).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
             }
         });

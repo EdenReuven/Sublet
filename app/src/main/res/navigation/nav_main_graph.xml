@@ -56,4 +56,29 @@
             android:name="position"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/editPostFragment"
+        android:name="com.example.sublet.EditPostFragment"
+        android:label="Edit Post"
+        tools:layout="@layout/fragment_edit_post" >
+        <argument
+            android:name="postId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_editPostFragment_to_editPost2Fragment"
+            app:destination="@id/editPost2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPost2Fragment"
+        android:name="com.example.sublet.EditPost2Fragment"
+        android:label="Edit Post"
+        tools:layout="@layout/fragment_edit_post2" >
+        <argument
+            android:name="editPostObj"
+            app:argType="com.example.sublet.model.Post" />
+        <action
+            android:id="@+id/action_editPost2Fragment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/homePageFragment" />
+    </fragment>
 </navigation>

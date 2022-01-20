@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPost2Fragment">
+    tools:context=".EditPost2Fragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/dosis"
-                android:text="Create New Post"
+                android:text="Edit Post"
                 android:textColor="#1C3144"
                 android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"

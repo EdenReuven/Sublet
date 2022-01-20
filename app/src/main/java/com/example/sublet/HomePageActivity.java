@@ -28,9 +28,6 @@ public class HomePageActivity extends AppCompatActivity {
         return true;
     }
 
-//TODO: add menu for profile - edit profile, lesson6 02:01:00
-//TODO: option to navigate with UI and back to home fragment, lesson6 02:17:00
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(!super.onOptionsItemSelected(item)){
@@ -38,12 +35,6 @@ public class HomePageActivity extends AppCompatActivity {
                 case android.R.id.home:
                     navController.navigateUp();
                     return true;
-//                case R.id.menu_add:
-//                    navController.navigate(R.id.action_global_addPostFragment);
-//                    return true;
-//                case R.id.menu_map:
-//                    navController.navigate(R.id.action_global_mapFragment);
-//                    return true;
             }
         }else{
             return true;

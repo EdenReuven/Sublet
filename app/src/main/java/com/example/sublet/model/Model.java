@@ -27,8 +27,7 @@ public class Model {
     List<Post> postList = new LinkedList<>();
     User currentUser = null;
     ArrayList<Post> userPostList = new ArrayList<>();
-
-    //TODO: function for user + post
+    String currentPostId = "";
 
     public List<Post> getAllPosts() {
         return postList;
@@ -36,9 +35,32 @@ public class Model {
     public Post getPost(int pos) {
         return postList.get(pos);
     }
+    public Post getPost(String posId) {
+        for (int i=0;i<postList.size();i++){
+            if(postList.get(i).getPostId().equals(posId))
+                return postList.get(i);
+        }
+        return null;
+    }
     public void addPost(Post newPost) {
         postList.add(newPost);
     }
+
+    public void deletePost(String postId) {
+        for (int i=0;i<postList.size();i++){
+            if(postList.get(i).getPostId().equals(postId))
+                postList.remove(postList.get(i));
+        }
+    }
+
+    public void setCurrentPostId(String postId){
+        currentPostId = postId;
+    }
+
+    public String getCurrentPostId(){
+        return currentPostId;
+    }
+
     public List<User> getAllUsers() {
         return usersList;
     }
@@ -66,10 +88,4 @@ public class Model {
         usersList.add(newUser);
     }
 
-    public void deletePost(String postId) {
-        for (int i=0;i<postList.size();i++){
-            if(postList.get(i).getPostId().equals(postId))
-                postList.remove(postList.get(i));
-        }
-    }
 }
