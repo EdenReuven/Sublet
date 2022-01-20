@@ -61,6 +61,14 @@ public class Model {
         return currentPostId;
     }
 
+    public boolean containPostId(List<Post> postList,String postId){
+        for(int i=0; i< postList.size();i++){
+            if(postList.get(i).getPostId().equals(postId))
+                return true;
+        }
+        return false;
+    }
+
     public List<User> getAllUsers() {
         return usersList;
     }
