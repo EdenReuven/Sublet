@@ -1,26 +1,22 @@
 package com.example.sublet;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.example.sublet.model.Post;
-
 import java.util.Calendar;
 import java.util.Date;
-
 
 public class AddPostFragment extends Fragment {
    EditText  dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et;
    Button continue_btn;
    Date createTimeDate;
+   boolean validOk;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +37,10 @@ public class AddPostFragment extends Fragment {
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                validOk=true;
+                CheckValid();
+                if(!validOk)
+                    return;
                 Post newPost = new Post();
                 newPost.setFromDate(dateFrom_et.getText().toString());
                 newPost.setToDate(dateTo_et.getText().toString());
@@ -56,5 +56,17 @@ public class AddPostFragment extends Fragment {
         });
 
         return view;
+
+    }
+    //TODO: MAKE A LIST AND VALIDATION ACCORDING TO THE LIST
+    public void CheckValid(){
+        if(dateFrom_et.getText().toString().length()==0 || dateTo_et.getText().toString().length()==0
+                || location_et.getText().toString().length()==0 || roommate_et.getText().toString().length()==0
+                || price_et.getText().toString().length()==0 || people_et.getText().toString().length()==0
+                || bedroom_et.getText().toString().length()==0 || bathroom_et.getText().toString().length()==0 ){
+            //dateFrom_et.setError("This field is require");
+            validOk=false;
+            return;
+        }
     }
 }
