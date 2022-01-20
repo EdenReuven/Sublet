@@ -71,7 +71,7 @@ public class PostFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.post_info_menu,menu);
+        inflater.inflate(R.menu.post_info_menu, menu);
         MenuBuilder m = (MenuBuilder) menu;
         m.setOptionalIconsVisible(true);
     }

@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 
+import java.util.List;
+
 public class EditPost2Fragment extends Fragment {
     EditText description_et;
     ImageButton addPhoto_imgBtn;
@@ -51,6 +53,21 @@ public class EditPost2Fragment extends Fragment {
                 updatePost.setNumOfBedroom(post.getNumOfBedroom());
                 updatePost.setNumOfBathroom(post.getNumOfBathroom());
                 updatePost.setPostContent(post.getPostContent());
+
+                List<Post> postUserList = Model.instance.getCurrentUser().getPostList(); //edit data in list
+                for(int i =0;i<postUserList.size();i++){
+                    if(postUserList.get(i).getPostId().equals(post.getPostId())){
+                        postUserList.get(i).setFromDate(post.getFromDate());
+                        postUserList.get(i).setToDate(post.getToDate());
+                        postUserList.get(i).setLocation(post.getLocation());
+                        postUserList.get(i).setNumRoommate(post.getNumRoommate());
+                        postUserList.get(i).setPrice(post.getPrice());
+                        postUserList.get(i).setOverallPeople(post.getOverallPeople());
+                        postUserList.get(i).setNumOfBedroom(post.getNumOfBedroom());
+                        postUserList.get(i).setNumOfBathroom(post.getNumOfBathroom());
+                        postUserList.get(i).setPostContent(post.getPostContent());
+                    }
+                }
                 Navigation.findNavController(v).navigate(EditPost2FragmentDirections.actionEditPost2FragmentToHomePageFragment());
 
                 //update image
