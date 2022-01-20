@@ -63,7 +63,10 @@ public class PostFragment extends Fragment {
         bathroom_tv.setText(Integer.toString(post.getNumOfBathroom()));
         bedroom_tv.setText(Integer.toString(post.getNumOfBedroom()));
         description_tv.setText(post.getPostContent());
-        setHasOptionsMenu(true);
+
+        if(Model.instance.containPostId(Model.instance.getCurrentUser().getPostList(),post.getPostId()))
+            setHasOptionsMenu(true);
+
         return view;
     }
 
