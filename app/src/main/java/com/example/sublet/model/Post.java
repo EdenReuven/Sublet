@@ -9,7 +9,6 @@ public class Post implements Parcelable {
     String postId = "";
     String fromDate = "";
     String toDate = "";
-//    List<Image> images = null;
     int numRoommate = 0;  // current num of people
     String location = "";
     int overallPeople = 0;
@@ -18,7 +17,7 @@ public class Post implements Parcelable {
     int numOfBathroom = 0;
     int numOfBedroom = 0;
     Date createDate = null;
-
+    //    List<Image> images = null;
     public Post(){}
 
     public Post(String fromDate, String toDate, int numRoommate,
@@ -47,6 +46,7 @@ public class Post implements Parcelable {
         postContent = in.readString();
         numOfBathroom = in.readInt();
         numOfBedroom = in.readInt();
+        postId = in.readString();
     }
 
     public static final Creator<Post> CREATOR = new Creator<Post>() {
@@ -166,5 +166,6 @@ public class Post implements Parcelable {
         dest.writeInt(numOfBathroom);
         dest.writeInt(numOfBedroom);
         dest.writeString(createDate.toString());
+        dest.writeString(postId);
     }
 }

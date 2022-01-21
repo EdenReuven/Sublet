@@ -27,7 +27,8 @@ public class Model {
     List<Post> postList = new LinkedList<>();
     User currentUser = null;
     ArrayList<Post> userPostList = new ArrayList<>();
-    String currentPostId = "";
+    int counterPostId = 0;
+    String currentPostId = counterPostId + "";
 
     public List<Post> getAllPosts() {
         return postList;
@@ -55,6 +56,11 @@ public class Model {
 
     public void setCurrentPostId(String postId){
         currentPostId = postId;
+    }
+
+    public String newPostId(String postId){
+        counterPostId++;
+        return counterPostId + postId;
     }
 
     public String getCurrentPostId(){

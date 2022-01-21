@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,6 +44,8 @@ public class AddPostFragment extends Fragment {
                 if(!validOk)
                     return;
                 Post newPost = new Post();
+                String postId = Model.instance.newPostId(Model.instance.getCurrentUser().getUserName());
+                newPost.setPostId(postId);
                 newPost.setFromDate(dateFrom_et.getText().toString());
                 newPost.setToDate(dateTo_et.getText().toString());
                 newPost.setLocation(location_et.getText().toString());
