@@ -15,6 +15,7 @@ public class SignUp_2Fragment extends Fragment {
 
     EditText password_ed, confirmPassword_ed;
     Button continue_btn;
+    boolean validOk;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,14 +28,31 @@ public class SignUp_2Fragment extends Fragment {
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!password_ed.getText().toString().equals(confirmPassword_ed.getText().toString())){
-                    confirmPassword_ed.setError("The Password is not match");
+                validOk = true;
+                CheckValid();
+                if(!validOk)
                     return;
-                }
                 newUser.setPassword(password_ed.getText().toString());
                 Navigation.findNavController(v).navigate(SignUp_2FragmentDirections.actionSignUp2FragmentToSignUp3Fragment(newUser));
             }
         });
         return view;
+    }
+
+    public void CheckValid(){
+        EditText[] validArray = {password_ed,confirmPassword_ed};
+
+        for(int i=0;i<validArray.length;i++){
+            if(validArray[i].getText().toString().length() == 0){
+                validOk = false;
+                validArray[i].setError("This field is require");
+                return;
+            }
+        }
+        if(!password_ed.getText().toString().equals(confirmPassword_ed.getText().toString())){
+            confirmPassword_ed.setError("The Password is not match");
+            validOk = false;
+            return;
+        }
     }
 }

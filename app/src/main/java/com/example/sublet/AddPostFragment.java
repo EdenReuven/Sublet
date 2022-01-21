@@ -13,6 +13,8 @@ import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class AddPostFragment extends Fragment {
    EditText  dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et;
@@ -62,15 +64,17 @@ public class AddPostFragment extends Fragment {
         return view;
 
     }
-    //TODO: MAKE A LIST AND VALIDATION ACCORDING TO THE LIST
+
     public void CheckValid(){
-        if(dateFrom_et.getText().toString().length()==0 || dateTo_et.getText().toString().length()==0
-                || location_et.getText().toString().length()==0 || roommate_et.getText().toString().length()==0
-                || price_et.getText().toString().length()==0 || people_et.getText().toString().length()==0
-                || bedroom_et.getText().toString().length()==0 || bathroom_et.getText().toString().length()==0 ){
-            //dateFrom_et.setError("This field is require");
-            validOk=false;
-            return;
+        EditText[] validArray = {dateFrom_et,dateTo_et,location_et,roommate_et
+                ,price_et,people_et,bedroom_et,bathroom_et};
+
+        for(int i=0;i<validArray.length;i++){
+            if(validArray[i].getText().toString().length() == 0){
+                validOk = false;
+                validArray[i].setError("This field is require");
+                return;
+            }
         }
     }
 }

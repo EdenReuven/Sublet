@@ -15,6 +15,7 @@ public class SignUp_1Fragment extends Fragment {
     EditText fullName_et, userName_et, email_et, phone_et;
     Button continue_btn;
     User user;
+    boolean validOk;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,6 +30,10 @@ public class SignUp_1Fragment extends Fragment {
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                validOk = true;
+                CheckValid();
+                if(!validOk)
+                    return;
                 user= new User();
                 user.setFullName(fullName_et.getText().toString());
                 user.setUserName(userName_et.getText().toString());
@@ -40,4 +45,17 @@ public class SignUp_1Fragment extends Fragment {
         });
         return view;
     }
+
+    public void CheckValid(){
+        EditText[] validArray = {fullName_et,userName_et,email_et,phone_et};
+
+        for(int i=0;i<validArray.length;i++){
+            if(validArray[i].getText().toString().length() == 0){
+                validOk = false;
+                validArray[i].setError("This field is require");
+                return;
+            }
+        }
+    }
+
 }

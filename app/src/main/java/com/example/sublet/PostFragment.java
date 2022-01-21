@@ -66,7 +66,6 @@ public class PostFragment extends Fragment {
 
         if(Model.instance.containPostId(Model.instance.getCurrentUser().getPostList(),post.getPostId()))
             setHasOptionsMenu(true);
-        Log.d("TAG",post.getPostId());
 
         return view;
     }

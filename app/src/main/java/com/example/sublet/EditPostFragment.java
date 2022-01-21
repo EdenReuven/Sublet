@@ -20,6 +20,7 @@ import java.util.List;
 public class EditPostFragment extends Fragment {
     EditText dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et;
     Button continue_btn;
+    boolean validOk;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,10 +58,27 @@ public class EditPostFragment extends Fragment {
                 post.setOverallPeople(Integer.parseInt(people_et.getText().toString()));
                 post.setNumOfBathroom(Integer.parseInt(bathroom_et.getText().toString()));
                 post.setNumOfBedroom(Integer.parseInt(bedroom_et.getText().toString()));
+                validOk = true;
+                CheckValid();
+                if(!validOk)
+                    return;
                 Navigation.findNavController(v).navigate(EditPostFragmentDirections.actionEditPostFragmentToEditPost2Fragment(post));
             }
         });
 
         return view;
+    }
+
+    public void CheckValid(){
+        EditText[] validArray = {dateFrom_et,dateTo_et,location_et,roommate_et
+                ,price_et,people_et,bedroom_et,bathroom_et};
+
+        for(int i=0;i<validArray.length;i++){
+            if(validArray[i].getText().toString().length() == 0){
+                validOk = false;
+                validArray[i].setError("This field is require");
+                return;
+            }
+        }
     }
 }

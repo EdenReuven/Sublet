@@ -19,7 +19,7 @@ public class AddPost2Fragment extends Fragment {
     EditText description_et;
     ImageButton addPhoto_imgBtn;
     Button post_btn;
-
+    boolean validOk;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,6 +39,10 @@ public class AddPost2Fragment extends Fragment {
         post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                validOk=true;
+                CheckValid();
+                if(!validOk)
+                    return;
                 newPost.setPostContent(description_et.getText().toString());
                 //set image
                 Model.instance.addPost(newPost);
@@ -48,5 +52,17 @@ public class AddPost2Fragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void CheckValid(){
+        EditText[] validArray = {description_et}; //TODO: add image to list validation
+
+        for(int i=0;i<validArray.length;i++){
+            if(validArray[i].getText().toString().length() == 0){
+                validOk = false;
+                validArray[i].setError("This field is require");
+                return;
+            }
+        }
     }
 }

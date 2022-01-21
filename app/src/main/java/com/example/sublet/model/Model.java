@@ -1,6 +1,7 @@
 package com.example.sublet.model;
 
 import android.util.Log;
+import android.widget.EditText;
 
 import java.security.PublicKey;
 import java.util.ArrayList;

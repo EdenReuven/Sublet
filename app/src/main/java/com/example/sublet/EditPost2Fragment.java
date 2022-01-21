@@ -22,7 +22,7 @@ public class EditPost2Fragment extends Fragment {
     EditText description_et;
     ImageButton addPhoto_imgBtn;
     Button post_btn;
-
+    boolean validOk;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,6 +68,10 @@ public class EditPost2Fragment extends Fragment {
                         postUserList.get(i).setPostContent(post.getPostContent());
                     }
                 }
+                validOk = true;
+                CheckValid();
+                if(!validOk)
+                    return;
                 Navigation.findNavController(v).navigate(EditPost2FragmentDirections.actionEditPost2FragmentToHomePageFragment());
 
                 //update image
@@ -77,4 +81,17 @@ public class EditPost2Fragment extends Fragment {
 
         return view;
     }
+
+    public void CheckValid(){
+        EditText[] validArray = {description_et}; //TODO: add image to list validation
+
+        for(int i=0;i<validArray.length;i++){
+            if(validArray[i].getText().toString().length() == 0){
+                validOk = false;
+                validArray[i].setError("This field is require");
+                return;
+            }
+        }
+    }
+
 }
