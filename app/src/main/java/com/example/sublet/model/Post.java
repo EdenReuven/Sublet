@@ -3,9 +3,18 @@ package com.example.sublet.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.Date;
 
+import androidx.annotation.NonNull;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.util.Date;
+@Entity
 public class Post implements Parcelable {
+    int generatePostId = 0;
+    @PrimaryKey
+    @NonNull
     String postId = "";
     String fromDate = "";
     String toDate = "";
@@ -16,13 +25,13 @@ public class Post implements Parcelable {
     String postContent = "";
     int numOfBathroom = 0;
     int numOfBedroom = 0;
-    Date createDate = null;
+    //    Date createDate = null;
     //    List<Image> images = null;
     public Post(){}
 
     public Post(String fromDate, String toDate, int numRoommate,
                 String location, int overallPeople, float price, String postContent,
-                int numOfBathroom, int numOfBedroom, Date createDate,String postId) {
+                int numOfBathroom, int numOfBedroom ,String postId) {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.numRoommate = numRoommate;
@@ -32,7 +41,6 @@ public class Post implements Parcelable {
         this.postContent = postContent;
         this.numOfBathroom = numOfBathroom;
         this.numOfBedroom = numOfBedroom;
-        this.createDate = createDate;
         this.postId = postId;
     }
 
@@ -133,14 +141,6 @@ public class Post implements Parcelable {
         this.numOfBedroom = numOfBedroom;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
     public String getPostId() {
         return postId;
     }
@@ -165,7 +165,6 @@ public class Post implements Parcelable {
         dest.writeString(postContent);
         dest.writeInt(numOfBathroom);
         dest.writeInt(numOfBedroom);
-        dest.writeString(createDate.toString());
         dest.writeString(postId);
     }
 }

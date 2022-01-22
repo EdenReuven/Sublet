@@ -43,11 +43,16 @@ public class AddPost2Fragment extends Fragment {
                 CheckValid();
                 if(!validOk)
                     return;
+
                 newPost.setPostContent(description_et.getText().toString());
                 //set image
-                Model.instance.addPost(newPost);
-                Model.instance.getCurrentUser().getPostList().add(newPost);
-                Navigation.findNavController(v).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
+
+                Model.instance.addPost(newPost,()->{
+                    //Model.instance.getCurrentUser().getPostList().add(newPost);
+                    //Model.instance.addPostToCurrentUser(newPost);
+
+                    Navigation.findNavController(v).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
+                });
             }
         });
 

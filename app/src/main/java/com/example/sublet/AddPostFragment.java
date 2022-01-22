@@ -37,7 +37,6 @@ public class AddPostFragment extends Fragment {
         continue_btn=view.findViewById(R.id.editPost2_freg_post_btn);
         createTimeDate = Calendar.getInstance().getTime();
 
-        //TODO: need to pass the newPost object to the next fragment to continue the add new post
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,9 +44,9 @@ public class AddPostFragment extends Fragment {
                 CheckValid();
                 if(!validOk)
                     return;
+
                 Post newPost = new Post();
-                String postId = Model.instance.newPostId(Model.instance.getCurrentUser().getUserName());
-                newPost.setPostId(postId);
+                newPost.setPostId(Model.instance.getGeneratePostId());
                 newPost.setFromDate(dateFrom_et.getText().toString());
                 newPost.setToDate(dateTo_et.getText().toString());
                 newPost.setLocation(location_et.getText().toString());
@@ -56,7 +55,6 @@ public class AddPostFragment extends Fragment {
                 newPost.setOverallPeople(Integer.parseInt(people_et.getText().toString()));
                 newPost.setNumOfBedroom(Integer.parseInt(bedroom_et.getText().toString()));
                 newPost.setNumOfBathroom(Integer.parseInt(bathroom_et.getText().toString()));
-                newPost.setCreateDate(createTimeDate);
                 Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionAddPostFragmentToAddPost2(newPost));
             }
         });

@@ -23,6 +23,7 @@ import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import com.example.sublet.model.User;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -31,13 +32,13 @@ public class PostFragment extends Fragment {
             bathroom_tv, bedroom_tv ,description_tv;
     int pos;
     String postId;
+    List<Post> postListData;
+    Post post;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_post, container, false);
         pos = PostFragmentArgs.fromBundle(getArguments()).getPosition();
-        Post post = Model.instance.getPost(pos);
-        postId = post.getPostId();
         User user = Model.instance.getCurrentUser();
 
         username_tv = view.findViewById(R.id.post_frag_userName_tv);
@@ -55,17 +56,23 @@ public class PostFragment extends Fragment {
         username_tv.setText(user.getUserName());
         phone_tv.setText(user.getPhone());
         email_tv.setText(user.getEmail());
-        date_tv.setText(post.getFromDate()+" - "+post.getToDate());
-        location_tv.setText(post.getLocation());
-        roommate_tv.setText(Integer.toString(post.getNumRoommate()));
-        price_tv.setText(Integer.toString((int) post.getPrice()));
-        people_tv.setText(Integer.toString(post.getOverallPeople()));
-        bathroom_tv.setText(Integer.toString(post.getNumOfBathroom()));
-        bedroom_tv.setText(Integer.toString(post.getNumOfBedroom()));
-        description_tv.setText(post.getPostContent());
 
-        if(Model.instance.containPostId(Model.instance.getCurrentUser().getPostList(),post.getPostId()))
-            setHasOptionsMenu(true);
+
+        Model.instance.getPost(pos,post1 -> {
+            post = post1;
+
+            if(post.getPostId().split("-")[1].equals(Model.instance.getCurrentUser().getUserName()))
+                setHasOptionsMenu(true);
+
+            date_tv.setText(post.getFromDate()+" - "+post.getToDate());
+            location_tv.setText(post.getLocation());
+            roommate_tv.setText(Integer.toString(post.getNumRoommate()));
+            price_tv.setText(Integer.toString((int) post.getPrice()));
+            people_tv.setText(Integer.toString(post.getOverallPeople()));
+            bathroom_tv.setText(Integer.toString(post.getNumOfBathroom()));
+            bedroom_tv.setText(Integer.toString(post.getNumOfBedroom()));
+            description_tv.setText(post.getPostContent());
+        });
 
         return view;
     }
@@ -86,16 +93,16 @@ public class PostFragment extends Fragment {
                 Model.instance.setCurrentPostId(postId);
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.editPostFragment);
                 return true;
-            case R.id.delete_menu:
-                List<Post> userPostList = Model.instance.getCurrentUser().getPostList();
-                for (int i=0;i<userPostList.size();i++){
-                    if(userPostList.get(i).getPostId().equals(postId)) {
-                        Model.instance.deletePost(postId);
-                        userPostList.remove(userPostList.get(i));
-                        NavHostFragment.findNavController(getParentFragment()).navigateUp();
-                    }
-                }
-                return true;
+//            case R.id.delete_menu:
+//                List<Post> userPostList = Model.instance.getCurrentUser().getPostList();
+//                for (int i=0;i<userPostList.size();i++){
+//                    if(userPostList.get(i).getPostId().equals(postId)) {
+//                        Model.instance.deletePost(postId);
+//                        userPostList.remove(userPostList.get(i));
+//                        NavHostFragment.findNavController(getParentFragment()).navigateUp();
+//                    }
+//                }
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Parcelable {
     String fullName = "";
@@ -11,7 +12,7 @@ public class User implements Parcelable {
     String email = "";
     String phone = "";
     String password = "";
-    ArrayList<Post> postList = new ArrayList<>();
+    List<Post> postList = new ArrayList<>();
     //Image
 
     public User(){}
@@ -78,7 +79,7 @@ public class User implements Parcelable {
         this.phone = phone;
     }
 
-    public ArrayList<Post> getPostList() {
+    public List<Post> getPostList() {
         return postList;
     }
 

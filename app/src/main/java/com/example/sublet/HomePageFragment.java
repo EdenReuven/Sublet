@@ -42,9 +42,9 @@ public class HomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        dataPost = Model.instance.getAllPosts();
+
         dataUser = Model.instance.getAllUsers();
-        currentDate = Calendar.getInstance().getTime();
+        //currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
         postList.setHasFixedSize(true);
         postList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -59,7 +59,15 @@ public class HomePageFragment extends Fragment {
             }
         });
         setHasOptionsMenu(true);
+        refresh();
         return view;
+    }
+
+    private void refresh() {
+        Model.instance.getAllPosts(postList -> {
+            dataPost = postList;
+            adapter.notifyDataSetChanged();
+        });
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -121,8 +129,7 @@ public class HomePageFragment extends Fragment {
             Post p = dataPost.get(position);
             User u = Model.instance.getCurrentUser();
 
-            int resultDays = differenceDays(p.getCreateDate(),currentDate);
-            holder.create_post_tv.setText(Integer.toString(resultDays));
+//            holder.create_post_tv.setText(Integer.toString(resultDays));
             holder.username_tv.setText(u.getUserName());
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
             holder.location_tv.setText(p.getLocation());
@@ -133,14 +140,16 @@ public class HomePageFragment extends Fragment {
 
         @Override
         public int getItemCount() {
+            if(dataPost == null)
+                return 0;
             return dataPost.size();
         }
 
     }
 
-    public int differenceDays(Date fromDate,Date toDate){
-        return (int) ((toDate.getTime() - fromDate.getTime())/(1000*60*60*24));
-    }
+//    public int differenceDays(Date fromDate,Date toDate){
+//        return (int) ((toDate.getTime() - fromDate.getTime())/(1000*60*60*24));
+//    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -162,9 +171,4 @@ public class HomePageFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        adapter.notifyDataSetChanged();
-    }
 }
