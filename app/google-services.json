@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "738321318817",
+    "project_id": "sublet-e49be",
+    "storage_bucket": "sublet-e49be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738321318817:android:a2ca733c4428257fdf81e0",
+        "android_client_info": {
+          "package_name": "com.example.sublet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738321318817-ur09gmv6b37tml9ihpu08po84474tgil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtPLlwdPBGh6_7x2Y4ORH6a2rMSrLOKwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738321318817-ur09gmv6b37tml9ihpu08po84474tgil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

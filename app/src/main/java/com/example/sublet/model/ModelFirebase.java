@@ -1,7 +1,9 @@
 package com.example.sublet.model;
 
-public class ModelFirebase {
+import com.google.firebase.firestore.FirebaseFirestore;
 
+public class ModelFirebase {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     public void getAllPosts(Model.GetAllPostsListener listener) {
 
     }
