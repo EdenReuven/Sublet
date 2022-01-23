@@ -15,6 +15,7 @@ import java.util.Map;
 
 @Entity
 public class Post implements Parcelable {
+    final public static String COLLECTION_NAME = "post";
     int generatePostId = 0;
     @PrimaryKey
     @NonNull
@@ -184,5 +185,21 @@ public class Post implements Parcelable {
         json.put("numOfBathroom" ,numOfBathroom);
         json.put("numOfBedroom" ,numOfBedroom);
         return json;
+    }
+
+    public static Post create(Map<String, Object> json) {
+        String id = (String) json.get("id");
+        String fromDate = (String) json.get("fromDate");
+        String toDate = (String) json.get("toDate");
+        Long numRoommate = (Long) json.get("numRoommate");
+        String location = (String) json.get("location");
+        Long overallPeople = (Long) json.get("overallPeople");
+        Double price = (Double) json.get("price");
+        String postContent = (String) json.get("postContent");
+        Long numOfBathroom = (Long) json.get("numOfBathroom");
+        Long numOfBedroom = (Long) json.get("numOfBedroom");
+        Post post = new Post(fromDate,toDate,numRoommate.intValue(),location,overallPeople.intValue()
+        ,price.intValue(),postContent,numOfBathroom.intValue(),numOfBedroom.intValue(),id);
+        return post;
     }
 }
