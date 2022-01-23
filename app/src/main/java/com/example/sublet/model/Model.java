@@ -23,6 +23,8 @@ public class Model {
     Executor executor = Executors.newFixedThreadPool(1);
     Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
 
+    ModelFirebase modelFirebase =new ModelFirebase();
+
     private Model() {
         for(int i=0;i<1;i++){
             User user = new User("myName"+i,""+i,"myEmail@"+i,"myPhone"+i,""+i, null); //userPostList
@@ -75,12 +77,13 @@ public class Model {
     }
 
     public void getAllPosts(GetAllPostsListener listener) {
-        executor.execute(() -> {
+        modelFirebase.getAllPosts( listener);
+        /*executor.execute(() -> {
             List<Post> postList = AppLocalDb.db.postDao().getAllPost();
             mainThread.post(() -> {
                 listener.onComplete(postList);
             });
-        });
+        });*/
 
     }
 
@@ -89,25 +92,27 @@ public class Model {
     }
 
     public void getPost(int pos,GetPostsListener listener) {
-        executor.execute(() -> {
+        modelFirebase.getPost(pos,listener);
+        /*executor.execute(() -> {
             List<Post> postList = AppLocalDb.db.postDao().getAllPost();
             Post post = postList.get(pos);
             mainThread.post(() -> {
                 listener.onComplete(post);
             });
-        });
+        });*/
     }
 
     public interface AddPostListener{
         void onComplete();
     }
     public void addPost(Post newPost,AddPostListener listener) {
-        executor.execute(() -> {
+        modelFirebase.addPost(newPost, listener);
+        /*executor.execute(() -> {
             AppLocalDb.db.postDao().insertAll(newPost);
             mainThread.post(() -> {
                 listener.onComplete();
             });
-        });
+        });*/
     }
 
 
@@ -115,7 +120,8 @@ public class Model {
         void onComplete(Post post);
     }
     public void getPostById(String postId,GetPostByIdListener listener){
-        executor.execute(() -> {
+        modelFirebase.getPostById(postId, listener);
+        /*executor.execute(() -> {
             List<Post> postList = AppLocalDb.db.postDao().getAllPost();
             for (int i=0;i<postList.size();i++){
                 if(postList.get(i).getPostId().equals(postId)){
@@ -125,7 +131,26 @@ public class Model {
                     });
                 }
             }
-        });
+        });*/
+    }
+    public interface DeletePostsListener{
+        void onComplete();
+    }
+
+    public void deletePost(String postId,DeletePostsListener listener) {
+        modelFirebase.deletePost(postId,listener);
+        /*executor.execute(() -> {
+            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
+            for (int i=0;i<postList.size();i++){
+                if(postList.get(i).getPostId().equals(postId)){
+                    Post p = postList.get(i);
+                    AppLocalDb.db.postDao().deletePost(p);
+                    mainThread.post(() -> {
+                        listener.onComplete();
+                    });
+                }
+            }
+        });*/
     }
 
     public String getGeneratePostId(){
@@ -143,40 +168,10 @@ public class Model {
         return currentPostId;
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////
 
-    public interface DeletePostsListener{
-        void onComplete();
-    }
 
-    public void deletePost(String postId,DeletePostsListener listener) {
-//        executor.execute(() -> {
-//            Post p;
-//            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
-//            for (int i=0;i<postList.size();i++){
-//                if(postList.get(i).getPostId().equals(postId)){
-//                    p = postList.get(i);
-//                }
-//            }
-//        });
-//        executor.execute(() -> {
-//            AppLocalDb.db.postDao().deletePost(p);
-//        });
-        executor.execute(() -> {
-            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
-            for (int i=0;i<postList.size();i++){
-                if(postList.get(i).getPostId().equals(postId)){
-                    Post p = postList.get(i);
-                    AppLocalDb.db.postDao().deletePost(p);
-                    mainThread.post(() -> {
-                        listener.onComplete();
-                    });
-                }
-            }
-        });
-    }
 
-    ////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
