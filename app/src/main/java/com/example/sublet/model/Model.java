@@ -37,6 +37,7 @@ public class Model {
     User currentUser = null;
 
     public List<User> getAllUsers() {
+        modelFirebase.getAllUsers();
         return usersList;
     }
 
@@ -60,6 +61,7 @@ public class Model {
     }
 
     public void addUser(User newUser) {
+        modelFirebase.addUser(newUser);
         usersList.add(newUser);
     }
 

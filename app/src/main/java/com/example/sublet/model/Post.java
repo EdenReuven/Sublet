@@ -10,6 +10,9 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 @Entity
 public class Post implements Parcelable {
     int generatePostId = 0;
@@ -166,5 +169,20 @@ public class Post implements Parcelable {
         dest.writeInt(numOfBathroom);
         dest.writeInt(numOfBedroom);
         dest.writeString(postId);
+    }
+
+    public Map<String, Object> toJson() {
+        Map<String, Object> json = new HashMap<String, Object>();
+        json.put("id" ,postId);
+        json.put("fromDate" ,fromDate);
+        json.put("toDate" ,toDate);
+        json.put("numRoommate" ,numRoommate);
+        json.put("location" ,location);
+        json.put("overallPeople" ,overallPeople);
+        json.put("price" ,price);
+        json.put("postContent" ,postContent);
+        json.put("numOfBathroom" ,numOfBathroom);
+        json.put("numOfBedroom" ,numOfBedroom);
+        return json;
     }
 }
