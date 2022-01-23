@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.sublet.model.Model;
@@ -36,13 +37,15 @@ public class HomePageFragment extends Fragment {
     List<Post> dataPost;
     List<User> dataUser;
     MyAdapter adapter;
+    ProgressBar progressBar;
     Date currentDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-
+        progressBar = view.findViewById(R.id.postList_progressBar);
+        progressBar.setVisibility(View.GONE);
         dataUser = Model.instance.getAllUsers();
         //currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
@@ -64,9 +67,11 @@ public class HomePageFragment extends Fragment {
     }
 
     private void refresh() {
+        progressBar.setVisibility(View.VISIBLE);
         Model.instance.getAllPosts(postList -> {
             dataPost = postList;
             adapter.notifyDataSetChanged();
+            progressBar.setVisibility(View.GONE);
         });
     }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.example.sublet.model.Model;
 
 public class DialogPopUp extends DialogFragment {
     Button ok_btn,cancel_btn;
+    ProgressBar progressBar;
     @Nullable
     @Override
 
@@ -25,11 +27,13 @@ public class DialogPopUp extends DialogFragment {
 
         ok_btn = view.findViewById(R.id.popUp_ok_btn);
         cancel_btn = view.findViewById(R.id.popUp_oancel_btn);
+        progressBar = view.findViewById(R.id.popUp_progressBar);
+        progressBar.setVisibility(View.GONE);
 
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO : delete post
+                progressBar.setVisibility(View.VISIBLE);
                 Model.instance.deletePost(Model.instance.getCurrentPostId(), () -> {
                     getDialog().dismiss();
                     NavHostFragment.findNavController(getParentFragment()).navigateUp();

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 
@@ -19,15 +21,20 @@ public class AddPost2Fragment extends Fragment {
     EditText description_et;
     ImageButton addPhoto_imgBtn;
     Button post_btn;
+    ProgressBar progressBar;
     boolean validOk;
+    Post newPost;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_add_post2, container, false);
+        progressBar = view.findViewById(R.id.add_progressBar);
+        progressBar.setVisibility(View.GONE);
         description_et=view.findViewById(R.id.editPost2_frag_description_et);
         addPhoto_imgBtn=view.findViewById(R.id.editPost2_frag_photo_btnimg);
-        post_btn=view.findViewById(R.id.editPost2_freg_post_btn);
-        Post newPost = AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj();
+        post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
+
+        newPost = AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj();
 
         addPhoto_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,15 +51,11 @@ public class AddPost2Fragment extends Fragment {
                 if(!validOk)
                     return;
 
+                post_btn.setEnabled(false);
                 newPost.setPostContent(description_et.getText().toString());
                 //set image
 
-                Model.instance.addPost(newPost,()->{
-                    //Model.instance.getCurrentUser().getPostList().add(newPost);
-                    //Model.instance.addPostToCurrentUser(newPost);
-
-                    Navigation.findNavController(v).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
-                });
+                saveNewPost();
             }
         });
 
@@ -69,5 +72,15 @@ public class AddPost2Fragment extends Fragment {
                 return;
             }
         }
+    }
+
+    private void saveNewPost(){
+        progressBar.setVisibility(View.VISIBLE);
+        post_btn.setEnabled(false);
+        Model.instance.addPost(newPost,()->{
+            //Model.instance.getCurrentUser().getPostList().add(newPost);
+            //Model.instance.addPostToCurrentUser(newPost);
+            Navigation.findNavController(description_et).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
+        });
     }
 }

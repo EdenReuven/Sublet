@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
@@ -24,13 +25,17 @@ public class EditPost2Fragment extends Fragment {
     Button post_btn;
     boolean validOk;
     Post updatePost;
+    ProgressBar progressBar;
+    Post post;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_edit_post2, container, false);
-        Post post = EditPost2FragmentArgs.fromBundle(getArguments()).getEditPostObj();
+        post = EditPost2FragmentArgs.fromBundle(getArguments()).getEditPostObj();
 
+        progressBar = view.findViewById(R.id.edit_progressBar);
+        progressBar.setVisibility(View.GONE);
         description_et = view.findViewById(R.id.editPost2_frag_description_et);
         addPhoto_imgBtn = view.findViewById(R.id.editPost2_frag_photo_btnimg);
         post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
@@ -43,30 +48,7 @@ public class EditPost2Fragment extends Fragment {
             public void onClick(View v) {
                 post.setPostContent(description_et.getText().toString());
                 //post.setImage
-
-                Model.instance.getPostById(post.getPostId(),post1 -> {
-                    updatePost = post1;
-                    updatePost.setFromDate(post.getFromDate());
-                    updatePost.setToDate(post.getToDate());
-                    updatePost.setLocation(post.getLocation());
-                    updatePost.setNumRoommate(post.getNumRoommate());
-                    updatePost.setPrice(post.getPrice());
-                    updatePost.setOverallPeople(post.getOverallPeople());
-                    updatePost.setNumOfBedroom(post.getNumOfBedroom());
-                    updatePost.setNumOfBathroom(post.getNumOfBathroom());
-                    updatePost.setPostContent(post.getPostContent());
-
-                    validOk = true;
-                    CheckValid();
-                    if(!validOk)
-                        return;
-
-                    Model.instance.addPost(updatePost,() -> {
-                        Navigation.findNavController(v).navigate(EditPost2FragmentDirections.actionEditPost2FragmentToHomePageFragment());
-                    });
-
-                });
-
+                saveEditPost();
 //                List<Post> postUserList = Model.instance.getCurrentUser().getPostList(); //edit data in list
 //                for(int i =0;i<postUserList.size();i++){
 //                    if(postUserList.get(i).getPostId().equals(post.getPostId())){
@@ -100,6 +82,33 @@ public class EditPost2Fragment extends Fragment {
                 return;
             }
         }
+    }
+
+    private void saveEditPost(){
+        progressBar.setVisibility(View.VISIBLE);
+        post_btn.setEnabled(false);
+        Model.instance.getPostById(post.getPostId(),post1 -> {
+            updatePost = post1;
+            updatePost.setFromDate(post.getFromDate());
+            updatePost.setToDate(post.getToDate());
+            updatePost.setLocation(post.getLocation());
+            updatePost.setNumRoommate(post.getNumRoommate());
+            updatePost.setPrice(post.getPrice());
+            updatePost.setOverallPeople(post.getOverallPeople());
+            updatePost.setNumOfBedroom(post.getNumOfBedroom());
+            updatePost.setNumOfBathroom(post.getNumOfBathroom());
+            updatePost.setPostContent(post.getPostContent());
+
+            validOk = true;
+            CheckValid();
+            if(!validOk)
+                return;
+
+            Model.instance.addPost(updatePost,() -> {
+                Navigation.findNavController(description_et).navigate(EditPost2FragmentDirections.actionEditPost2FragmentToHomePageFragment());
+            });
+
+        });
     }
 
 }
