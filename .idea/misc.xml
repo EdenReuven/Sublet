@@ -26,17 +26,20 @@
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_home_page.xml" value="0.2907608695652174" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_main.xml" value="0.29846014492753625" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/dialogue_delete_post.xml" value="0.4" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_add_post.xml" value="0.264" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_add_post2.xml" value="0.264" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_delete_post_pop_up.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_edit_post.xml" value="0.25" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_edit_post2.xml" value="0.25" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_home_page.xml" value="0.4" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_log_in.xml" value="0.264" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_map.xml" value="0.25" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_post.xml" value="0.25" />
-        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_sign_up_2.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_sign_up_2.xml" value="0.264" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_sign_up_3.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_sing_up_1.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/pop_up.xml" value="0.4" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/post_card.xml" value="0.4" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/menu/base_menu.xml" value="0.4" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/menu/home_page_menu.xml" value="0.4" />

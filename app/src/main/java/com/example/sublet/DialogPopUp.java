@@ -1,0 +1,50 @@
+package com.example.sublet;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.example.sublet.model.Model;
+
+public class DialogPopUp extends DialogFragment {
+    Button ok_btn,cancel_btn;
+    @Nullable
+    @Override
+
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.pop_up,container,false);
+
+        ok_btn = view.findViewById(R.id.popUp_ok_btn);
+        cancel_btn = view.findViewById(R.id.popUp_oancel_btn);
+
+        ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO : delete post
+                Model.instance.deletePost(Model.instance.getCurrentPostId(), () -> {
+                    getDialog().dismiss();
+                    NavHostFragment.findNavController(getParentFragment()).navigateUp();
+                });
+            }
+        });
+
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+                NavHostFragment.findNavController(getParentFragment()).navigateUp();
+            }
+        });
+
+        return view;
+    }
+}

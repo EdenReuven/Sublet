@@ -67,10 +67,8 @@ public class Model {
 
     ////////////////////////////////////***POST***//////////////////////////////////////////////
 
-
-
-
     ArrayList<Post> userPostList = new ArrayList<>();
+    String currentPostId;
 
     public interface GetAllPostsListener{
         void onComplete(List<Post> postList);
@@ -112,43 +110,75 @@ public class Model {
         });
     }
 
+
+    public interface GetPostByIdListener{
+        void onComplete(Post post);
+    }
+    public void getPostById(String postId,GetPostByIdListener listener){
+        executor.execute(() -> {
+            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
+            for (int i=0;i<postList.size();i++){
+                if(postList.get(i).getPostId().equals(postId)){
+                    Post post = postList.get(i);
+                    mainThread.post(() -> {
+                        listener.onComplete(post);
+                    });
+                }
+            }
+        });
+    }
+
     public String getGeneratePostId(){
-         String postID = UUID.randomUUID().toString().replaceAll("-","").toUpperCase();
-         postID = postID+"-"+currentUser.getUserName();
-         Log.d("TAG",postID);
-         return postID;
+        String postID = UUID.randomUUID().toString().replaceAll("-","").toUpperCase();
+        postID = postID+"-"+currentUser.getUserName();
+        Log.d("TAG",postID);
+        return postID;
+    }
+
+    public void setCurrentPostId(String postId){
+        currentPostId = postId;
+    }
+
+    public String getCurrentPostId(){
+        return currentPostId;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
 
     public interface DeletePostsListener{
-        void onComplete(Post post);
+        void onComplete();
     }
 
     public void deletePost(String postId,DeletePostsListener listener) {
+//        executor.execute(() -> {
+//            Post p;
+//            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
+//            for (int i=0;i<postList.size();i++){
+//                if(postList.get(i).getPostId().equals(postId)){
+//                    p = postList.get(i);
+//                }
+//            }
+//        });
+//        executor.execute(() -> {
+//            AppLocalDb.db.postDao().deletePost(p);
+//        });
         executor.execute(() -> {
             List<Post> postList = AppLocalDb.db.postDao().getAllPost();
             for (int i=0;i<postList.size();i++){
-                if(postList.get(i).getPostId().equals(postId))
-                    postList.remove(postList.get(i));
+                if(postList.get(i).getPostId().equals(postId)){
+                    Post p = postList.get(i);
+                    AppLocalDb.db.postDao().deletePost(p);
+                    mainThread.post(() -> {
+                        listener.onComplete();
+                    });
+                }
             }
         });
-//        for (int i=0;i<postList.size();i++){
-//            if(postList.get(i).getPostId().equals(postId))
-//                postList.remove(postList.get(i));
-//        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
 
 
-    public void setCurrentPostId(String postId){
-//        currentPostId = postId;
-    }
 
-    public String getCurrentPostId(){
-//        return currentPostId;
-        return null;
-    }
 
 }

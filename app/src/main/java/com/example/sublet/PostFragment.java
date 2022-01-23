@@ -1,6 +1,11 @@
 package com.example.sublet;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -90,19 +95,14 @@ public class PostFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.edit_menu:
-                Model.instance.setCurrentPostId(postId);
+                Model.instance.setCurrentPostId(post.getPostId());
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.editPostFragment);
                 return true;
-//            case R.id.delete_menu:
-//                List<Post> userPostList = Model.instance.getCurrentUser().getPostList();
-//                for (int i=0;i<userPostList.size();i++){
-//                    if(userPostList.get(i).getPostId().equals(postId)) {
-//                        Model.instance.deletePost(postId);
-//                        userPostList.remove(userPostList.get(i));
-//                        NavHostFragment.findNavController(getParentFragment()).navigateUp();
-//                    }
-//                }
-//                return true;
+            case R.id.delete_menu:
+                Model.instance.setCurrentPostId(post.getPostId());
+                DialogPopUp dialogPopUp = new DialogPopUp();
+                dialogPopUp.show(getParentFragmentManager(),"Dialog_Popup");
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

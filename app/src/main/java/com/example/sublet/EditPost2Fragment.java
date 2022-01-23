@@ -23,6 +23,7 @@ public class EditPost2Fragment extends Fragment {
     ImageButton addPhoto_imgBtn;
     Button post_btn;
     boolean validOk;
+    Post updatePost;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,23 +38,35 @@ public class EditPost2Fragment extends Fragment {
         //setImage
         description_et.setText(post.getPostContent());
 
-//        post_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                post.setPostContent(description_et.getText().toString());
-//                //post.setImage
-//
-//                Post updatePost = Model.instance.getPost(post.getPostId());
-//                updatePost.setFromDate(post.getFromDate());
-//                updatePost.setToDate(post.getToDate());
-//                updatePost.setLocation(post.getLocation());
-//                updatePost.setNumRoommate(post.getNumRoommate());
-//                updatePost.setPrice(post.getPrice());
-//                updatePost.setOverallPeople(post.getOverallPeople());
-//                updatePost.setNumOfBedroom(post.getNumOfBedroom());
-//                updatePost.setNumOfBathroom(post.getNumOfBathroom());
-//                updatePost.setPostContent(post.getPostContent());
-//
+        post_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                post.setPostContent(description_et.getText().toString());
+                //post.setImage
+
+                Model.instance.getPostById(post.getPostId(),post1 -> {
+                    updatePost = post1;
+                    updatePost.setFromDate(post.getFromDate());
+                    updatePost.setToDate(post.getToDate());
+                    updatePost.setLocation(post.getLocation());
+                    updatePost.setNumRoommate(post.getNumRoommate());
+                    updatePost.setPrice(post.getPrice());
+                    updatePost.setOverallPeople(post.getOverallPeople());
+                    updatePost.setNumOfBedroom(post.getNumOfBedroom());
+                    updatePost.setNumOfBathroom(post.getNumOfBathroom());
+                    updatePost.setPostContent(post.getPostContent());
+
+                    validOk = true;
+                    CheckValid();
+                    if(!validOk)
+                        return;
+
+                    Model.instance.addPost(updatePost,() -> {
+                        Navigation.findNavController(v).navigate(EditPost2FragmentDirections.actionEditPost2FragmentToHomePageFragment());
+                    });
+
+                });
+
 //                List<Post> postUserList = Model.instance.getCurrentUser().getPostList(); //edit data in list
 //                for(int i =0;i<postUserList.size();i++){
 //                    if(postUserList.get(i).getPostId().equals(post.getPostId())){
@@ -68,16 +81,11 @@ public class EditPost2Fragment extends Fragment {
 //                        postUserList.get(i).setPostContent(post.getPostContent());
 //                    }
 //                }
-//                validOk = true;
-//                CheckValid();
-//                if(!validOk)
-//                    return;
-//                Navigation.findNavController(v).navigate(EditPost2FragmentDirections.actionEditPost2FragmentToHomePageFragment());
-//
-//                //update image
-//                //TODO: update the post from list user post
-//            }
-//        });
+
+                //update image
+                //TODO: update the post from list user post
+            }
+        });
 
         return view;
     }
