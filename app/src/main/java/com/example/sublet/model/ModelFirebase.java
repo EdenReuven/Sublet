@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -42,14 +43,26 @@ public class ModelFirebase {
     }
 
     public void getPostById(String postId, Model.GetPostByIdListener listener) {
+        db.collection(Post.COLLECTION_NAME).document(postId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        Post post = null;
+                        if(task.isSuccessful() && task.getResult() != null){
+                            post = Post.create(task.getResult().getData());
+                        }
+                        listener.onComplete(post);
+                    }
+                });
+    }
+
+
+    public void getPost(int pos, Model.GetPostsListener listener) {
 
     }
 
     public void deletePost(String postId, Model.DeletePostsListener listener) {
-
-    }
-
-    public void getPost(int pos, Model.GetPostsListener listener) {
 
     }
 
