@@ -71,10 +71,10 @@ public class PostFragment extends Fragment {
             date_tv.setText(post1.getFromDate()+" - "+post1.getToDate());
             location_tv.setText(post1.getLocation());
             roommate_tv.setText(Integer.toString(post1.getNumRoommate()));
-            price_tv.setText(Integer.toString((int) post1.getPrice()));
-            people_tv.setText(Integer.toString(post1.getOverallPeople()));
-            bathroom_tv.setText(Integer.toString(post1.getNumOfBathroom()));
-            bedroom_tv.setText(Integer.toString(post1.getNumOfBedroom()));
+            price_tv.setText(Integer.toString((int) post1.getPrice()) + " NIC");
+            people_tv.setText("fit for " + Integer.toString(post1.getOverallPeople()) + " people");
+            bathroom_tv.setText(Integer.toString(post1.getNumOfBathroom()) + " bathroom");
+            bedroom_tv.setText(Integer.toString(post1.getNumOfBedroom()) + " bedroom");
             description_tv.setText(post1.getPostContent());
         });
 

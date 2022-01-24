@@ -52,7 +52,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/dosis"
-                    android:text="UserName"
                     android:textSize="22dp"
                     app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +63,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/dosis"
-                    android:text="054-05412312"
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_userName_tv" />
@@ -76,7 +74,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/dosis"
-                    android:text="UserName@gmail.com"
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_phone_tv" />
@@ -109,7 +106,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/dosis"
-                    android:text="22/12/21-22/2/22"
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView31"
                     app:layout_constraintTop_toBottomOf="@+id/imageView20" />
@@ -131,7 +127,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/dosis"
-                    android:text="You’ll have the house to yourself."
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView26"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_dates_tv" />
@@ -153,7 +148,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/dosis"
-                    android:text="Tel Aviv Yafo, Israel"
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView33"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_roomate_tv" />
@@ -175,7 +169,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/dosis"
-                    android:text="fit for 2 people "
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView35"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_location_tv" />
@@ -197,7 +190,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/dosis"
-                    android:text="100 / day"
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView36"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_people_tv" />
@@ -229,7 +221,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/dosis"
-                    android:text="1 bedroom"
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView37"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_price_tv" />
@@ -251,7 +242,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/dosis"
-                    android:text="1 bathroom"
                     android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView38"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_bedroom_tv" />
@@ -264,7 +254,6 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/dosis"
-                    android:text="The Bedroom includes one king-sized bed and big comfortable flat-screen TV and entire living room, with mini refrigerator, hot water heater and utensils. , relax and breath the sea air and enjoy the sea view. Apartment is on first floor, with no elevator. This apartment can accommodate 2 people -- Perfect for couples, beach lovers and surfers."
                     android:textSize="18dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

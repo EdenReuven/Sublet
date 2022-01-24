@@ -142,8 +142,8 @@ public class HomePageFragment extends Fragment {
             holder.username_tv.setText(u.getUserName());
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
             holder.location_tv.setText(p.getLocation());
-            holder.numOfPeople_tv.setText(Integer.toString(p.getOverallPeople()));
-            holder.price_tv.setText(Integer.toString((int)p.getPrice()));
+            holder.numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
+            holder.price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
             holder.dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
         }
 
