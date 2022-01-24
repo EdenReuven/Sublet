@@ -93,16 +93,16 @@ public class Model {
         void onComplete(Post post);
     }
 
-    public void getPost(int pos,GetPostsListener listener) {
-        modelFirebase.getPost(pos,listener);
-        /*executor.execute(() -> {
-            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
-            Post post = postList.get(pos);
-            mainThread.post(() -> {
-                listener.onComplete(post);
-            });
-        });*/
-    }
+//    public void getPost(int pos,GetPostsListener listener) {
+//        modelFirebase.getPost(pos,listener);
+//        executor.execute(() -> {
+//            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
+//            Post post = postList.get(pos);
+//            mainThread.post(() -> {
+//                listener.onComplete(post);
+//            });
+//        });
+//    }
 
     public interface AddPostListener{
         void onComplete();

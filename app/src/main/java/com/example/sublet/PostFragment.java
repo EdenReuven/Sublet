@@ -35,15 +35,16 @@ import java.util.List;
 public class PostFragment extends Fragment {
     TextView username_tv , phone_tv , email_tv, date_tv ,location_tv, roommate_tv, price_tv, people_tv,
             bathroom_tv, bedroom_tv ,description_tv;
-    int pos;
     String postId;
+//    String postId;
     List<Post> postListData;
     Post post;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_post, container, false);
-        pos = PostFragmentArgs.fromBundle(getArguments()).getPosition();
+        postId = PostFragmentArgs.fromBundle(getArguments()).getPostId();
+
         User user = Model.instance.getCurrentUser();
 
         username_tv = view.findViewById(R.id.post_frag_userName_tv);
@@ -62,22 +63,36 @@ public class PostFragment extends Fragment {
         phone_tv.setText(user.getPhone());
         email_tv.setText(user.getEmail());
 
+        Model.instance.getPostById(postId,post1 -> {
 
-        Model.instance.getPost(pos,post1 -> {
-            post = post1;
-
-            if(post.getPostId().split("-")[1].equals(Model.instance.getCurrentUser().getUserName()))
+            if(post1.getPostId().split("-")[1].equals(Model.instance.getCurrentUser().getUserName()))
                 setHasOptionsMenu(true);
 
-            date_tv.setText(post.getFromDate()+" - "+post.getToDate());
-            location_tv.setText(post.getLocation());
-            roommate_tv.setText(Integer.toString(post.getNumRoommate()));
-            price_tv.setText(Integer.toString((int) post.getPrice()));
-            people_tv.setText(Integer.toString(post.getOverallPeople()));
-            bathroom_tv.setText(Integer.toString(post.getNumOfBathroom()));
-            bedroom_tv.setText(Integer.toString(post.getNumOfBedroom()));
-            description_tv.setText(post.getPostContent());
+            date_tv.setText(post1.getFromDate()+" - "+post1.getToDate());
+            location_tv.setText(post1.getLocation());
+            roommate_tv.setText(Integer.toString(post1.getNumRoommate()));
+            price_tv.setText(Integer.toString((int) post1.getPrice()));
+            people_tv.setText(Integer.toString(post1.getOverallPeople()));
+            bathroom_tv.setText(Integer.toString(post1.getNumOfBathroom()));
+            bedroom_tv.setText(Integer.toString(post1.getNumOfBedroom()));
+            description_tv.setText(post1.getPostContent());
         });
+
+//        Model.instance.getPost(pos,post1 -> {
+//            post = post1;
+//
+//            if(post.getPostId().split("-")[1].equals(Model.instance.getCurrentUser().getUserName()))
+//                setHasOptionsMenu(true);
+//
+//            date_tv.setText(post.getFromDate()+" - "+post.getToDate());
+//            location_tv.setText(post.getLocation());
+//            roommate_tv.setText(Integer.toString(post.getNumRoommate()));
+//            price_tv.setText(Integer.toString((int) post.getPrice()));
+//            people_tv.setText(Integer.toString(post.getOverallPeople()));
+//            bathroom_tv.setText(Integer.toString(post.getNumOfBathroom()));
+//            bedroom_tv.setText(Integer.toString(post.getNumOfBedroom()));
+//            description_tv.setText(post.getPostContent());
+//        });
 
         return view;
     }

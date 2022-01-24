@@ -53,8 +53,8 @@
         android:label="Post"
         tools:layout="@layout/fragment_post" >
         <argument
-            android:name="position"
-            app:argType="integer" />
+            android:name="postId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editPostFragment"

@@ -58,12 +58,8 @@ public class ModelFirebase {
     }
 
 
-    public void getPost(int pos, Model.GetPostsListener listener) {
-
-    }
-
     public void deletePost(String postId, Model.DeletePostsListener listener) {
-
+        //TODO: POST ID
     }
 
     public void getAllUsers() {

@@ -58,7 +58,8 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 int pos = position;
-                Navigation.findNavController(v).navigate(HomePageFragmentDirections.actionHomePageFragmentToPostFragment(pos));
+                String postId = dataPost.get(pos).getPostId();
+                Navigation.findNavController(v).navigate(HomePageFragmentDirections.actionHomePageFragmentToPostFragment(postId));
             }
         });
         setHasOptionsMenu(true);
