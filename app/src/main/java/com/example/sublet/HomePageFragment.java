@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,15 +38,17 @@ public class HomePageFragment extends Fragment {
     List<Post> dataPost;
     List<User> dataUser;
     MyAdapter adapter;
-    ProgressBar progressBar;
+    SwipeRefreshLayout swipeRefresh;
     Date currentDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        progressBar = view.findViewById(R.id.postList_progressBar);
-        progressBar.setVisibility(View.GONE);
+
+        swipeRefresh =view.findViewById(R.id.homePage_postList_SR);
+        swipeRefresh.setOnRefreshListener(() -> refresh());
+
         dataUser = Model.instance.getAllUsers();
         //currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
@@ -68,11 +71,11 @@ public class HomePageFragment extends Fragment {
     }
 
     private void refresh() {
-        progressBar.setVisibility(View.VISIBLE);
+        swipeRefresh.setRefreshing(true); //show progress bar , not have to use .
         Model.instance.getAllPosts(postList -> {
             dataPost = postList;
             adapter.notifyDataSetChanged();
-            progressBar.setVisibility(View.GONE);
+            swipeRefresh.setRefreshing(false);
         });
     }
 
