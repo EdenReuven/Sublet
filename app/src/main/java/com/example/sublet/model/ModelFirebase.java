@@ -1,5 +1,7 @@
 package com.example.sublet.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,6 +62,21 @@ public class ModelFirebase {
 
     public void deletePost(String postId, Model.DeletePostsListener listener) {
         //TODO: POST ID
+        db.collection(Post.COLLECTION_NAME).document(postId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully deleted!");
+                        listener.onComplete();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error deleting document", e);
+                    }
+                });
     }
 
     public void getAllUsers() {

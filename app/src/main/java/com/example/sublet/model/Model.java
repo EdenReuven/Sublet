@@ -89,10 +89,10 @@ public class Model {
 
     }
 
-    public interface GetPostsListener{
-        void onComplete(Post post);
-    }
-
+//    public interface GetPostsListener{
+//        void onComplete(Post post);
+//    }
+//
 //    public void getPost(int pos,GetPostsListener listener) {
 //        modelFirebase.getPost(pos,listener);
 //        executor.execute(() -> {
@@ -169,13 +169,6 @@ public class Model {
     public String getCurrentPostId(){
         return currentPostId;
     }
-
-
-
-
-
-
-
 
 
 }
