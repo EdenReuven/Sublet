@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sublet.model.Model;
@@ -39,6 +40,7 @@ public class PostFragment extends Fragment {
     String postId;
     List<Post> postListData;
     String postIdCurrent;
+    ImageView profilePic_imgView;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -58,7 +60,7 @@ public class PostFragment extends Fragment {
         bathroom_tv = view.findViewById(R.id.post_frag_bathroom_tv);
         bedroom_tv = view.findViewById(R.id.post_frag_bedroom_tv);
         description_tv = view.findViewById(R.id.post_frag_description_tv);
-
+        profilePic_imgView= view.findViewById(R.id.post_frag_profilePic_img);
 
         username_tv.setText(user.getUserName());
         phone_tv.setText(user.getPhone());
@@ -78,6 +80,13 @@ public class PostFragment extends Fragment {
             bathroom_tv.setText(Integer.toString(post1.getNumOfBathroom()) + " bathroom");
             bedroom_tv.setText(Integer.toString(post1.getNumOfBedroom()) + " bedroom");
             description_tv.setText(post1.getPostContent());
+
+            profilePic_imgView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(profilePic_imgView).navigate(PostFragmentDirections.actionPostFragmentToProfileFragment());
+                }
+            });
         });
 
         return view;
