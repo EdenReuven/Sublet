@@ -27,17 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ProgressBar
-                android:id="@+id/add_progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="60dp"
-                app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView6" />
-
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="0dp"
@@ -143,6 +132,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_photo_btnimg" />
+
+            <ProgressBar
+                android:id="@+id/add_progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="60dp"
+                app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView6" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
