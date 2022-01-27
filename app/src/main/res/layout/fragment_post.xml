@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/posr_frag_profilePic_img"
+                    android:id="@+id/post_frag_profilePic_img"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginStart="8dp"
@@ -53,7 +53,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/dosis"
                     android:textSize="22dp"
-                    app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
+                    app:layout_constraintStart_toEndOf="@+id/post_frag_profilePic_img"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -64,7 +64,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/dosis"
                     android:textSize="18dp"
-                    app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
+                    app:layout_constraintStart_toEndOf="@+id/post_frag_profilePic_img"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_userName_tv" />
 
                 <TextView
@@ -75,7 +75,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/dosis"
                     android:textSize="18dp"
-                    app:layout_constraintStart_toEndOf="@+id/posr_frag_profilePic_img"
+                    app:layout_constraintStart_toEndOf="@+id/post_frag_profilePic_img"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_phone_tv" />
 
                 <ImageView

@@ -109,6 +109,13 @@ public class HomePageFragment extends Fragment {
 //                    s.setCheck(cb.isChecked());
 //                }
 //            });
+              profile_img.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      //TODO: Open the profile page
+                      Navigation.findNavController(profile_img).navigate(HomePageFragmentDirections.actionHomePageFragmentToProfileFragment());
+                  }
+              });
         }
     }
 
