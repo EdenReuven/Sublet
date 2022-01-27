@@ -4,26 +4,30 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class User implements Parcelable {
+    final public static String COLLECTION_NAME = "user";
     String fullName = "";
     String userName = "";
     String email = "";
     String phone = "";
     String password = "";
-    List<Post> postList = new ArrayList<>();
+    List<String> postListId = new ArrayList<String>();
     //Image
 
     public User(){}
 
-    public User(String fullName, String userName, String email, String phone, String password,ArrayList<Post> postList) {
+    public User(String fullName, String userName, String email, String phone, String password,ArrayList<String> postListId) {
         this.fullName = fullName;
         this.userName = userName;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.postList = postList;
+        this.postListId = postListId;
     }
 
     protected User(Parcel in) {
@@ -32,7 +36,7 @@ public class User implements Parcelable {
         email = in.readString();
         phone = in.readString();
         password = in.readString();
-        postList = in.createTypedArrayList(Post.CREATOR);
+        postListId = Collections.singletonList(in.readString());
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -79,12 +83,12 @@ public class User implements Parcelable {
         this.phone = phone;
     }
 
-    public List<Post> getPostList() {
-        return postList;
+    public List<String> getPostList() {
+        return postListId;
     }
 
-    public void setPostList(ArrayList<Post> postList) {
-        this.postList = postList;
+    public void setPostList(ArrayList<String> postListId) {
+        this.postListId = postListId;
     }
 
     public String getPassword() {
@@ -107,6 +111,30 @@ public class User implements Parcelable {
         dest.writeString(email);
         dest.writeString(phone);
         dest.writeString(password);
-        dest.writeTypedList(postList);
+        dest.writeString(String.valueOf(postListId));
     }
+
+    public Map<String, Object> toJson() {
+        Map<String, Object> json = new HashMap<String, Object>();
+        json.put("userName",userName);
+        json.put("fullName",fullName);
+        json.put("email",email);
+        json.put("phone",phone);
+        json.put("postList",postListId);
+        json.put("password",password);
+        return json;
+    }
+
+    public static User create(Map<String, Object> json) {
+        String userName = (String) json.get("userName");
+        String fullName = (String) json.get("fullName");
+        String password = (String) json.get("password");
+        String email = (String) json.get("email");
+        String phone = (String) json.get("phone");
+        List<String> postListId = (List<String>) json.get("postList");
+
+        User user = new User(fullName,userName,email,phone,password, (ArrayList<String>) postListId);
+        return user;
+    }
+
 }

@@ -26,7 +26,6 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/dosis"
-        android:text="User Name"
         android:textSize="24dp"
         app:layout_constraintStart_toEndOf="@+id/post_profileImg_imageView"
         app:layout_constraintTop_toTopOf="parent" />

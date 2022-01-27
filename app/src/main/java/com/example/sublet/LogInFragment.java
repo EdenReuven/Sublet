@@ -11,11 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.sublet.model.Model;
+import com.example.sublet.model.User;
+
+import java.util.List;
 
 public class LogInFragment extends Fragment {
     EditText userName_et,password_et;
     Button login_btn;
     TextView singUp_tv , forget_tv;
+    List<User> userListData;
+    boolean ok;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,26 +33,25 @@ public class LogInFragment extends Fragment {
         singUp_tv = view.findViewById(R.id.loginFragment_signUp_TV);
         forget_tv = view.findViewById(R.id.loginFragment_forgetPassword_TV);
 
+        Model.instance.getAllUsers(userList -> {
+            userListData = userList;
+        });
+
         login_btn.setOnClickListener(new View.OnClickListener() {
             //TODO: check validation
             @Override
             public void onClick(View v) {
-                if(userName_et.getText().toString().length() == 0){
-                    userName_et.setError("This field is require");
-                    return;
-                }
-                if(password_et.getText().toString().length() == 0) {
-                    password_et.setError("This field is require");
-                    return;
-                }
-                if(!Model.instance.userExists(userName_et.getText().toString(),password_et.getText().toString())){
-                    return;
-                }else {
-                    Model.instance.setCurrentUser(userName_et.getText().toString());
-                    Intent intent = new Intent(getActivity(), HomePageActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    getActivity().finish();
+                for (int i=0;i<userListData.size();i++){
+                    if(userListData.get(i).getUserName().equals(userName_et.getText().toString())
+                        && userListData.get(i).getPassword().equals(password_et.getText().toString())){
+                        Model.instance.getUser(userName_et.getText().toString(),user -> {
+                            Model.instance.setCurrentUser(user);
+                            Intent intent = new Intent(getActivity(), HomePageActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            getActivity().finish();
+                        });
+                    }
                 }
             }
         });
@@ -62,5 +66,28 @@ public class LogInFragment extends Fragment {
         return view;
 
     }
+
+//    public boolean validation(User user){
+//        if(user.getUserName().length() == 0){
+//            userName_et.setError("This field is require");
+////            ok = false;
+//            return  false;
+//        }
+//        if(user.getPassword().length() == 0){
+//            password_et.setError("This field is require");
+////            ok = false;
+//            return  false;
+//        }
+//        for(int i =0;i<userListData.size();i++){
+//            if(userListData.get(i).getUserName().equals(user.getUserName()) &&
+//                    userListData.get(i).getPassword().equals(user.getPassword())){
+////                return ok;
+//                return true;
+//            }else {
+//                //TODO : print the userName or/and Password doesn't ok
+//            }
+//        }
+//        return false;
+//    }
 
 }

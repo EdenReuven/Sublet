@@ -45,7 +45,8 @@ public class PostFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_post, container, false);
 
         postId = PostFragmentArgs.fromBundle(getArguments()).getPostId();
-        User user = Model.instance.getCurrentUser();
+        //User user = Model.instance.getCurrentUser();
+        String userName = postId.split("-")[1];
 
         username_tv = view.findViewById(R.id.post_frag_userName_tv);
         phone_tv = view.findViewById(R.id.post_frag_phone_tv);
@@ -59,10 +60,11 @@ public class PostFragment extends Fragment {
         bedroom_tv = view.findViewById(R.id.post_frag_bedroom_tv);
         description_tv = view.findViewById(R.id.post_frag_description_tv);
 
-
-        username_tv.setText(user.getUserName());
-        phone_tv.setText(user.getPhone());
-        email_tv.setText(user.getEmail());
+        Model.instance.getUser(userName,user -> {
+            username_tv.setText(user.getUserName());
+            phone_tv.setText(user.getPhone());
+            email_tv.setText(user.getEmail());
+        });
 
         Model.instance.getPostById(postId,post1 -> {
 

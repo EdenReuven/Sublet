@@ -26,30 +26,31 @@ public class Model {
     ModelFirebase modelFirebase =new ModelFirebase();
 
     private Model() {
-        for(int i=0;i<1;i++){
-            User user = new User("myName"+i,""+i,"myEmail@"+i,"myPhone"+i,""+i, null); //userPostList
-            usersList.add(user);
-        }
+//        for(int i=0;i<1;i++){
+//            User user = new User("myName"+i,""+i,"myEmail@"+i,"myPhone"+i,""+i, null); //userPostList
+//            usersList.add(user);
+//        }
     }
 
     List<User> usersList = new LinkedList<>();
     //List<Post> postListCurrentUser = new LinkedList<>();
     User currentUser = null;
 
-    public List<User> getAllUsers() {
-        modelFirebase.getAllUsers();
-        return usersList;
+    public interface GetAllUsersListener{
+        void onComplete(List<User> postList);
+    }
+
+    public void getAllUsers(GetAllUsersListener listener) {
+        modelFirebase.getAllUsers(listener);
+//        return usersList;
     }
 
     public User getCurrentUser(){
         return currentUser;
     }
 
-    public void setCurrentUser(String userName){
-        for (int i=0;i<usersList.size();i++){
-            if(usersList.get(i).getUserName().equals(userName))
-                currentUser = usersList.get(i);
-        }
+    public void setCurrentUser(User user){ //TODO : set current user fireBaseModel
+        currentUser = user;
     }
 
     public boolean userExists(String userName,String password){
@@ -60,13 +61,25 @@ public class Model {
         return false;
     }
 
-    public void addUser(User newUser) {
-        modelFirebase.addUser(newUser);
-        usersList.add(newUser);
+    public interface AddUserListener{
+        void onComplete();
+    }
+
+    public void addUser(User newUser,AddUserListener listener) {
+        modelFirebase.addUser(newUser,listener);
+//        usersList.add(newUser);
     }
 
     public void addPostToCurrentUser(Post newPost){
-        currentUser.getPostList().add(newPost);
+//        currentUser.getPostList().add(newPost);
+    }
+
+    public interface GetUserListener{
+        void onComplete(User user);
+    }
+
+    public void getUser(String userName,GetUserListener listener){
+        modelFirebase.getUser(userName,listener);
     }
 
     ////////////////////////////////////***POST***//////////////////////////////////////////////
@@ -88,21 +101,6 @@ public class Model {
         });*/
 
     }
-
-//    public interface GetPostsListener{
-//        void onComplete(Post post);
-//    }
-//
-//    public void getPost(int pos,GetPostsListener listener) {
-//        modelFirebase.getPost(pos,listener);
-//        executor.execute(() -> {
-//            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
-//            Post post = postList.get(pos);
-//            mainThread.post(() -> {
-//                listener.onComplete(post);
-//            });
-//        });
-//    }
 
     public interface AddPostListener{
         void onComplete();
@@ -171,4 +169,18 @@ public class Model {
     }
 
 
+    //    public interface GetPostsListener{
+//        void onComplete(Post post);
+//    }
+//
+//    public void getPost(int pos,GetPostsListener listener) {
+//        modelFirebase.getPost(pos,listener);
+//        executor.execute(() -> {
+//            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
+//            Post post = postList.get(pos);
+//            mainThread.post(() -> {
+//                listener.onComplete(post);
+//            });
+//        });
+//    }
 }

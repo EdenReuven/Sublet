@@ -8,12 +8,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -79,12 +81,52 @@ public class ModelFirebase {
                 });
     }
 
-    public void getAllUsers() {
-
+    public void getAllUsers(Model.GetAllUsersListener listener) {
+        db.collection(User.COLLECTION_NAME).get()
+                .addOnCompleteListener(task -> {
+                    List<User> userList = new LinkedList<User>();
+                    if(task.isSuccessful()){
+                        for(QueryDocumentSnapshot doc : task.getResult()){
+                            User user = User.create(doc.getData());
+                            if(user != null)
+                                userList.add(user);
+                        }
+                    }
+                    listener.onComplete(userList);
+                });
     }
 
+    public void addUser(User newUser, Model.AddUserListener listener) {
+        Map<String, Object> json = newUser.toJson();
+        db.collection(User.COLLECTION_NAME)
+                .document(newUser.getUserName())
+                .set(json)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        listener.onComplete();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onComplete();
+                    }
+                });
+    }
 
-    public void addUser(User newUser) {
-
+    public void getUser(String userName, Model.GetUserListener listener) {
+        db.collection(User.COLLECTION_NAME).document(userName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        User user = null;
+                        if(task.isSuccessful() && task.getResult() != null){
+                            user = User.create(task.getResult().getData());
+                        }
+                        listener.onComplete(user);
+                    }
+                });
     }
 }

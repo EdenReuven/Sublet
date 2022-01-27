@@ -36,7 +36,6 @@ import java.util.List;
 public class HomePageFragment extends Fragment {
     RecyclerView postList;
     List<Post> dataPost;
-    List<User> dataUser;
     MyAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
     Date currentDate;
@@ -49,7 +48,6 @@ public class HomePageFragment extends Fragment {
         swipeRefresh =view.findViewById(R.id.homePage_postList_SR);
         swipeRefresh.setOnRefreshListener(() -> refresh());
 
-        dataUser = Model.instance.getAllUsers();
         //currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
         postList.setHasFixedSize(true);
@@ -136,15 +134,19 @@ public class HomePageFragment extends Fragment {
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             //TODO: add image post + image profile
             Post p = dataPost.get(position);
-            User u = Model.instance.getCurrentUser();
+            String userNamePost = p.getPostId().split("-")[1];
 
-//            holder.create_post_tv.setText(Integer.toString(resultDays));
-            holder.username_tv.setText(u.getUserName());
+            Model.instance.getUser(userNamePost,user -> {
+                holder.username_tv.setText(user.getUserName());
+            });
+
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
             holder.location_tv.setText(p.getLocation());
             holder.numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
             holder.price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
             holder.dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
+            //holder.create_post_tv.setText(Integer.toString(resultDays));
+
         }
 
         @Override
