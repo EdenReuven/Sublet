@@ -1,64 +1,154 @@
 package com.example.sublet;
 
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.sublet.model.Model;
+import com.example.sublet.model.Post;
+
+import java.util.List;
+
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    ImageView profileImg;
+    TextView name_tv, phone_tv, email_tv;
+    RecyclerView posts_rv;
+    ProfileAdapter adapter;
+    List<Post> data;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        profileImg=view.findViewById(R.id.profilefragment_img);
+        name_tv=view.findViewById(R.id.profilefragment_name_tv);
+        phone_tv=view.findViewById(R.id.profilefragment_phone_tv);
+        email_tv=view.findViewById(R.id.profilefragment_email_tv);
+
+        posts_rv=view.findViewById(R.id.profilefragment_posts_rv);
+        posts_rv.setHasFixedSize(true);
+        posts_rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new ProfileAdapter();
+        posts_rv.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                int pos=position;
+                Log.d("TAG", Integer.toString(pos));
+            }
+        });
+
+
+        //TODO: get clicked user, for now get current user
+        String name = Model.instance.getCurrentUser().getFullName();
+        String phone = Model.instance.getCurrentUser().getPhone();
+        String email=Model.instance.getCurrentUser().getEmail();
+
+        name_tv.setText(name);
+        phone_tv.setText(phone);
+        email_tv.setText(email);
+
+        Model.instance.getAllPosts(postList -> {
+            data=postList;
+            adapter.notifyDataSetChanged();
+        });
+
+        return view;
     }
+
+
+
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+        ImageView profile_img,post_img;
+        TextView create_post_tv,username_tv,status_tv,location_tv,numOfPeople_tv,price_tv,dates_tv;
+
+        public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
+            super(itemView);
+            profile_img = itemView.findViewById(R.id.post_profileImg_imageView);
+            post_img = itemView.findViewById(R.id.post_img_imageView);
+            create_post_tv = itemView.findViewById(R.id.post_createDay_tv);
+            username_tv = itemView.findViewById(R.id.post_userName_tv);
+            status_tv = itemView.findViewById(R.id.post_status_tv);
+            location_tv = itemView.findViewById(R.id.post_location_tv);
+            numOfPeople_tv = itemView.findViewById(R.id.post_numofpeople_tv);
+            price_tv = itemView.findViewById(R.id.post_price_tv);
+            dates_tv = itemView.findViewById(R.id.post_dates_tv);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    listener.onItemClick(v,pos);
+                }
+            });
+
+        }
+    }
+
+    interface OnItemClickListener {
+        void onItemClick(View v,int position);
+    }
+
+    public class ProfileAdapter extends RecyclerView.Adapter<MyViewHolder> {
+        OnItemClickListener listener;
+
+        public void setOnItemClickListener(OnItemClickListener listener){
+            this.listener=listener;
+        }
+
+        @NonNull
+        @Override
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view=getLayoutInflater().inflate(R.layout.post_card, parent, false);
+            MyViewHolder holder= new MyViewHolder(view ,listener);
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+            //TODO: add image post + image profile
+            Post p = data.get(position);
+            String userNamePost = p.getPostId().split("-")[1];
+
+            Model.instance.getUser(userNamePost,user -> {
+                holder.username_tv.setText(user.getUserName());
+            });
+
+            holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
+            holder.location_tv.setText(p.getLocation());
+            holder.numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
+            holder.price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
+            holder.dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
+            //holder.create_post_tv.setText(Integer.toString(resultDays));
+
+        }
+
+
+        @Override
+        public int getItemCount() {
+            if(data == null)
+                return 0;
+            return data.size();
+        }
+    }
+
+
 }
