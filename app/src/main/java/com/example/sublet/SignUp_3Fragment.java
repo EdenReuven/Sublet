@@ -27,7 +27,7 @@ public class SignUp_3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // setImage newUser
-
+                continue_Btn.setEnabled(false);
                 Model.instance.createUserWithEmailAndPassword(newUser.getEmail(), newUser.getPassword(), new Model.createUserWithEmailAndPasswordListener() {
                     @Override
                     public void onComplete() {
@@ -40,13 +40,6 @@ public class SignUp_3Fragment extends Fragment {
                         });
                     }
                 });
-//                Model.instance.addUser(newUser,() -> {
-//                    Model.instance.setCurrentUser(newUser);
-//                    Intent intent = new Intent(getActivity(), HomePageActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    startActivity(intent);
-//                    getActivity().finish();
-//                });
             }
         });
         addPhoto_imgBtn.setOnClickListener(new View.OnClickListener() {

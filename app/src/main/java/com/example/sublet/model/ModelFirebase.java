@@ -137,7 +137,6 @@ public class ModelFirebase {
                 });
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
     public void createUserWithEmailAndPassword(String email, String password, Model.createUserWithEmailAndPasswordListener listener) {
         Log.d("TAG",email + password);
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -163,7 +162,9 @@ public class ModelFirebase {
                 }
             }
         });
-
     }
 
+    public void signOut(){
+        FirebaseAuth.getInstance().signOut();
+    }
 }

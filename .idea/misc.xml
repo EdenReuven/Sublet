@@ -14,7 +14,7 @@
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_add_post.xml" value="0.33" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_add_post2.xml" value="0.2" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_post.xml" value="0.2" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_sign_up_3.xml" value="0.33" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_sing_up_1.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/post_card.xml" value="0.25" />
@@ -28,6 +28,8 @@
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_home_post.xml" value="0.1" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_home_price.xml" value="0.1" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_homelogo.xml" value="0.1" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_locationicon.xml" value="0.1" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/drawable/ic_logout_icon.xml" value="0.1" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_home.xml" value="0.25271739130434784" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_home_page.xml" value="0.2907608695652174" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_login.xml" value="0.2" />

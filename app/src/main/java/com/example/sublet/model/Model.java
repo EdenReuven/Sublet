@@ -98,6 +98,10 @@ public class Model {
         modelFirebase.signInWithEmailAndPassword(email,password,listener);
     }
 
+    public void signOut(){
+        modelFirebase.signOut();
+    }
+
     ////////////////////////////////////***POST***//////////////////////////////////////////////
 
     ArrayList<Post> userPostList = new ArrayList<>();

@@ -56,7 +56,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/loginFragment_userName_pText"
+                android:id="@+id/loginFragment_email_pText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
@@ -65,8 +65,9 @@
                 android:backgroundTint="#BCA3AC"
                 android:ems="10"
                 android:fontFamily="@font/dosis"
-                android:hint="User Name"
+                android:hint="Email"
                 android:inputType="textPersonName"
+                android:minHeight="48dp"
                 android:singleLine="false"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
@@ -88,6 +89,7 @@
                 android:fontFamily="@font/dosis"
                 android:hint="Password"
                 android:inputType="textPersonName"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textSize="16dp"
@@ -95,7 +97,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginFragment_userName_pText" />
+                app:layout_constraintTop_toBottomOf="@+id/loginFragment_email_pText" />
 
             <TextView
                 android:id="@+id/loginFragment_forgetPassword_TV"
