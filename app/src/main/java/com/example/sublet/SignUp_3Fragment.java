@@ -27,13 +27,26 @@ public class SignUp_3Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // setImage newUser
-                Model.instance.addUser(newUser,() -> {
-                    Model.instance.setCurrentUser(newUser);
-                    Intent intent = new Intent(getActivity(), HomePageActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    getActivity().finish();
+
+                Model.instance.createUserWithEmailAndPassword(newUser.getEmail(), newUser.getPassword(), new Model.createUserWithEmailAndPasswordListener() {
+                    @Override
+                    public void onComplete() {
+                        Model.instance.addUser(newUser,() -> {
+                            Model.instance.setCurrentUser(newUser);
+                            Intent intent = new Intent(getActivity(), HomePageActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            getActivity().finish();
+                        });
+                    }
                 });
+//                Model.instance.addUser(newUser,() -> {
+//                    Model.instance.setCurrentUser(newUser);
+//                    Intent intent = new Intent(getActivity(), HomePageActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    startActivity(intent);
+//                    getActivity().finish();
+//                });
             }
         });
         addPhoto_imgBtn.setOnClickListener(new View.OnClickListener() {

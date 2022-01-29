@@ -121,7 +121,7 @@ public class User implements Parcelable {
         json.put("email",email);
         json.put("phone",phone);
         json.put("postList",postListId);
-        json.put("password",password);
+        json.put("password","");
         return json;
     }
 

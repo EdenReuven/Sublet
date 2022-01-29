@@ -1,6 +1,7 @@
 package com.example.sublet.model;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -8,6 +9,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -19,22 +23,25 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 public class ModelFirebase {
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     public void getAllPosts(Model.GetAllPostsListener listener) {
         db.collection(Post.COLLECTION_NAME).get()
-        .addOnCompleteListener(task -> {
-            List<Post> postList = new LinkedList<Post>();
-            if(task.isSuccessful()){
-                for(QueryDocumentSnapshot doc : task.getResult()){
-                    Post post = Post.create(doc.getData());
-                    if(post != null)
-                        postList.add(post);
-                }
-            }
-            listener.onComplete(postList);
-        });
+                .addOnCompleteListener(task -> {
+                    List<Post> postList = new LinkedList<Post>();
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                            Post post = Post.create(doc.getData());
+                            if (post != null)
+                                postList.add(post);
+                        }
+                    }
+                    listener.onComplete(postList);
+                });
     }
 
     public void addPost(Post newPost, Model.AddPostListener listener) {
@@ -53,7 +60,7 @@ public class ModelFirebase {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         Post post = null;
-                        if(task.isSuccessful() && task.getResult() != null){
+                        if (task.isSuccessful() && task.getResult() != null) {
                             post = Post.create(task.getResult().getData());
                         }
                         listener.onComplete(post);
@@ -85,10 +92,10 @@ public class ModelFirebase {
         db.collection(User.COLLECTION_NAME).get()
                 .addOnCompleteListener(task -> {
                     List<User> userList = new LinkedList<User>();
-                    if(task.isSuccessful()){
-                        for(QueryDocumentSnapshot doc : task.getResult()){
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot doc : task.getResult()) {
                             User user = User.create(doc.getData());
-                            if(user != null)
+                            if (user != null)
                                 userList.add(user);
                         }
                     }
@@ -122,11 +129,41 @@ public class ModelFirebase {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         User user = null;
-                        if(task.isSuccessful() && task.getResult() != null){
+                        if (task.isSuccessful() && task.getResult() != null) {
                             user = User.create(task.getResult().getData());
                         }
                         listener.onComplete(user);
                     }
                 });
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    public void createUserWithEmailAndPassword(String email, String password, Model.createUserWithEmailAndPasswordListener listener) {
+        Log.d("TAG",email + password);
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        listener.onComplete();
+//                        FirebaseUser user = mAuth.getCurrentUser();
+                    } else {
+                        Log.d("TAG", "Add user is failed");
+                    }
+                });
+    }
+
+    public void signInWithEmailAndPassword(String email, String password, Model.signInWithEmailAndPasswordListener listener) {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    listener.onComplete();
+                }
+                else{
+                    Log.d("TAG","Login is failed");
+                }
+            }
+        });
+
+    }
+
 }

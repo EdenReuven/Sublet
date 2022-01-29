@@ -16,7 +16,7 @@ import com.example.sublet.model.User;
 import java.util.List;
 
 public class LogInFragment extends Fragment {
-    EditText userName_et,password_et;
+    EditText email_et,password_et;
     Button login_btn;
     TextView singUp_tv , forget_tv;
     List<User> userListData;
@@ -27,7 +27,7 @@ public class LogInFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_log_in, container, false);
 
-        userName_et = view.findViewById(R.id.loginFragment_userName_pText);
+        email_et = view.findViewById(R.id.loginFragment_userName_pText); // TODO change to email
         password_et = view.findViewById(R.id.loginFragment_passwoed_pText);
         login_btn = view.findViewById(R.id.loginFragment_logIn_btn);
         singUp_tv = view.findViewById(R.id.loginFragment_signUp_TV);
@@ -41,18 +41,31 @@ public class LogInFragment extends Fragment {
             //TODO: check validation
             @Override
             public void onClick(View v) {
-                for (int i=0;i<userListData.size();i++){
-                    if(userListData.get(i).getUserName().equals(userName_et.getText().toString())
-                        && userListData.get(i).getPassword().equals(password_et.getText().toString())){
-                        Model.instance.getUser(userName_et.getText().toString(),user -> {
-                            Model.instance.setCurrentUser(user);
-                            Intent intent = new Intent(getActivity(), HomePageActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            getActivity().finish();
-                        });
-                    }
-                }
+//                for (int i=0;i<userListData.size();i++){
+//                    if(userListData.get(i).getUserName().equals(userName_et.getText().toString())
+//                        && userListData.get(i).getPassword().equals(password_et.getText().toString())){
+//                        Model.instance.getUser(userName_et.getText().toString(),user -> {
+//                            Model.instance.setCurrentUser(user);
+//                            Intent intent = new Intent(getActivity(), HomePageActivity.class);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            startActivity(intent);
+//                            getActivity().finish();
+//                        });
+//                    }
+//                }
+                //TODO : fix problem login by email and not by userName
+//                Model.signInWithEmailAndPasswordListener(email_et.getText().toString(), password_et.getText().toString(), new Model.signInWithEmailAndPasswordListener() {
+//                    @Override
+//                    public void onComplete() {
+//                        Model.instance.getUser(userName_et.getText().toString(),user -> {
+//                            Model.instance.setCurrentUser(user);
+//                            Intent intent = new Intent(getActivity(), HomePageActivity.class);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            startActivity(intent);
+//                            getActivity().finish();
+//                        });
+//                    }
+//                });
             }
         });
 

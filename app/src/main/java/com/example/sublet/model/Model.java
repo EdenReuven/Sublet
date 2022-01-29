@@ -82,6 +82,22 @@ public class Model {
         modelFirebase.getUser(userName,listener);
     }
 
+    public interface createUserWithEmailAndPasswordListener{
+        void onComplete();
+    }
+
+    public void createUserWithEmailAndPassword(String email,String password,createUserWithEmailAndPasswordListener listener){
+        modelFirebase.createUserWithEmailAndPassword(email,password,listener);
+    }
+
+    public interface signInWithEmailAndPasswordListener{
+        void onComplete();
+    }
+
+    public void signInWithEmailAndPasswordListener(String email,String password,signInWithEmailAndPasswordListener listener){
+        modelFirebase.signInWithEmailAndPassword(email,password,listener);
+    }
+
     ////////////////////////////////////***POST***//////////////////////////////////////////////
 
     ArrayList<Post> userPostList = new ArrayList<>();
