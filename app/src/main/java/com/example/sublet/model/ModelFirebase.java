@@ -1,10 +1,14 @@
 package com.example.sublet.model;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.sublet.LogInActivity;
+import com.example.sublet.LogInFragment;
+import com.example.sublet.MyApplication;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -158,7 +162,7 @@ public class ModelFirebase {
                     listener.onComplete();
                 }
                 else{
-                    Log.d("TAG","Login is failed");
+                    Toast.makeText(MyApplication.getContext(), "The email or/and password are incorrect", Toast.LENGTH_SHORT).show();
                 }
             }
         });
