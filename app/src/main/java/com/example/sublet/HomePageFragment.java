@@ -183,6 +183,7 @@ public class HomePageFragment extends Fragment {
                 return true;
             case R.id.logOut_menu:
                 Model.instance.signOut();
+                /*Model.instance.setCurrentUser(null);*/
                 Intent intent = new Intent(getActivity(), LogInActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

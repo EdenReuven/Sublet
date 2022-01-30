@@ -28,7 +28,12 @@ public class LogInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+       /* if (Model.instance.getCurrentUser()!=null){
+            Intent intent = new Intent(getActivity(), HomePageActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            getActivity().finish();
+        }*/
         View view = inflater.inflate(R.layout.fragment_log_in, container, false);
 
         email_et = view.findViewById(R.id.loginFragment_email_pText);
@@ -111,4 +116,11 @@ public class LogInFragment extends Fragment {
 //        return false;
 //    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        //TODO :  Check if user is signed in (non-null) and update UI accordingly.
+        /*https://firebase.google.com/docs/auth/android/password-auth*/
+
+    }
 }
