@@ -1,10 +1,12 @@
 package com.example.sublet;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,8 +29,13 @@ public class ProfileFragment extends Fragment {
     TextView name_tv, phone_tv, email_tv;
     RecyclerView posts_rv;
     ProfileAdapter adapter;
-    List<Post> data;
+    ProfileViewModel viewModel;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +72,7 @@ public class ProfileFragment extends Fragment {
         email_tv.setText(email);
 
         Model.instance.getAllPosts(postList -> {
-            data=postList;
+            viewModel.setData(postList);
             adapter.notifyDataSetChanged();
         });
 
@@ -125,7 +132,7 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             //TODO: add image post + image profile
-            Post p = data.get(position);
+            Post p = viewModel.getData().get(position);
             String userNamePost = p.getPostId().split("-")[1];
 
             Model.instance.getUser(userNamePost,user -> {
@@ -144,9 +151,9 @@ public class ProfileFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            if(data == null)
+            if(viewModel.getData() == null)
                 return 0;
-            return data.size();
+            return viewModel.getData().size();
         }
     }
 

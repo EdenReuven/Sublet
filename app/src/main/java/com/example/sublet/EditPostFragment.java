@@ -1,8 +1,11 @@
 package com.example.sublet;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -20,8 +23,16 @@ import java.util.List;
 public class EditPostFragment extends Fragment {
     EditText dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et;
     Button continue_btn;
-    Post postToEdit;
+//    Post postToEdit;
+    EditPostViewModel viewModel;
     boolean validOk;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(EditPostViewModel.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,8 +50,8 @@ public class EditPostFragment extends Fragment {
         continue_btn = view.findViewById(R.id.editPost2_freg_post_btn);
 
         Model.instance.getPostById(Model.instance.getCurrentPostId(),post -> {
-            postToEdit=post;
-
+            //postToEdit=post;
+//            viewModel.postToEdit = post;
             dateFrom_et.setText(post.getFromDate());
             dateTo_et.setText(post.getToDate());
             location_et.setText(post.getLocation());

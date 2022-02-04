@@ -1,8 +1,11 @@
 package com.example.sublet;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -24,15 +27,21 @@ public class EditPost2Fragment extends Fragment {
     ImageButton addPhoto_imgBtn;
     Button post_btn;
     boolean validOk;
-    Post updatePost;
     ProgressBar progressBar;
-    Post post;
+    EditPostViewModel viewModel;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(EditPostViewModel.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_edit_post2, container, false);
-        post = EditPost2FragmentArgs.fromBundle(getArguments()).getEditPostObj();
+        viewModel.setPostToEdit(EditPost2FragmentArgs.fromBundle(getArguments()).getEditPostObj());
 
         progressBar = view.findViewById(R.id.edit_progressBar);
         progressBar.setVisibility(View.GONE);
@@ -41,12 +50,12 @@ public class EditPost2Fragment extends Fragment {
         post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
 
         //setImage
-        description_et.setText(post.getPostContent());
+        description_et.setText(viewModel.getPostToEdit().getPostContent());
 
         post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                post.setPostContent(description_et.getText().toString());
+                viewModel.getPostToEdit().setPostContent(description_et.getText().toString());
                 //post.setImage
                 saveEditPost();
 //                List<Post> postUserList = Model.instance.getCurrentUser().getPostList(); //edit data in list
@@ -87,24 +96,24 @@ public class EditPost2Fragment extends Fragment {
     private void saveEditPost(){
         progressBar.setVisibility(View.VISIBLE);
         post_btn.setEnabled(false);
-        Model.instance.getPostById(post.getPostId(),post1 -> {
-            updatePost = post1;
-            updatePost.setFromDate(post.getFromDate());
-            updatePost.setToDate(post.getToDate());
-            updatePost.setLocation(post.getLocation());
-            updatePost.setNumRoommate(post.getNumRoommate());
-            updatePost.setPrice(post.getPrice());
-            updatePost.setOverallPeople(post.getOverallPeople());
-            updatePost.setNumOfBedroom(post.getNumOfBedroom());
-            updatePost.setNumOfBathroom(post.getNumOfBathroom());
-            updatePost.setPostContent(post.getPostContent());
+        Model.instance.getPostById(viewModel.getPostToEdit().getPostId(),post1 -> {
+
+            post1.setFromDate(viewModel.getPostToEdit().getFromDate());
+            post1.setToDate(viewModel.getPostToEdit().getToDate());
+            post1.setLocation(viewModel.getPostToEdit().getLocation());
+            post1.setNumRoommate(viewModel.getPostToEdit().getNumRoommate());
+            post1.setPrice(viewModel.getPostToEdit().getPrice());
+            post1.setOverallPeople(viewModel.getPostToEdit().getOverallPeople());
+            post1.setNumOfBedroom(viewModel.getPostToEdit().getNumOfBedroom());
+            post1.setNumOfBathroom(viewModel.getPostToEdit().getNumOfBathroom());
+            post1.setPostContent(viewModel.getPostToEdit().getPostContent());
 
             validOk = true;
             CheckValid();
             if(!validOk)
                 return;
 
-            Model.instance.addPost(updatePost,() -> {
+            Model.instance.addPost(post1,() -> {
                 Navigation.findNavController(description_et).navigate(EditPost2FragmentDirections.actionEditPost2FragmentToHomePageFragment());
             });
 

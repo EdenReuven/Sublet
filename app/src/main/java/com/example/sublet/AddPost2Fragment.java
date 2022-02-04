@@ -1,7 +1,11 @@
 package com.example.sublet;
 
+import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -23,7 +27,14 @@ public class AddPost2Fragment extends Fragment {
     Button post_btn;
     ProgressBar progressBar;
     boolean validOk;
-    Post newPost;
+    AddPostViewModel viewModel;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(AddPostViewModel.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,7 +45,7 @@ public class AddPost2Fragment extends Fragment {
         addPhoto_imgBtn=view.findViewById(R.id.editPost2_frag_photo_btnimg);
         post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
 
-        newPost = AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj();
+        viewModel.setNewPost(AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj());
 
         addPhoto_imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +63,7 @@ public class AddPost2Fragment extends Fragment {
                     return;
 
                 post_btn.setEnabled(false);
-                newPost.setPostContent(description_et.getText().toString());
+                viewModel.getNewPost().setPostContent(description_et.getText().toString());
                 //set image
 
                 saveNewPost();
@@ -77,7 +88,7 @@ public class AddPost2Fragment extends Fragment {
     private void saveNewPost(){
         progressBar.setVisibility(View.VISIBLE);
         post_btn.setEnabled(false);
-        Model.instance.addPost(newPost,()->{
+        Model.instance.addPost(viewModel.getNewPost(),()->{
             //Model.instance.getCurrentUser().getPostList().add(newPost);
             //Model.instance.addPostToCurrentUser(newPost);
             Navigation.findNavController(description_et).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());

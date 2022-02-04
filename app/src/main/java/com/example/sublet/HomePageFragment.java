@@ -1,41 +1,43 @@
 package com.example.sublet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.NavHost;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
-import com.example.sublet.model.User;
-import java.util.Calendar;
+
 import java.util.Date;
-import java.util.List;
 
 
 public class HomePageFragment extends Fragment {
     RecyclerView postList;
-    List<Post> dataPost;
+    HomePageViewModel viewModel;
     MyAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
     Date currentDate;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(HomePageViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +58,7 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 int pos = position;
-                String postId = dataPost.get(pos).getPostId();
+                String postId = viewModel.getDataPost().get(pos).getPostId();
                 Navigation.findNavController(v).navigate(HomePageFragmentDirections.actionHomePageFragmentToPostFragment(postId));
             }
         });
@@ -68,7 +70,7 @@ public class HomePageFragment extends Fragment {
     private void refresh() {
         swipeRefresh.setRefreshing(true); //show progress bar , not have to use .
         Model.instance.getAllPosts(postList -> {
-            dataPost = postList;
+            viewModel.setDataPost(postList);
             adapter.notifyDataSetChanged();
             swipeRefresh.setRefreshing(false);
         });
@@ -137,7 +139,7 @@ public class HomePageFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             //TODO: add image post + image profile
-            Post p = dataPost.get(position);
+            Post p = viewModel.getDataPost().get(position);
             String userNamePost = p.getPostId().split("-")[1];
 
             Model.instance.getUser(userNamePost,user -> {
@@ -155,9 +157,9 @@ public class HomePageFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            if(dataPost == null)
+            if(viewModel.getDataPost() == null)
                 return 0;
-            return dataPost.size();
+            return viewModel.getDataPost().size();
         }
 
     }

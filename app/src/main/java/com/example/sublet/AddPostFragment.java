@@ -1,7 +1,11 @@
 package com.example.sublet;
 
+import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +24,14 @@ public class AddPostFragment extends Fragment {
    Button continue_btn;
    Date createTimeDate;
    boolean validOk;
+   AddPostViewModel viewModel;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(AddPostViewModel.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,17 +56,17 @@ public class AddPostFragment extends Fragment {
                 if(!validOk)
                     return;
 
-                Post newPost = new Post();
-                newPost.setPostId(Model.instance.getGeneratePostId());
-                newPost.setFromDate(dateFrom_et.getText().toString());
-                newPost.setToDate(dateTo_et.getText().toString());
-                newPost.setLocation(location_et.getText().toString());
-                newPost.setNumRoommate(Integer.parseInt(roommate_et.getText().toString()));
-                newPost.setPrice(Integer.parseInt(price_et.getText().toString()));
-                newPost.setOverallPeople(Integer.parseInt(people_et.getText().toString()));
-                newPost.setNumOfBedroom(Integer.parseInt(bedroom_et.getText().toString()));
-                newPost.setNumOfBathroom(Integer.parseInt(bathroom_et.getText().toString()));
-                Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionAddPostFragmentToAddPost2(newPost));
+                viewModel.newPost = new Post();
+                viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
+                viewModel.getNewPost().setFromDate(dateFrom_et.getText().toString());
+                viewModel.getNewPost().setToDate(dateTo_et.getText().toString());
+                viewModel.getNewPost().setLocation(location_et.getText().toString());
+                viewModel.getNewPost().setNumRoommate(Integer.parseInt(roommate_et.getText().toString()));
+                viewModel.getNewPost().setPrice(Integer.parseInt(price_et.getText().toString()));
+                viewModel.getNewPost().setOverallPeople(Integer.parseInt(people_et.getText().toString()));
+                viewModel.getNewPost().setNumOfBedroom(Integer.parseInt(bedroom_et.getText().toString()));
+                viewModel.getNewPost().setNumOfBathroom(Integer.parseInt(bathroom_et.getText().toString()));
+                Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionAddPostFragmentToAddPost2(viewModel.getNewPost()));
             }
         });
 

@@ -1,7 +1,11 @@
 package com.example.sublet;
 
+import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +18,15 @@ public class SignUp_1Fragment extends Fragment {
 
     EditText fullName_et, userName_et, email_et, phone_et;
     Button continue_btn;
-    User user;
+    SignUpViewModel viewModel;
     boolean validOk;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,13 +45,14 @@ public class SignUp_1Fragment extends Fragment {
                 CheckValid();
                 if(!validOk)
                     return;
-                user= new User();
-                user.setFullName(fullName_et.getText().toString());
-                user.setUserName(userName_et.getText().toString());
-                user.setEmail(email_et.getText().toString());
-                user.setPhone(phone_et.getText().toString());
 
-                Navigation.findNavController(v).navigate(SignUp_1FragmentDirections.actionSignUp1FragmentToSignUp2Fragment(user));
+                viewModel.user = new User();
+                viewModel.getUser().setFullName(fullName_et.getText().toString());
+                viewModel.getUser().setUserName(userName_et.getText().toString());
+                viewModel.getUser().setEmail(email_et.getText().toString());
+                viewModel.getUser().setPhone(phone_et.getText().toString());
+
+                Navigation.findNavController(v).navigate(SignUp_1FragmentDirections.actionSignUp1FragmentToSignUp2Fragment(viewModel.getUser()));
             }
         });
         return view;

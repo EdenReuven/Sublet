@@ -45,7 +45,6 @@ public class PostFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_post, container, false);
 
         postId = PostFragmentArgs.fromBundle(getArguments()).getPostId();
-        //User user = Model.instance.getCurrentUser();
         String userName = postId.split("-")[1];
 
         username_tv = view.findViewById(R.id.post_frag_userName_tv);

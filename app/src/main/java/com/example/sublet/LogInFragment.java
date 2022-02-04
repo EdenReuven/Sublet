@@ -1,8 +1,12 @@
 package com.example.sublet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -23,8 +27,15 @@ public class LogInFragment extends Fragment {
     EditText email_et,password_et;
     Button login_btn;
     TextView singUp_tv , forget_tv ;
-    List<User> userListData ;
+    LoginViewModel viewModel;
     boolean ok;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,7 +55,7 @@ public class LogInFragment extends Fragment {
 
 
         Model.instance.getAllUsers(userList -> {
-            userListData = userList;
+            viewModel.setUserListData(userList);
         });
 
         login_btn.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +73,9 @@ public class LogInFragment extends Fragment {
                         login_btn.setEnabled(false);
                         singUp_tv.setEnabled(false);
                         forget_tv.setEnabled(false);
-                        for (int i = 0; i < userListData.size(); i++) {
-                            if (userListData.get(i).getEmail().equals(email)) {
-                                Model.instance.getUser(userListData.get(i).getUserName(), user -> {
+                        for (int i = 0; i < viewModel.getUserListData().size(); i++) {
+                            if (viewModel.getUserListData().get(i).getEmail().equals(email)) {
+                                Model.instance.getUser(viewModel.getUserListData().get(i).getUserName(), user -> {
                                     Model.instance.setCurrentUser(user);
                                     Intent intent = new Intent(getActivity(), HomePageActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
