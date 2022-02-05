@@ -89,8 +89,10 @@ public class AddPost2Fragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         post_btn.setEnabled(false);
         Model.instance.addPost(viewModel.getNewPost(),()->{
-            //Model.instance.getCurrentUser().getPostList().add(newPost);
-            //Model.instance.addPostToCurrentUser(newPost);
+            Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user -> {
+                user.getPostList().add(viewModel.getNewPost().getPostId());
+                Model.instance.addUser(user, () -> {}); // add the post to list post of the current user
+            });
             Navigation.findNavController(description_et).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
         });
     }

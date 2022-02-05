@@ -68,7 +68,7 @@ public class LogInFragment extends Fragment {
                 if(email.length()==0 || password.length()==0) {
                     Toast.makeText(MyApplication.getContext(), "Email and password are required!", Toast.LENGTH_SHORT).show();
                     return;
-                }
+                }else {
                     Model.instance.signInWithEmailAndPasswordListener(email, password, () -> {
                         login_btn.setEnabled(false);
                         singUp_tv.setEnabled(false);
@@ -89,6 +89,7 @@ public class LogInFragment extends Fragment {
                         password_et.setText("");
 
                     });
+                }
 
             }
         });
