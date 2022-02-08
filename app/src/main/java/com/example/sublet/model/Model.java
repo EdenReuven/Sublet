@@ -6,6 +6,8 @@ import android.util.Log;
 
 
 import androidx.core.os.HandlerCompat;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
@@ -107,19 +109,32 @@ public class Model {
     ArrayList<Post> userPostList = new ArrayList<>();
     String currentPostId;
 
-    public interface GetAllPostsListener{
-        void onComplete(List<Post> postList);
-    }
 
-    public void getAllPosts(GetAllPostsListener listener) {
+
+   /* public void getAllPosts(GetAllPostsListener listener) {
         modelFirebase.getAllPosts( listener);
-        /*executor.execute(() -> {
+        *//*executor.execute(() -> {
             List<Post> postList = AppLocalDb.db.postDao().getAllPost();
             mainThread.post(() -> {
                 listener.onComplete(postList);
             });
-        });*/
+        });*//*
 
+    }*/
+
+    MutableLiveData <List<Post>> postsList = new MutableLiveData<List<Post>>();
+    public LiveData <List<Post>> getAll (){
+        if (postsList.getValue()==null){refreshPostList();}
+        return postsList;
+    }
+
+    public void refreshPostList(){
+        modelFirebase.getAllPosts(new ModelFirebase.GetAllPostsListener() {
+            @Override
+            public void onComplete(List<Post> postList) {
+                postsList.setValue(postList);
+            }
+        });
     }
 
     public interface AddPostListener{

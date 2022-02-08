@@ -30,10 +30,14 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 
 public class ModelFirebase {
+    public interface GetAllPostsListener{
+        void onComplete(List<Post> postList);
+    }
+
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public void getAllPosts(Model.GetAllPostsListener listener) {
+    public void getAllPosts(GetAllPostsListener listener) {
         db.collection(Post.COLLECTION_NAME).get()
                 .addOnCompleteListener(task -> {
                     List<Post> postList = new LinkedList<Post>();

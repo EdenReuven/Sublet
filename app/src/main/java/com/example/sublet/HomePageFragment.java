@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -24,6 +25,7 @@ import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class HomePageFragment extends Fragment {
@@ -58,22 +60,29 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 int pos = position;
-                String postId = viewModel.getDataPost().get(pos).getPostId();
+                String postId = viewModel.getDataPost().getValue().get(pos).getPostId();
                 Navigation.findNavController(v).navigate(HomePageFragmentDirections.actionHomePageFragmentToPostFragment(postId));
             }
         });
         setHasOptionsMenu(true);
-        refresh();
+        viewModel.getDataPost().observe(getViewLifecycleOwner(), new Observer<List<Post>>() {
+            @Override
+            public void onChanged(List<Post> posts) {
+                refresh();
+            }
+        });
         return view;
     }
 
     private void refresh() {
-        swipeRefresh.setRefreshing(true); //show progress bar , not have to use .
+        adapter.notifyDataSetChanged();
+        swipeRefresh.setRefreshing(false);
+        /*swipeRefresh.setRefreshing(true); //show progress bar , not have to use .
         Model.instance.getAllPosts(postList -> {
             viewModel.setDataPost(postList);
             adapter.notifyDataSetChanged();
             swipeRefresh.setRefreshing(false);
-        });
+        });*/
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -139,7 +148,7 @@ public class HomePageFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             //TODO: add image post + image profile
-            Post p = viewModel.getDataPost().get(position);
+            Post p = viewModel.getDataPost().getValue().get(position);
             String userNamePost = p.getPostId().split("-")[1];
 
             Model.instance.getUser(userNamePost,user -> {
@@ -157,9 +166,9 @@ public class HomePageFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            if(viewModel.getDataPost() == null)
+            if(viewModel.getDataPost().getValue() == null)
                 return 0;
-            return viewModel.getDataPost().size();
+            return viewModel.getDataPost().getValue().size();
         }
 
     }

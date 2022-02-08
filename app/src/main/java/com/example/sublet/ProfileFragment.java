@@ -71,10 +71,10 @@ public class ProfileFragment extends Fragment {
         phone_tv.setText(phone);
         email_tv.setText(email);
 
-        Model.instance.getAllPosts(postList -> {
+       /* Model.instance.getAllPosts(postList -> {
             viewModel.setData(postList);
             adapter.notifyDataSetChanged();
-        });
+        });*/
 
         return view;
     }
