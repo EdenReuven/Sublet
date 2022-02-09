@@ -121,7 +121,10 @@ public class HomePageFragment extends Fragment {
                   @Override
                   public void onClick(View v) {
                       //TODO: Open the profile page
-                      Navigation.findNavController(profile_img).navigate(HomePageFragmentDirections.actionHomePageFragmentToProfileFragment());
+                      Post p = viewModel.getDataPost().getValue().get(getAdapterPosition());
+                      String userName = p.getPostId().split("-")[1];
+                      Navigation.findNavController(profile_img).navigate(HomePageFragmentDirections.
+                              actionHomePageFragmentToProfileFragment(userName));
                   }
               });
         }

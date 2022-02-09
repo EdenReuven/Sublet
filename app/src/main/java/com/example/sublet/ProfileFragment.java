@@ -30,6 +30,7 @@ public class ProfileFragment extends Fragment {
     RecyclerView posts_rv;
     ProfileAdapter adapter;
     ProfileViewModel viewModel;
+    String userName;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -41,6 +42,9 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        /*userName = PostFragmentArgs.fromBundle(getArguments()).getPostId();*/
+        userName= ProfileFragmentArgs.fromBundle(getArguments()).getUserName();
 
         profileImg=view.findViewById(R.id.profilefragment_img);
         name_tv=view.findViewById(R.id.profilefragment_name_tv);
@@ -61,15 +65,11 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-        //TODO: get clicked user, for now get current user
-        String name = Model.instance.getCurrentUser().getFullName();
-        String phone = Model.instance.getCurrentUser().getPhone();
-        String email=Model.instance.getCurrentUser().getEmail();
-
-        name_tv.setText(name);
-        phone_tv.setText(phone);
-        email_tv.setText(email);
+        Model.instance.getUser(userName ,user -> {
+            name_tv.setText(user.getUserName());
+            phone_tv.setText(user.getPhone());
+            email_tv.setText(user.getEmail());
+        });
 
        /* Model.instance.getAllPosts(postList -> {
             viewModel.setData(postList);
