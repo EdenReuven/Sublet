@@ -106,23 +106,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <ImageButton
-                android:id="@+id/editPost2_frag_photo_btnimg"
-                android:layout_width="158dp"
-                android:layout_height="108dp"
-                android:layout_marginStart="96dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="97dp"
-                android:src="@drawable/ic_addphotoblue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                android:id="@+id/editPost2_frag_gallery_btnimg"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_galleryicon"
+                app:layout_constraintBottom_toBottomOf="@+id/editPost2_frag_photo_btnimg"
+                app:layout_constraintEnd_toStartOf="@+id/editPost2_frag_photo_btnimg"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/editPost2_frag_description_et"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:gravity="start|top"
@@ -130,8 +129,9 @@
                 android:inputType="textMultiLine"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_photo_btnimg" />
+                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_gallery_btnimg" />
 
             <ProgressBar
                 android:id="@+id/add_progressBar"
@@ -143,6 +143,34 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+            <ImageButton
+                android:id="@+id/editPost2_frag_photo_btnimg"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="140dp"
+                android:src="@drawable/ic_addphotoblue"
+                app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/editPost2_frag_gallery_btnimg"
+                app:layout_constraintTop_toTopOf="@+id/editPost2_frag_gallery_btnimg" />
+
+            <ImageView
+                android:id="@+id/editPost2_frag_image_imgview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="96dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginEnd="97dp"
+                android:layout_marginBottom="14dp"
+                app:layout_constraintBottom_toTopOf="@+id/editPost2_frag_gallery_btnimg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                tools:src="@tools:sample/avatars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

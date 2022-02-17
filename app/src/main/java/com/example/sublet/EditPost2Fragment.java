@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +17,6 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import com.example.sublet.model.Model;
-import com.example.sublet.model.Post;
-
-import java.util.List;
 
 public class EditPost2Fragment extends Fragment {
     EditText description_et;
@@ -46,7 +42,7 @@ public class EditPost2Fragment extends Fragment {
         progressBar = view.findViewById(R.id.edit_progressBar);
         progressBar.setVisibility(View.GONE);
         description_et = view.findViewById(R.id.editPost2_frag_description_et);
-        addPhoto_imgBtn = view.findViewById(R.id.editPost2_frag_photo_btnimg);
+        addPhoto_imgBtn = view.findViewById(R.id.editPost2_frag_gallery_btnimg);
         post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
 
         //setImage

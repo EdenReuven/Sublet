@@ -106,7 +106,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <ImageButton
-                android:id="@+id/editPost2_frag_photo_btnimg"
+                android:id="@+id/editPost2_frag_gallery_btnimg"
                 android:layout_width="158dp"
                 android:layout_height="108dp"
                 android:layout_marginStart="96dp"
@@ -131,7 +131,7 @@
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_photo_btnimg" />
+                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_gallery_btnimg" />
 
             <ProgressBar
                 android:id="@+id/edit_progressBar"
