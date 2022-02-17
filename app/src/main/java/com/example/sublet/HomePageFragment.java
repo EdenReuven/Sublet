@@ -34,6 +34,8 @@ public class HomePageFragment extends Fragment {
     MyAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
     Date currentDate;
+    ImageView profile_img;
+    TextView userName_tv;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -48,6 +50,10 @@ public class HomePageFragment extends Fragment {
 
         swipeRefresh =view.findViewById(R.id.homePage_postList_SR);
         swipeRefresh.setOnRefreshListener(() -> Model.instance.refreshPostList());
+
+        profile_img=view.findViewById(R.id.homePage_profile_img);
+        userName_tv=view.findViewById(R.id.homePage_username_tv);
+        userName_tv.setText(Model.instance.getCurrentUser().getUserName()); //show login user name
 
         //currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
@@ -82,6 +88,15 @@ public class HomePageFragment extends Fragment {
                     swipeRefresh.setRefreshing(false);
                 }
 
+            }
+        });
+        //go to login user profile on profile picture click
+        profile_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String profileUserName =Model.instance.getCurrentUser().getUserName();
+                Navigation.findNavController(profile_img).navigate(HomePageFragmentDirections.
+                        actionHomePageFragmentToProfileFragment(profileUserName));
             }
         });
         return view;
