@@ -47,7 +47,7 @@ public class HomePageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
         swipeRefresh =view.findViewById(R.id.homePage_postList_SR);
-        swipeRefresh.setOnRefreshListener(() -> refresh());
+        swipeRefresh.setOnRefreshListener(() -> Model.instance.refreshPostList());
 
         //currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
@@ -69,6 +69,19 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onChanged(List<Post> posts) {
                 refresh();
+            }
+        });
+        swipeRefresh.setRefreshing((Model.instance.getPostsListLoadingState().getValue()==Model.PostsListLoadingState.loading));
+        Model.instance.getPostsListLoadingState().observe(getViewLifecycleOwner(), new Observer<Model.PostsListLoadingState>() {
+            @Override
+            public void onChanged(Model.PostsListLoadingState postsListLoadingState) {
+                if(postsListLoadingState== Model.PostsListLoadingState.loading){
+                    swipeRefresh.setRefreshing(true);
+                }
+                else{
+                    swipeRefresh.setRefreshing(false);
+                }
+
             }
         });
         return view;

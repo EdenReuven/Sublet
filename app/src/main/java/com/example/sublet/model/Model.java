@@ -1,5 +1,6 @@
 package com.example.sublet.model;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -9,13 +10,11 @@ import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.security.PublicKey;
+import com.example.sublet.MyApplication;
+
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -25,14 +24,24 @@ public class Model {
     Executor executor = Executors.newFixedThreadPool(1);
     Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
 
+    public enum PostsListLoadingState {
+        loading,
+        loaded
+    }
+
+    MutableLiveData<PostsListLoadingState>postsListLoadingState= new MutableLiveData<PostsListLoadingState>();
+
+    public LiveData<PostsListLoadingState> getPostsListLoadingState() {
+        return postsListLoadingState;
+    }
+
     ModelFirebase modelFirebase =new ModelFirebase();
 
     private Model() {
-//        for(int i=0;i<1;i++){
-//            User user = new User("myName"+i,""+i,"myEmail@"+i,"myPhone"+i,""+i, null); //userPostList
-//            usersList.add(user);
-//        }
+        postsListLoadingState.setValue(PostsListLoadingState.loaded);
     }
+
+
 
     List<User> usersList = new LinkedList<>();
     //List<Post> postListCurrentUser = new LinkedList<>();
@@ -129,12 +138,45 @@ public class Model {
     }
 
     public void refreshPostList(){
-        modelFirebase.getAllPosts(new ModelFirebase.GetAllPostsListener() {
+        postsListLoadingState.setValue(PostsListLoadingState.loading);
+
+        Long postLastUpdate = MyApplication.getContext().getSharedPreferences("TAG", Context.MODE_PRIVATE).getLong("PostLastUpdate", 0);
+
+        modelFirebase.getAllPosts(postLastUpdate, new ModelFirebase.GetAllPostsListener() {
             @Override
             public void onComplete(List<Post> postList) {
-                postsList.setValue(postList);
+                executor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        Long lastUpdateDate=new Long(0);
+                        Log.d("TAG", "fb returned" +postList.size());
+                        for(Post post:postList){
+                            AppLocalDb.db.postDao().insertAll(post);
+                            if(lastUpdateDate <post.getUpdateDate()){
+                                lastUpdateDate=post.getUpdateDate();
+                            }
+                        }
+                        MyApplication.getContext().getSharedPreferences("TAG", Context.MODE_PRIVATE)
+                                .edit().putLong("PostLastUpdate",lastUpdateDate).commit();
+                        List<Post>poList=AppLocalDb.db.postDao().getAllPost();
+                        postsList.postValue(poList);
+                        postsListLoadingState.postValue(PostsListLoadingState.loaded);
+                    }
+                });
+
+
+
+
             }
         });
+        //TODO: DELETE
+//        modelFirebase.getAllPosts(postLastUpdate, new ModelFirebase.GetAllPostsListener() {
+//            @Override
+//            public void onComplete(List<Post> postList) {
+//                postsList.setValue(postList);
+//                postsListLoadingState.setValue(PostsListLoadingState.loaded);
+//            }
+//        });
     }
 
     public interface AddPostListener{

@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +32,12 @@ public class Post implements Parcelable {
     String postContent = "";
     int numOfBathroom = 0;
     int numOfBedroom = 0;
+
+    public void setUpdateDate(Long updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    Long updateDate=new Long(0);
     //    Date createDate = null;
     //    List<Image> images = null;
     public Post(){}
@@ -184,6 +193,7 @@ public class Post implements Parcelable {
         json.put("postContent" ,postContent);
         json.put("numOfBathroom" ,numOfBathroom);
         json.put("numOfBedroom" ,numOfBedroom);
+        json.put("updateDate" , FieldValue.serverTimestamp());
         return json;
     }
 
@@ -200,6 +210,13 @@ public class Post implements Parcelable {
         Long numOfBedroom = (Long) json.get("numOfBedroom");
         Post post = new Post(fromDate,toDate,numRoommate.intValue(),location,overallPeople.intValue()
         ,price.intValue(),postContent,numOfBathroom.intValue(),numOfBedroom.intValue(),id);
+        Timestamp ts=(Timestamp)json.get("updateDate");
+        Long updateDate = ts.getSeconds();
+        post.setUpdateDate(updateDate);
         return post;
+    }
+    //  TODO:...
+    public Long getUpdateDate() {
+        return updateDate;
     }
 }

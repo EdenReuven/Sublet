@@ -1,33 +1,26 @@
 package com.example.sublet.model;
 
-import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.sublet.LogInActivity;
-import com.example.sublet.LogInFragment;
 import com.example.sublet.MyApplication;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executor;
 
 public class ModelFirebase {
     public interface GetAllPostsListener{
@@ -37,8 +30,16 @@ public class ModelFirebase {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public void getAllPosts(GetAllPostsListener listener) {
-        db.collection(Post.COLLECTION_NAME).get()
+    public ModelFirebase(){
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(false).build();
+        db.setFirestoreSettings(settings);
+    }
+
+
+    public void getAllPosts(Long postLastUpdate, GetAllPostsListener listener) {
+        db.collection(Post.COLLECTION_NAME).whereGreaterThanOrEqualTo("updateDate",new Timestamp(postLastUpdate, 0))
+                .get()
                 .addOnCompleteListener(task -> {
                     List<Post> postList = new LinkedList<Post>();
                     if (task.isSuccessful()) {
