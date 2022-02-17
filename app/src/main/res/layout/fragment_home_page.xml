@@ -20,11 +20,13 @@
             android:id="@+id/homePage_postList_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#F2F1F4"
         app:layout_constraintBottom_toTopOf="@+id/homePage_postList_SR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +56,18 @@
             app:layout_constraintStart_toEndOf="@+id/homePage_profile_img"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#9F9F9F"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homePage_username_tv"
+            app:layout_constraintVertical_bias="1.0"></LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
