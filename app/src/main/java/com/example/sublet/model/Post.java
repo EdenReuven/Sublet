@@ -33,6 +33,8 @@ public class Post implements Parcelable {
     int numOfBathroom = 0;
     int numOfBedroom = 0;
 
+    private String postImgUrl;
+
     public void setUpdateDate(Long updateDate) {
         this.updateDate = updateDate;
     }
@@ -167,6 +169,10 @@ public class Post implements Parcelable {
         return 0;
     }
 
+    public String getPostImgUrl() {
+        return postImgUrl;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(fromDate);
@@ -193,6 +199,7 @@ public class Post implements Parcelable {
         json.put("postContent" ,postContent);
         json.put("numOfBathroom" ,numOfBathroom);
         json.put("numOfBedroom" ,numOfBedroom);
+        json.put("postImgUrl" ,postImgUrl);
         json.put("updateDate" , FieldValue.serverTimestamp());
         return json;
     }
@@ -208,15 +215,21 @@ public class Post implements Parcelable {
         String postContent = (String) json.get("postContent");
         Long numOfBathroom = (Long) json.get("numOfBathroom");
         Long numOfBedroom = (Long) json.get("numOfBedroom");
+        String url = (String) json.get("postImgUrl");
         Post post = new Post(fromDate,toDate,numRoommate.intValue(),location,overallPeople.intValue()
         ,price.intValue(),postContent,numOfBathroom.intValue(),numOfBedroom.intValue(),id);
         Timestamp ts=(Timestamp)json.get("updateDate");
         Long updateDate = ts.getSeconds();
         post.setUpdateDate(updateDate);
+        post.setPostImgUrl(url);
         return post;
     }
     //  TODO:...
     public Long getUpdateDate() {
         return updateDate;
+    }
+
+    public void setPostImgUrl(String url) {
+        this.postImgUrl =url;
     }
 }

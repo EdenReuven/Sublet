@@ -30,8 +30,7 @@ public class Model {
     }
 
     public void saveimage(Bitmap imageBitmap, String imageName, SaveImageListener listener) {
-
-
+        modelFirebase.saveImage(imageBitmap ,imageName ,listener);
     }
 
     public enum PostsListLoadingState {
@@ -193,7 +192,13 @@ public class Model {
         void onComplete();
     }
     public void addPost(Post newPost,AddPostListener listener) {
-        modelFirebase.addPost(newPost, listener);
+        modelFirebase.addPost(newPost, new AddPostListener() {
+            @Override
+            public void onComplete() {
+                refreshPostList();
+                listener.onComplete();
+            }
+        });
         /*executor.execute(() -> {
             AppLocalDb.db.postDao().insertAll(newPost);
             mainThread.post(() -> {

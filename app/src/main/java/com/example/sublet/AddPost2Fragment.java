@@ -127,6 +127,14 @@ public class AddPost2Fragment extends Fragment {
             Model.instance.saveimage(imageBitmap, Model.instance.getCurrentUser().getUserName() + ".jpg", new Model.SaveImageListener() {
                 @Override
                 public void onComplete(String url) {
+                    viewModel.getNewPost().setPostImgUrl(url);
+                    Model.instance.addPost(viewModel.getNewPost(),()->{
+                        Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user -> {
+                            user.getPostList().add(viewModel.getNewPost().getPostId());
+                            Model.instance.addUser(user, () -> {}); // add the post to list post of the current user
+                        });
+                        Navigation.findNavController(description_et).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
+                    });
 
                 }
             });
