@@ -1,6 +1,7 @@
 package com.example.sublet.model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -23,6 +24,15 @@ public class Model {
     public static final Model instance = new Model();
     Executor executor = Executors.newFixedThreadPool(1);
     Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
+
+    public interface SaveImageListener{
+        void onComplete(String url);
+    }
+
+    public void saveimage(Bitmap imageBitmap, String imageName, SaveImageListener listener) {
+
+
+    }
 
     public enum PostsListLoadingState {
         loading,
