@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
+import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 import java.util.List;
@@ -156,6 +157,21 @@ public class HomePageFragment extends Fragment {
                   }
               });
         }
+        public void bind(Post p){
+
+            status_tv.setText(Integer.toString(p.getNumRoommate()));
+            location_tv.setText(p.getLocation());
+            numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
+            price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
+            dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
+            post_img.setImageResource(R.drawable.room);
+            if(p.getPostImgUrl() !=null) {
+                Picasso.get()
+                        .load(p.getPostImgUrl())
+                        .into(post_img);
+            }
+        }
+
     }
 
     interface OnItemClickListener {
@@ -185,13 +201,8 @@ public class HomePageFragment extends Fragment {
             Model.instance.getUser(userNamePost,user -> {
                 holder.username_tv.setText(user.getUserName());
             });
-
-            holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
-            holder.location_tv.setText(p.getLocation());
-            holder.numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
-            holder.price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
-            holder.dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
             //holder.create_post_tv.setText(Integer.toString(resultDays));
+            holder.bind(p);
 
         }
 
