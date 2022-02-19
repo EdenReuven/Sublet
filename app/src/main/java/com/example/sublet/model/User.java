@@ -17,6 +17,8 @@ public class User implements Parcelable {
     String phone = "";
     String password = "";
     List<String> postListId = new ArrayList<String>();
+
+    private String profileUrl;
     //Image
 
     public User(){}
@@ -122,6 +124,7 @@ public class User implements Parcelable {
         json.put("phone",phone);
         json.put("postList",postListId);
         json.put("password","");
+        json.put("profileUrl",profileUrl);
         return json;
     }
 
@@ -131,10 +134,19 @@ public class User implements Parcelable {
         String password = (String) json.get("password");
         String email = (String) json.get("email");
         String phone = (String) json.get("phone");
+        String url = (String)json.get("profileUrl");
         List<String> postListId = (List<String>) json.get("postList");
 
         User user = new User(fullName,userName,email,phone,password, (ArrayList<String>) postListId);
+        user.setProfileUrl(url);
         return user;
     }
 
+    public void setProfileUrl(String url) {
+        this.profileUrl= url;
+    }
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
 }

@@ -29,6 +29,8 @@ import java.util.Map;
 public class ModelFirebase {
 
 
+
+
     public interface GetAllPostsListener{
         void onComplete(List<Post> postList);
     }
@@ -202,6 +204,34 @@ public class ModelFirebase {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 postImgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Uri downloadUrl = uri;
+                        listener.onComplete(downloadUrl.toString());
+                    }
+                });
+            }
+        });
+
+    }
+
+    public void saveProfileImage(Bitmap profileImageBitmap, String imageName, Model.saveProfileImageListener listener) {
+        StorageReference storageRef =storage.getReference();
+        StorageReference profileImgRef = storageRef.child("/Profile/" +imageName);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        profileImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = profileImgRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                listener.onComplete(null);
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                profileImgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         Uri downloadUrl = uri;

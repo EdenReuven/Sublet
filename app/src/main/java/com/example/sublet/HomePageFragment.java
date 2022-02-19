@@ -200,6 +200,12 @@ public class HomePageFragment extends Fragment {
 
             Model.instance.getUser(userNamePost,user -> {
                 holder.username_tv.setText(user.getUserName());
+           //     holder.profile_img.setImageResource(R.drawable.woman);
+           //     if(user.getProfileUrl() !=null) {
+           //         Picasso.get()
+            //                .load(user.getProfileUrl())
+            //                .into(profile_img);
+            //    }
             });
             //holder.create_post_tv.setText(Integer.toString(resultDays));
             holder.bind(p);

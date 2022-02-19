@@ -143,18 +143,44 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
             <ImageButton
-                android:id="@+id/signUp3_freg_addPhoto_imgbtn"
-                android:layout_width="156dp"
-                android:layout_height="133dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="50dp"
+                android:id="@+id/signUp3_freg_camera_imgbtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginBottom="40dp"
                 android:src="@drawable/ic_addphoto"
                 app:layout_constraintBottom_toTopOf="@+id/signUp3_freg_continue_btn"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/signUp3_freg_gallery_imgbtn"
+                app:layout_constraintTop_toBottomOf="@+id/signUp3_freg_image_imgview" />
+
+            <ImageView
+                android:id="@+id/signUp3_freg_image_imgview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="112dp"
+                android:layout_marginBottom="115dp"
+                app:layout_constraintBottom_toTopOf="@+id/signUp3_freg_continue_btn"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                app:layout_constraintVertical_bias="0.294"
+                tools:src="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/signUp3_freg_gallery_imgbtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_galleryiconpink"
+                app:layout_constraintBottom_toTopOf="@+id/signUp3_freg_continue_btn"
+                app:layout_constraintEnd_toStartOf="@+id/signUp3_freg_camera_imgbtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signUp3_freg_image_imgview" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

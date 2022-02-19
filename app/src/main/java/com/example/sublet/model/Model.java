@@ -5,14 +5,10 @@ import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-
-
 import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.sublet.MyApplication;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +20,14 @@ public class Model {
     public static final Model instance = new Model();
     Executor executor = Executors.newFixedThreadPool(1);
     Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
+
+    public interface saveProfileImageListener{
+        void onComplete(String url);
+    }
+
+    public void saveProfileImage(Bitmap profileImageBitmap, String imageName, saveProfileImageListener listener) {
+        modelFirebase.saveProfileImage(profileImageBitmap, imageName, listener);
+    }
 
     public interface SaveImageListener{
         void onComplete(String url);
@@ -87,6 +91,7 @@ public class Model {
 
     public void addUser(User newUser,AddUserListener listener) {
         modelFirebase.addUser(newUser,listener);
+
 //        usersList.add(newUser);
     }
 
