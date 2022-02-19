@@ -79,7 +79,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_phone_tv" />
 
                 <ImageView
-                    android:id="@+id/posr_frag_images_img"
+                    android:id="@+id/post_frag_images_img"
                     android:layout_width="290dp"
                     android:layout_height="185dp"
                     android:layout_marginStart="8dp"
@@ -97,7 +97,7 @@
                     android:src="@drawable/ic__dots"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/posr_frag_images_img" />
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_images_img" />
 
                 <TextView
                     android:id="@+id/post_frag_dates_tv"

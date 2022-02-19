@@ -23,11 +23,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import com.example.sublet.model.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class PostFragment extends Fragment {
     String postId;
     List<Post> postListData;
     String postIdCurrent;
+    ImageView post_img;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -58,6 +61,7 @@ public class PostFragment extends Fragment {
         bathroom_tv = view.findViewById(R.id.post_frag_bathroom_tv);
         bedroom_tv = view.findViewById(R.id.post_frag_bedroom_tv);
         description_tv = view.findViewById(R.id.post_frag_description_tv);
+        post_img =view.findViewById(R.id.post_frag_images_img);
 
         Model.instance.getUser(userName,user -> {
             username_tv.setText(user.getUserName());
@@ -79,6 +83,12 @@ public class PostFragment extends Fragment {
             bathroom_tv.setText(Integer.toString(post1.getNumOfBathroom()) + " bathroom");
             bedroom_tv.setText(Integer.toString(post1.getNumOfBedroom()) + " bedroom");
             description_tv.setText(post1.getPostContent());
+            post_img.setImageResource(R.drawable.room); // need to delete the current pic!
+            if(post1.getPostImgUrl() !=null) {
+                Picasso.get()
+                        .load(post1.getPostImgUrl())
+                        .into(post_img);
+            }
         });
 
         return view;
