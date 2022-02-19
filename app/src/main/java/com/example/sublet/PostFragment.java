@@ -41,7 +41,7 @@ public class PostFragment extends Fragment {
     String postId;
     List<Post> postListData;
     String postIdCurrent;
-    ImageView post_img;
+    ImageView post_img , profile_img;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -62,11 +62,19 @@ public class PostFragment extends Fragment {
         bedroom_tv = view.findViewById(R.id.post_frag_bedroom_tv);
         description_tv = view.findViewById(R.id.post_frag_description_tv);
         post_img =view.findViewById(R.id.post_frag_images_img);
+        profile_img = view.findViewById(R.id.post_frag_profilePic_img);
 
         Model.instance.getUser(userName,user -> {
             username_tv.setText(user.getUserName());
             phone_tv.setText(user.getPhone());
             email_tv.setText(user.getEmail());
+
+            profile_img.setImageResource(R.drawable.woman);
+            if(user.getProfileUrl() != null) {
+                Picasso.get()
+                        .load(user.getProfileUrl())
+                        .into(profile_img);
+            }
         });
 
         Model.instance.getPostById(postId,post1 -> {

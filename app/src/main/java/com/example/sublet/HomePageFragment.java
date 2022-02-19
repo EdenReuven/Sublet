@@ -99,7 +99,6 @@ public class HomePageFragment extends Fragment {
 
             }
         });
-        //go to login user profile on profile picture click
         profile_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -209,10 +208,10 @@ public class HomePageFragment extends Fragment {
 
             Model.instance.getUser(userNamePost,user -> {
                 holder.username_tv.setText(user.getUserName());
-                //holder.profile_img_Post.setImageResource(R.drawable.woman);
+                holder.profile_img_Post.setImageResource(R.drawable.woman);
                 if(user.getProfileUrl() != null) {
                     Picasso.get()
-                            .load(Model.instance.getCurrentUser().getProfileUrl())
+                            .load(user.getProfileUrl())
                             .into(holder.profile_img_Post);
                 }
             });

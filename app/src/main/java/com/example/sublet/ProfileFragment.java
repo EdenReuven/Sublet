@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
+import com.squareup.picasso.Picasso;
 
 
 public class ProfileFragment extends Fragment {
@@ -41,14 +42,11 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        /*userName = PostFragmentArgs.fromBundle(getArguments()).getPostId();*/
         userName= ProfileFragmentArgs.fromBundle(getArguments()).getUserName();
-
         profileImg=view.findViewById(R.id.profilefragment_img);
         name_tv=view.findViewById(R.id.profilefragment_name_tv);
         phone_tv=view.findViewById(R.id.profilefragment_phone_tv);
         email_tv=view.findViewById(R.id.profilefragment_email_tv);
-
         posts_rv=view.findViewById(R.id.profilefragment_posts_rv);
         posts_rv.setHasFixedSize(true);
         posts_rv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -67,17 +65,16 @@ public class ProfileFragment extends Fragment {
             name_tv.setText(user.getUserName());
             phone_tv.setText(user.getPhone());
             email_tv.setText(user.getEmail());
+            profileImg.setImageResource(R.drawable.woman);
+            if(user.getProfileUrl() != null) {
+                Picasso.get()
+                        .load(user.getProfileUrl())
+                        .into(profileImg);
+            }
         });
-
-       /* Model.instance.getAllPosts(postList -> {
-            viewModel.setData(postList);
-            adapter.notifyDataSetChanged();
-        });*/
 
         return view;
     }
-
-
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

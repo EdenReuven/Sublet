@@ -54,21 +54,6 @@ public class EditPost2Fragment extends Fragment {
                 viewModel.getPostToEdit().setPostContent(description_et.getText().toString());
                 //post.setImage
                 saveEditPost();
-//                List<Post> postUserList = Model.instance.getCurrentUser().getPostList(); //edit data in list
-//                for(int i =0;i<postUserList.size();i++){
-//                    if(postUserList.get(i).getPostId().equals(post.getPostId())){
-//                        postUserList.get(i).setFromDate(post.getFromDate());
-//                        postUserList.get(i).setToDate(post.getToDate());
-//                        postUserList.get(i).setLocation(post.getLocation());
-//                        postUserList.get(i).setNumRoommate(post.getNumRoommate());
-//                        postUserList.get(i).setPrice(post.getPrice());
-//                        postUserList.get(i).setOverallPeople(post.getOverallPeople());
-//                        postUserList.get(i).setNumOfBedroom(post.getNumOfBedroom());
-//                        postUserList.get(i).setNumOfBathroom(post.getNumOfBathroom());
-//                        postUserList.get(i).setPostContent(post.getPostContent());
-//                    }
-//                }
-
                 //update image
                 //TODO: update the post from list user post
             }

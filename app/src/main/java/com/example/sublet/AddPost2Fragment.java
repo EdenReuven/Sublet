@@ -67,11 +67,8 @@ public class AddPost2Fragment extends Fragment {
                 CheckValid();
                 if(!validOk)
                     return;
-
                 post_btn.setEnabled(false);
                 viewModel.getNewPost().setPostContent(description_et.getText().toString());
-                //set image
-
                 saveNewPost();
             }
         });
