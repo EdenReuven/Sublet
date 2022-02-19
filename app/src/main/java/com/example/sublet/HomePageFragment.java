@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,6 +63,13 @@ public class HomePageFragment extends Fragment {
         postList.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new MyAdapter();
         postList.setAdapter(adapter);
+
+        profile_img.setImageResource(R.drawable.woman);
+        if(Model.instance.getCurrentUser().getProfileUrl() != null) {
+            Picasso.get()
+                    .load(Model.instance.getCurrentUser().getProfileUrl())
+                    .into(profile_img);
+        }
 
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -115,12 +123,12 @@ public class HomePageFragment extends Fragment {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView profile_img,post_img;
+        ImageView profile_img_Post,post_img;
         TextView create_post_tv,username_tv,status_tv,location_tv,numOfPeople_tv,price_tv,dates_tv;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
-            profile_img = itemView.findViewById(R.id.post_profileImg_imageView);
+            profile_img_Post = itemView.findViewById(R.id.post_profileImgPost_imageView);
             post_img = itemView.findViewById(R.id.post_img_imageView);
             create_post_tv = itemView.findViewById(R.id.post_createDay_tv);
             username_tv = itemView.findViewById(R.id.post_userName_tv);
@@ -138,6 +146,7 @@ public class HomePageFragment extends Fragment {
                 }
             });
 
+
 //            cb.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -146,7 +155,7 @@ public class HomePageFragment extends Fragment {
 //                    s.setCheck(cb.isChecked());
 //                }
 //            });
-              profile_img.setOnClickListener(new View.OnClickListener() {
+              profile_img_Post.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
                       //TODO: Open the profile page
@@ -200,12 +209,12 @@ public class HomePageFragment extends Fragment {
 
             Model.instance.getUser(userNamePost,user -> {
                 holder.username_tv.setText(user.getUserName());
-           //     holder.profile_img.setImageResource(R.drawable.woman);
-           //     if(user.getProfileUrl() !=null) {
-           //         Picasso.get()
-            //                .load(user.getProfileUrl())
-            //                .into(profile_img);
-            //    }
+                //holder.profile_img_Post.setImageResource(R.drawable.woman);
+                if(user.getProfileUrl() != null) {
+                    Picasso.get()
+                            .load(Model.instance.getCurrentUser().getProfileUrl())
+                            .into(holder.profile_img_Post);
+                }
             });
             //holder.create_post_tv.setText(Integer.toString(resultDays));
             holder.bind(p);

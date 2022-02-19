@@ -9,7 +9,7 @@
     >
 
     <ImageView
-        android:id="@+id/post_profileImg_imageView"
+        android:id="@+id/post_profileImgPost_imageView"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginStart="8dp"
@@ -27,7 +27,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/dosis"
         android:textSize="24dp"
-        app:layout_constraintStart_toEndOf="@+id/post_profileImg_imageView"
+        app:layout_constraintStart_toEndOf="@+id/post_profileImgPost_imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -40,7 +40,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_profileImg_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/post_profileImgPost_imageView"
         app:srcCompat="@drawable/room" />
 
     <ImageView
@@ -163,7 +163,7 @@
         android:fontFamily="@font/dosis"
         android:text="2"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/post_profileImg_imageView" />
+        app:layout_constraintTop_toTopOf="@+id/post_profileImgPost_imageView" />
 
     <TextView
         android:id="@+id/textView8"

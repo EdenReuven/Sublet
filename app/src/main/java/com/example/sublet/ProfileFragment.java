@@ -20,8 +20,6 @@ import android.widget.TextView;
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 
-import java.util.List;
-
 
 public class ProfileFragment extends Fragment {
 
@@ -89,7 +87,7 @@ public class ProfileFragment extends Fragment {
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
-            profile_img = itemView.findViewById(R.id.post_profileImg_imageView);
+            profile_img = itemView.findViewById(R.id.post_profileImgPost_imageView);
             post_img = itemView.findViewById(R.id.post_img_imageView);
             create_post_tv = itemView.findViewById(R.id.post_createDay_tv);
             username_tv = itemView.findViewById(R.id.post_userName_tv);
