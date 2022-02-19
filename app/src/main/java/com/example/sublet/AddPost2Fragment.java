@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,8 +23,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.sublet.model.Model;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class AddPost2Fragment extends Fragment {
 
@@ -82,6 +88,7 @@ public class AddPost2Fragment extends Fragment {
     }
 
     static final int REQUEST_IMAGE_CAPTURE=1;
+    static final int REQUEST_IMAGE_PIC=2;
 
     private void openCamera() {
         Intent takePictureIntent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
@@ -100,10 +107,25 @@ public class AddPost2Fragment extends Fragment {
                 image_imageView.setImageBitmap(imageBitmap);
 
             }
+        }else if (requestCode == REQUEST_IMAGE_PIC){
+            if (resultCode == Activity.RESULT_OK){
+                try {
+                    final Uri imgUri =data.getData();
+                    final InputStream imgStream =getContext().getContentResolver().openInputStream(imgUri);
+                    imageBitmap = BitmapFactory.decodeStream(imgStream);
+                    image_imageView.setImageBitmap(imageBitmap);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Failed to select image",Toast.LENGTH_LONG).show();
+                }
+            }
         }
     }
 
     private void openGallery() {
+        Intent pickPictureIntent = new Intent(Intent.ACTION_PICK);
+        pickPictureIntent.setType("image/+");
+        startActivityForResult(pickPictureIntent,REQUEST_IMAGE_PIC);
     }
 
 
