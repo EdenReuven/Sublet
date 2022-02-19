@@ -106,7 +106,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <ImageButton
-                android:id="@+id/editPost2_frag_gallery_btnimg"
+                android:id="@+id/editPost2_frag_camera_btnimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
@@ -131,7 +131,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_gallery_btnimg" />
+                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_camera_btnimg" />
 
             <ProgressBar
                 android:id="@+id/add_progressBar"
@@ -155,8 +155,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/editPost2_frag_gallery_btnimg"
-                app:layout_constraintTop_toTopOf="@+id/editPost2_frag_gallery_btnimg" />
+                app:layout_constraintStart_toEndOf="@+id/editPost2_frag_camera_btnimg"
+                app:layout_constraintTop_toTopOf="@+id/editPost2_frag_camera_btnimg" />
 
             <ImageView
                 android:id="@+id/editPost2_frag_image_imgview"
@@ -166,7 +166,7 @@
                 android:layout_marginTop="31dp"
                 android:layout_marginEnd="97dp"
                 android:layout_marginBottom="14dp"
-                app:layout_constraintBottom_toTopOf="@+id/editPost2_frag_gallery_btnimg"
+                app:layout_constraintBottom_toTopOf="@+id/editPost2_frag_camera_btnimg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6"

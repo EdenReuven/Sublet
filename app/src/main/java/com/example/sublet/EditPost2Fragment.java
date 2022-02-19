@@ -2,29 +2,29 @@ package com.example.sublet;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-
 import com.example.sublet.model.Model;
+import com.squareup.picasso.Picasso;
 
 public class EditPost2Fragment extends Fragment {
     EditText description_et;
-    ImageButton addPhoto_imgBtn;
+    ImageButton camera_imgBtn , gallery_imgBtn;
     Button post_btn;
     boolean validOk;
     ProgressBar progressBar;
     EditPostViewModel viewModel;
+    ImageView image_imgView;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -42,10 +42,18 @@ public class EditPost2Fragment extends Fragment {
         progressBar = view.findViewById(R.id.edit_progressBar);
         progressBar.setVisibility(View.GONE);
         description_et = view.findViewById(R.id.editPost2_frag_description_et);
-        addPhoto_imgBtn = view.findViewById(R.id.editPost2_frag_gallery_btnimg);
+        camera_imgBtn = view.findViewById(R.id.editPost2_frag_camera_btnimg);
+        gallery_imgBtn = view.findViewById(R.id.editPost2_frag_gallery_btnimg);
+        image_imgView = view.findViewById(R.id.editPost2_frag_picture_imgview);
         post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
 
         //setImage
+        image_imgView.setImageResource(R.drawable.room);
+        if(viewModel.getPostToEdit().getPostImgUrl() !=null) {
+            Picasso.get()
+                    .load(viewModel.getPostToEdit().getPostImgUrl())
+                    .into(image_imgView);
+        }
         description_et.setText(viewModel.getPostToEdit().getPostContent());
 
         post_btn.setOnClickListener(new View.OnClickListener() {

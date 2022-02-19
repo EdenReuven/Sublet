@@ -27,7 +27,6 @@ import android.widget.Toast;
 
 import com.example.sublet.model.Model;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class AddPost2Fragment extends Fragment {
@@ -54,7 +53,7 @@ public class AddPost2Fragment extends Fragment {
         progressBar.setVisibility(View.GONE);
         description_et=view.findViewById(R.id.editPost2_frag_description_et);
         image_imageView=view.findViewById(R.id.editPost2_frag_image_imgview);
-        gallery_imgBtn=view.findViewById(R.id.editPost2_frag_gallery_btnimg);
+        gallery_imgBtn=view.findViewById(R.id.editPost2_frag_camera_btnimg);
         camera_imgBtn=view.findViewById(R.id.editPost2_frag_photo_btnimg);
         post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
 

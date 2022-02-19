@@ -90,8 +90,8 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.sublet.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
         <argument
             android:name="userName"
             app:argType="string" />

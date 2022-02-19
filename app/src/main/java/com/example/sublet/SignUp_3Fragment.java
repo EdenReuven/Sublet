@@ -85,10 +85,14 @@ public class SignUp_3Fragment extends Fragment {
         return view;
     }
 
-    private void openGallery() {
-    }
-
     static final int PROFILE_IMAGE_CAPTURE = 1;
+    static final int  PROFILE_IMAGE_PIC =2;
+
+    private void openGallery() {
+        Intent pickPictureIntent = new Intent(Intent.ACTION_PICK);
+        pickPictureIntent.setType("image/+");
+        startActivityForResult(pickPictureIntent,PROFILE_IMAGE_PIC);
+    }
 
     private void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -106,18 +110,18 @@ public class SignUp_3Fragment extends Fragment {
                 image_imageView.setImageBitmap(profileImageBitmap);
 
             }
-//        } else if (requestCode == REQUEST_IMAGE_PIC) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                try {
-//                    final Uri imgUri = data.getData();
-//                    final InputStream imgStream = getContext().getContentResolver().openInputStream(imgUri);
-//                    imageBitmap = BitmapFactory.decodeStream(imgStream);
-//                    image_imageView.setImageBitmap(imageBitmap);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(getContext(), "Failed to select image", Toast.LENGTH_LONG).show();
-//                }
-//            }
+        } else if (requestCode == PROFILE_IMAGE_PIC) {
+            if (resultCode == Activity.RESULT_OK) {
+                try {
+                    final Uri imgUri = data.getData();
+                    final InputStream imgStream = getContext().getContentResolver().openInputStream(imgUri);
+                    profileImageBitmap = BitmapFactory.decodeStream(imgStream);
+                    image_imageView.setImageBitmap(profileImageBitmap);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Failed to select image", Toast.LENGTH_LONG).show();
+                }
+            }
             }
         }
 
