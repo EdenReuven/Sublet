@@ -3,12 +3,10 @@ package com.example.sublet;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.sublet.model.Model;
 import com.example.sublet.model.User;
-
 import java.util.List;
 
 public class LogInFragment extends Fragment {
@@ -62,10 +58,10 @@ public class LogInFragment extends Fragment {
                     Toast.makeText(MyApplication.getContext(), "Email and password are required!", Toast.LENGTH_SHORT).show();
                     return;
                 }else {
-                    login_btn.setEnabled(false);
-                    singUp_tv.setEnabled(false);
-                    forget_tv.setEnabled(false);
                     Model.instance.signInWithEmailAndPasswordListener(email, password, () -> {
+                        login_btn.setEnabled(false);
+                        singUp_tv.setEnabled(false);
+                        forget_tv.setEnabled(false);
                         for (int i = 0; i < viewModel.getUserListData().size(); i++) {
                             if (viewModel.getUserListData().get(i).getEmail().equals(email)) {
                                 Model.instance.getUser(viewModel.getUserListData().get(i).getUserName(), user -> {
