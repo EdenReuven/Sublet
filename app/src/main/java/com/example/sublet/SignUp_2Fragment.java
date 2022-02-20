@@ -65,7 +65,12 @@ public class SignUp_2Fragment extends Fragment {
             }
         }
         if(!password_ed.getText().toString().equals(confirmPassword_ed.getText().toString())){
-            Toast.makeText(MyApplication.getContext(), "The Password is not match!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyApplication.getContext(), "The password is not match!", Toast.LENGTH_SHORT).show();
+            validOk = false;
+            return;
+        }
+        if (password_ed.getText().length() < 6){
+            Toast.makeText(MyApplication.getContext(), "The password must contain at least 6 characters ", Toast.LENGTH_SHORT).show();
             validOk = false;
             return;
         }
