@@ -39,7 +39,6 @@ public class PostFragment extends Fragment {
     TextView username_tv , phone_tv , email_tv, date_tv ,location_tv, roommate_tv, price_tv, people_tv,
             bathroom_tv, bedroom_tv ,description_tv;
     String postId;
-    List<Post> postListData;
     String postIdCurrent;
     ImageView post_img , profile_img;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +48,6 @@ public class PostFragment extends Fragment {
 
         postId = PostFragmentArgs.fromBundle(getArguments()).getPostId();
         String userName = postId.split("-")[1];
-
         username_tv = view.findViewById(R.id.post_frag_userName_tv);
         phone_tv = view.findViewById(R.id.post_frag_phone_tv);
         email_tv = view.findViewById(R.id.post_frag_email_tv);

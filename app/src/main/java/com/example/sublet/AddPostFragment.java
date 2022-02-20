@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import java.util.Calendar;
@@ -51,11 +53,13 @@ public class AddPostFragment extends Fragment {
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 validOk=true;
                 CheckValid();
                 if(!validOk)
                     return;
 
+                continue_btn.setEnabled(false);
                 viewModel.newPost = new Post();
                 viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
                 viewModel.getNewPost().setFromDate(dateFrom_et.getText().toString());
@@ -81,7 +85,7 @@ public class AddPostFragment extends Fragment {
         for(int i=0;i<validArray.length;i++){
             if(validArray[i].getText().toString().length() == 0){
                 validOk = false;
-                validArray[i].setError("This field is require");
+                Toast.makeText(MyApplication.getContext(), "All Fields are required!", Toast.LENGTH_SHORT).show();
                 return;
             }
         }

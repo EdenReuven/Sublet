@@ -85,13 +85,18 @@ public class AddPost2Fragment extends Fragment {
 
     static final int REQUEST_IMAGE_CAPTURE=1;
     static final int REQUEST_IMAGE_PIC=2;
+    Bitmap imageBitmap;
 
     private void openCamera() {
         Intent takePictureIntent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
     }
 
-    Bitmap imageBitmap;
+    private void openGallery() {
+        Intent pickPictureIntent = new Intent(Intent.ACTION_PICK);
+        pickPictureIntent.setType("image/+");
+        startActivityForResult(pickPictureIntent,REQUEST_IMAGE_PIC);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -114,27 +119,7 @@ public class AddPost2Fragment extends Fragment {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "Failed to select image",Toast.LENGTH_LONG).show();
                 }
-            }
-        }
-    }
-
-    private void openGallery() {
-        Intent pickPictureIntent = new Intent(Intent.ACTION_PICK);
-        pickPictureIntent.setType("image/+");
-        startActivityForResult(pickPictureIntent,REQUEST_IMAGE_PIC);
-    }
-
-
-
-    public void CheckValid(){
-        EditText[] validArray = {description_et}; //TODO: add image to list validation
-
-        for(int i=0;i<validArray.length;i++){
-            if(validArray[i].getText().toString().length() == 0){
-                validOk = false;
-                validArray[i].setError("This field is require");
-                return;
-            }
+             }
         }
     }
 
@@ -165,6 +150,23 @@ public class AddPost2Fragment extends Fragment {
                 Navigation.findNavController(description_et).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
             });
         }
+    }
 
+    public void CheckValid(){
+        EditText[] validArray = {description_et};
+
+        if(imageBitmap == null) {
+            Toast.makeText(MyApplication.getContext(), "Image is required!", Toast.LENGTH_SHORT).show();
+            validOk = false;
+            return;
+        }
+
+        for(int i=0;i<validArray.length;i++){
+            if(validArray[i].getText().toString().length() == 0){
+                validOk = false;
+                Toast.makeText(MyApplication.getContext(), "All Fields are required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
     }
 }

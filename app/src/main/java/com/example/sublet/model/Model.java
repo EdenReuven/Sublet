@@ -166,7 +166,7 @@ public class Model {
                         Log.d("TAG", "fb returned" +postList.size());
                         for(Post post:postList){
                             AppLocalDb.db.postDao().insertAll(post);
-                            if(lastUpdateDate <post.getUpdateDate()){
+                            if(lastUpdateDate < post.getUpdateDate()){
                                 lastUpdateDate=post.getUpdateDate();
                             }
                         }

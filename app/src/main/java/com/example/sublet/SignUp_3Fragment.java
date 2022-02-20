@@ -52,26 +52,9 @@ public class SignUp_3Fragment extends Fragment {
             //TODO: check validation
             @Override
             public void onClick(View v) {
-                // setImage newUser
                 save();
-//                continue_Btn.setEnabled(false);
-//                Model.instance.createUserWithEmailAndPassword(viewModel.getUser().getEmail(), viewModel.getUser().getPassword(), new Model.createUserWithEmailAndPasswordListener() {
-//                    @Override
-//                    public void onComplete() {
-//                        Model.instance.addUser(viewModel.getUser(), () -> {
-//                            Model.instance.setCurrentUser(viewModel.getUser());
-//                            Intent intent = new Intent(getActivity(), HomePageActivity.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            startActivity(intent);
-//                            getActivity().finish();
-//                        });
-//                    }
-//                });
             }
-
-
         });
-
 
         camera_imgBtn.setOnClickListener(v -> {
             openCamera();
@@ -87,6 +70,7 @@ public class SignUp_3Fragment extends Fragment {
 
     static final int PROFILE_IMAGE_CAPTURE = 1;
     static final int  PROFILE_IMAGE_PIC =2;
+    Bitmap profileImageBitmap;
 
     private void openGallery() {
         Intent pickPictureIntent = new Intent(Intent.ACTION_PICK);
@@ -98,8 +82,6 @@ public class SignUp_3Fragment extends Fragment {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(takePictureIntent, PROFILE_IMAGE_CAPTURE);
     }
-
-    Bitmap profileImageBitmap;
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -122,8 +104,8 @@ public class SignUp_3Fragment extends Fragment {
                     Toast.makeText(getContext(), "Failed to select image", Toast.LENGTH_LONG).show();
                 }
             }
-            }
         }
+    }
 
     private void save() {
         continue_Btn.setEnabled(false);
@@ -154,7 +136,6 @@ public class SignUp_3Fragment extends Fragment {
             });
         }
     }
-
 }
 
 

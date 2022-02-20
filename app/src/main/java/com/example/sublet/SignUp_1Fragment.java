@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.sublet.model.User;
 
 public class SignUp_1Fragment extends Fragment {
@@ -45,7 +47,7 @@ public class SignUp_1Fragment extends Fragment {
                 CheckValid();
                 if(!validOk)
                     return;
-
+                continue_btn.setEnabled(false);
                 viewModel.user = new User();
                 viewModel.getUser().setFullName(fullName_et.getText().toString());
                 viewModel.getUser().setUserName(userName_et.getText().toString());
@@ -64,7 +66,7 @@ public class SignUp_1Fragment extends Fragment {
         for(int i=0;i<validArray.length;i++){
             if(validArray[i].getText().toString().length() == 0){
                 validOk = false;
-                validArray[i].setError("This field is require");
+                Toast.makeText(MyApplication.getContext(), "All Fields are required!", Toast.LENGTH_SHORT).show();
                 return;
             }
         }

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
@@ -73,6 +74,7 @@ public class EditPostFragment extends Fragment {
                     CheckValid();
                     if(!validOk)
                         return;
+                    continue_btn.setEnabled(false);
                     Navigation.findNavController(v).navigate(EditPostFragmentDirections.actionEditPostFragmentToEditPost2Fragment(post));
                 }
             });
@@ -88,7 +90,7 @@ public class EditPostFragment extends Fragment {
         for(int i=0;i<validArray.length;i++){
             if(validArray[i].getText().toString().length() == 0){
                 validOk = false;
-                validArray[i].setError("This field is require");
+                Toast.makeText(MyApplication.getContext(), "All Fields are required!", Toast.LENGTH_SHORT).show();
                 return;
             }
         }

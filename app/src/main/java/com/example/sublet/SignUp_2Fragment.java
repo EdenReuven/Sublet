@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.sublet.model.User;
 
 
@@ -44,6 +46,7 @@ public class SignUp_2Fragment extends Fragment {
                 CheckValid();
                 if(!validOk)
                     return;
+                continue_btn.setEnabled(false);
                 viewModel.getUser().setPassword(password_ed.getText().toString());
                 Navigation.findNavController(v).navigate(SignUp_2FragmentDirections.actionSignUp2FragmentToSignUp3Fragment(viewModel.getUser()));
             }
@@ -57,12 +60,12 @@ public class SignUp_2Fragment extends Fragment {
         for(int i=0;i<validArray.length;i++){
             if(validArray[i].getText().toString().length() == 0){
                 validOk = false;
-                validArray[i].setError("This field is require");
+                Toast.makeText(MyApplication.getContext(), "All fields are required!", Toast.LENGTH_SHORT).show();
                 return;
             }
         }
         if(!password_ed.getText().toString().equals(confirmPassword_ed.getText().toString())){
-            confirmPassword_ed.setError("The Password is not match");
+            Toast.makeText(MyApplication.getContext(), "The Password is not match!", Toast.LENGTH_SHORT).show();
             validOk = false;
             return;
         }
