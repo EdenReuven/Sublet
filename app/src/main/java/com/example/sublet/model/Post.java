@@ -32,8 +32,8 @@ public class Post implements Parcelable {
     String postContent = "";
     int numOfBathroom = 0;
     int numOfBedroom = 0;
-
     private String postImgUrl;
+    boolean isDeleted = false;
 
     public void setUpdateDate(Long updateDate) {
         this.updateDate = updateDate;
@@ -46,7 +46,7 @@ public class Post implements Parcelable {
 
     public Post(String fromDate, String toDate, int numRoommate,
                 String location, int overallPeople, float price, String postContent,
-                int numOfBathroom, int numOfBedroom ,String postId) {
+                int numOfBathroom, int numOfBedroom ,String postId,boolean isDeleted) {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.numRoommate = numRoommate;
@@ -57,6 +57,7 @@ public class Post implements Parcelable {
         this.numOfBathroom = numOfBathroom;
         this.numOfBedroom = numOfBedroom;
         this.postId = postId;
+        this.isDeleted = isDeleted;
     }
 
     protected Post(Parcel in) {
@@ -83,6 +84,14 @@ public class Post implements Parcelable {
             return new Post[size];
         }
     };
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
 
     public String getFromDate() {
         return fromDate;
@@ -201,6 +210,7 @@ public class Post implements Parcelable {
         json.put("numOfBedroom" ,numOfBedroom);
         json.put("postImgUrl" ,postImgUrl);
         json.put("updateDate" , FieldValue.serverTimestamp());
+        json.put("isDeleted",isDeleted);
         return json;
     }
 
@@ -216,8 +226,9 @@ public class Post implements Parcelable {
         Long numOfBathroom = (Long) json.get("numOfBathroom");
         Long numOfBedroom = (Long) json.get("numOfBedroom");
         String url = (String) json.get("postImgUrl");
+        boolean isDeleted = (boolean)json.get("isDeleted");
         Post post = new Post(fromDate,toDate,numRoommate.intValue(),location,overallPeople.intValue()
-        ,price.intValue(),postContent,numOfBathroom.intValue(),numOfBedroom.intValue(),id);
+        ,price.intValue(),postContent,numOfBathroom.intValue(),numOfBedroom.intValue(),id,isDeleted);
         Timestamp ts=(Timestamp)json.get("updateDate");
         Long updateDate = ts.getSeconds();
         post.setUpdateDate(updateDate);

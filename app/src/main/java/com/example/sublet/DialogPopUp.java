@@ -35,12 +35,14 @@ public class DialogPopUp extends DialogFragment {
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
                 Model.instance.deletePost(Model.instance.getCurrentPostId(), () -> {
-                    getDialog().dismiss();
                     Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user -> {
                         user.getPostList().remove(Model.instance.getCurrentPostId());
-                        Model.instance.addUser(user,() -> {});
+                        Model.instance.addUser(user,() -> {
+                            getDialog().dismiss();
+                            Model.instance.refreshPostList();
+                            NavHostFragment.findNavController(getParentFragment()).navigateUp();
+                        });
                     });
-                    NavHostFragment.findNavController(getParentFragment()).navigateUp();
                 });
             }
         });

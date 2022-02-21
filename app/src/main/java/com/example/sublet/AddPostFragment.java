@@ -73,9 +73,7 @@ public class AddPostFragment extends Fragment {
                 Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionAddPostFragmentToAddPost2(viewModel.getNewPost()));
             }
         });
-
         return view;
-
     }
 
     public void CheckValid(){

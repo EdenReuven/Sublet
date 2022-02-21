@@ -44,7 +44,6 @@ public class ModelFirebase {
         db.setFirestoreSettings(settings);
     }
 
-
     public void getAllPosts(Long postLastUpdate, GetAllPostsListener listener) {
         db.collection(Post.COLLECTION_NAME).whereGreaterThanOrEqualTo("updateDate",new Timestamp(postLastUpdate, 0))
                 .get()
@@ -87,22 +86,16 @@ public class ModelFirebase {
 
 
     public void deletePost(String postId, Model.DeletePostsListener listener) {
-        //TODO: POST ID
-        db.collection(Post.COLLECTION_NAME).document(postId)
-                .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "DocumentSnapshot successfully deleted!");
-                        listener.onComplete();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG", "Error deleting document", e);
-                    }
-                });
+        Model.instance.getPostById(postId,post -> {
+            post.setDeleted(true);
+            db.collection(Post.COLLECTION_NAME).document(postId).set(post.toJson()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    listener.onComplete();
+                }
+            });
+        });
+
     }
 
     public void getAllUsers(Model.GetAllUsersListener listener) {

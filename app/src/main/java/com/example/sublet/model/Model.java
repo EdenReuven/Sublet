@@ -165,9 +165,13 @@ public class Model {
                         Long lastUpdateDate=new Long(0);
                         Log.d("TAG", "fb returned" +postList.size());
                         for(Post post:postList){
-                            AppLocalDb.db.postDao().insertAll(post);
-                            if(lastUpdateDate < post.getUpdateDate()){
-                                lastUpdateDate=post.getUpdateDate();
+                            if(post.isDeleted())
+                                AppLocalDb.db.postDao().deletePost(post);
+                            else {
+                                AppLocalDb.db.postDao().insertAll(post);
+                            }
+                            if (lastUpdateDate < post.getUpdateDate()) {
+                                lastUpdateDate = post.getUpdateDate();
                             }
                         }
                         MyApplication.getContext().getSharedPreferences("TAG", Context.MODE_PRIVATE)
