@@ -59,6 +59,7 @@ public class EditProfileFragment extends Fragment {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                save_btn.setEnabled(false);
                 if(editProfileImageBitmap!=null){
                     Model.instance.saveProfileImage(editProfileImageBitmap,userName_et.getText().toString() + ".jpg",url -> {
                         Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user1 -> {
@@ -66,13 +67,11 @@ public class EditProfileFragment extends Fragment {
                             user1.setFullName(fullName_et.getText().toString());
                             user1.setPhone(phone_et.getText().toString());
                             user1.setProfileUrl(url);
-                            /*Model.instance.addUser(user1 ,()->{
+
+                            Model.instance.UpdateProfile(user1,() -> {
                                 Model.instance.setCurrentUser(user1);
                                 Navigation.findNavController(v).navigate(EditProfileFragmentDirections.actionEditProfileFragmentToHomePageFragment());
-                            });*/
-                            /*Model.instance.addPost(post1,() -> {
-                                Navigation.findNavController(description_et).navigate(EditPost2FragmentDirections.actionEditPost2FragmentToHomePageFragment());
-                            });*/
+                            });
                         });
                     });
                 }else{
@@ -80,6 +79,10 @@ public class EditProfileFragment extends Fragment {
                         user1.setUserName(userName_et.getText().toString());
                         user1.setFullName(fullName_et.getText().toString());
                         user1.setPhone(phone_et.getText().toString());
+                        Model.instance.UpdateProfile(user1,() -> {
+                            Model.instance.setCurrentUser(user1);
+                            Navigation.findNavController(v).navigate(EditProfileFragmentDirections.actionEditProfileFragmentToHomePageFragment());
+                        });
                     });
                 }
             }

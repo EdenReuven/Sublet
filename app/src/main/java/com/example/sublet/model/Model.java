@@ -254,6 +254,14 @@ public class Model {
         });*/
     }
 
+    public interface UpdateProfileListener{
+        void onComplete();
+    }
+
+    public void UpdateProfile(User user , UpdateProfileListener listener){
+        modelFirebase.UpdateProfile(user,listener);
+    }
+
     public String getGeneratePostId(){
         String postID = UUID.randomUUID().toString().replaceAll("-","").toUpperCase();
         postID = postID+"-"+currentUser.getUserName();

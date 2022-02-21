@@ -28,9 +28,6 @@ import java.util.Map;
 
 public class ModelFirebase {
 
-
-
-
     public interface GetAllPostsListener{
         void onComplete(List<Post> postList);
     }
@@ -146,6 +143,31 @@ public class ModelFirebase {
                     }
                 });
     }
+
+
+    public void UpdateProfile(User user, Model.UpdateProfileListener listener) {
+        Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user1 -> {
+            user1.setUserName(user.getUserName());
+            user1.setFullName(user.getFullName());
+            user1.setPhone(user.getPhone());
+            user1.setProfileUrl(user.getProfileUrl());
+
+            db.collection(User.COLLECTION_NAME).document(user1.getUserName()).set(user1.toJson()).
+                    addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    db.collection(User.COLLECTION_NAME).document(Model.instance.getCurrentUser().getUserName())
+                            .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            listener.onComplete();
+                        }
+                    });
+                }
+            });
+        });
+    }
+
 
     public void createUserWithEmailAndPassword(String email, String password, Model.createUserWithEmailAndPasswordListener listener) {
         Log.d("TAG",email + password);
