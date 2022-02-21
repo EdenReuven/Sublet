@@ -99,6 +99,10 @@
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.sublet.EditProfileFragment"
-        android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        android:label="Edit profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
 </navigation>
