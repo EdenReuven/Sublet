@@ -176,7 +176,7 @@ public class ProfileFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.editProfile_menuItem:
-                //NavHostFragment.findNavController(getParentFragment()).navigate(R.id.editPostFragment);
+                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.editProfileFragment);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
