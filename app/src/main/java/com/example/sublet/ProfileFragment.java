@@ -138,7 +138,7 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             //TODO: add image post + image profile
-            Post p = viewModel.getData().get(position);
+            Post p = viewModel.getData().getValue().get(position);
             String userNamePost = p.getPostId().split("-")[1];
 
             Model.instance.getUser(userNamePost,user -> {
@@ -157,9 +157,9 @@ public class ProfileFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            if(viewModel.getData() == null)
+            if(viewModel.getData().getValue() == null)
                 return 0;
-            return viewModel.getData().size();
+            return viewModel.getData().getValue().size();
         }
     }
 

@@ -1,19 +1,32 @@
 package com.example.sublet;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class ProfileViewModel extends ViewModel{
-    List<Post> data;
-
-    public List<Post> getData() {
-        return data;
+    LiveData<List<Post>> data;
+    LiveData<List<Post>> dataForProfile;
+    public ProfileViewModel(){
+        data = Model.instance.getAll();
     }
 
-    public void setData(List<Post> data) {
-        this.data = data;
+
+    public LiveData<List<Post>> getData() {
+        dataForProfile = data;
+        for(int i=0;i<data.getValue().size();i++){
+            if(!data.getValue().get(i).getPostId().contains(Model.instance.getCurrentUser().getUserName())
+                || data.getValue().get(i).isDeleted() == true){
+                dataForProfile.getValue().remove(data.getValue().get(i));
+            }
+            return  dataForProfile;
+        }
+        Model.instance.refreshPostList();
+        return dataForProfile;
     }
 }

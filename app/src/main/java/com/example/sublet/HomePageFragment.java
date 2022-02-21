@@ -154,16 +154,16 @@ public class HomePageFragment extends Fragment {
 //                    s.setCheck(cb.isChecked());
 //                }
 //            });
-              profile_img_Post.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      //TODO: Open the profile page
-                      Post p = viewModel.getDataPost().getValue().get(getAdapterPosition());
-                      String userName = p.getPostId().split("-")[1];
-                      Navigation.findNavController(profile_img).navigate(HomePageFragmentDirections.
-                              actionHomePageFragmentToProfileFragment(userName));
-                  }
-              });
+//              profile_img_Post.setOnClickListener(new View.OnClickListener() {
+//                  @Override
+//                  public void onClick(View v) {
+//                      //TODO: Open the profile page
+//                      Post p = viewModel.getDataPost().getValue().get(getAdapterPosition());
+//                      String userName = p.getPostId().split("-")[1];
+//                      Navigation.findNavController(profile_img).navigate(HomePageFragmentDirections.
+//                              actionHomePageFragmentToProfileFragment(userName));
+//                  }
+//              });
         }
         public void bind(Post p){
 
@@ -202,7 +202,6 @@ public class HomePageFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            //TODO: add image post + image profile
             Post p = viewModel.getDataPost().getValue().get(position);
             String userNamePost = p.getPostId().split("-")[1];
 
