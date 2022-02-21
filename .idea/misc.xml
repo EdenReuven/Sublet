@@ -6,25 +6,23 @@
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_addicon.xml" value="0.2203125" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_addphoto.xml" value="0.17962962962962964" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_addphotoblue.xml" value="0.17685185185185184" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_circle_full_blue.xml" value="0.18333333333333332" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_delete_icon.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_emailicon.xml" value="0.1814814814814815" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_galleryicon.xml" value="0.18333333333333332" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_galleryiconpink.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_home_price.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_homelogo.xml" value="0.2203125" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_locationicon.xml" value="0.2203125" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/drawable/ic_phoneicon.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_add_post.xml" value="0.33" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_add_post2.xml" value="0.25" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_home_page.xml" value="0.33" />
-        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_map.xml" value="0.19157608695652173" />
+        <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_add_post2.xml" value="0.2" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_post.xml" value="0.2" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_sign_up_3.xml" value="0.33" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/fragment_sing_up_1.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/layout/post_card.xml" value="0.25" />
         <entry key="..\:/Users/Dell/Desktop/Sublet/app/src/main/res/menu/base_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/activity_home_page.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_add_post2.xml" value="0.36186594202898553" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_edit_post2.xml" value="0.36186594202898553" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_home_page.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_log_in.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_post.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Sublet/app/src/main/res/layout/fragment_profile.xml" value="0.17552083333333332" />
@@ -56,6 +54,7 @@
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/menu/base_menu.xml" value="0.4" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/menu/home_page_menu.xml" value="0.4" />
         <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/menu/post_info_menu.xml" value="0.4" />
+        <entry key="..\:/Users/yarin/AndroidStudioProjects/Sublet/app/src/main/res/menu/profile_menu.xml" value="0.4" />
       </map>
     </option>
   </component>

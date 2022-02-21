@@ -1,17 +1,23 @@
 package com.example.sublet;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -62,6 +68,9 @@ public class ProfileFragment extends Fragment {
         });
 
         Model.instance.getUser(userName ,user -> {
+            if(Model.instance.getCurrentUser().getUserName().equals(userName)){
+                setHasOptionsMenu(true);
+            }
             name_tv.setText(user.getUserName());
             phone_tv.setText(user.getPhone());
             email_tv.setText(user.getEmail());
@@ -72,6 +81,8 @@ public class ProfileFragment extends Fragment {
                         .into(profileImg);
             }
         });
+
+
 
         return view;
     }
@@ -152,5 +163,23 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    @SuppressLint("RestrictedApi")
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.profile_menu, menu);
+        MenuBuilder m = (MenuBuilder) menu;
+        m.setOptionalIconsVisible(true);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.editProfile_menuItem:
+                //NavHostFragment.findNavController(getParentFragment()).navigate(R.id.editPostFragment);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
