@@ -61,13 +61,12 @@ public class EditProfileFragment extends Fragment {
             public void onClick(View v) {
                 save_btn.setEnabled(false);
                 if(editProfileImageBitmap!=null){
-                    Model.instance.saveProfileImage(editProfileImageBitmap,userName_et.getText().toString() + ".jpg",url -> {
-                        Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user1 -> {
-                            user1.setUserName(userName_et.getText().toString());
-                            user1.setFullName(fullName_et.getText().toString());
-                            user1.setPhone(phone_et.getText().toString());
+                    Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user1 -> {
+                        user1.setUserName(userName_et.getText().toString());
+                        user1.setFullName(fullName_et.getText().toString());
+                        user1.setPhone(phone_et.getText().toString());
+                        Model.instance.saveProfileImage(editProfileImageBitmap,userName_et.getText().toString() + ".jpg",url -> {
                             user1.setProfileUrl(url);
-
                             Model.instance.UpdateProfile(user1,() -> {
                                 Model.instance.setCurrentUser(user1);
                                 Navigation.findNavController(v).navigate(EditProfileFragmentDirections.actionEditProfileFragmentToHomePageFragment());

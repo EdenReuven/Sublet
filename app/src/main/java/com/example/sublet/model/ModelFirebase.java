@@ -153,12 +153,13 @@ public class ModelFirebase {
             user1.setPhone(user.getPhone());
             user1.setProfileUrl(user.getProfileUrl());
 
-            db.collection(User.COLLECTION_NAME).document(user1.getUserName()).set(user1.toJson()).
-                    addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    listener.onComplete();
-                }
+            db.collection(User.COLLECTION_NAME).document(Model.instance.getCurrentUser().getUserName()).delete().addOnSuccessListener(command -> {
+                db.collection(User.COLLECTION_NAME).document(user1.getUserName()).set(user1.toJson()).
+                        addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                listener.onComplete();
+                            }});
             });
         });
     }
