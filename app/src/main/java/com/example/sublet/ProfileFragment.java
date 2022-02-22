@@ -4,15 +4,14 @@ package com.example.sublet;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import com.squareup.picasso.Picasso;
@@ -63,7 +61,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 int pos=position;
-                Log.d("TAG", Integer.toString(pos));
+                String postId= Model.instance.getAll().getValue().get(pos).getPostId();
+                Navigation.findNavController(v).navigate(ProfileFragmentDirections.actionProfileFragmentToPostFragment(postId));
             }
         });
 
