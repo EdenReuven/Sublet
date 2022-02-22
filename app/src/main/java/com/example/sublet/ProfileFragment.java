@@ -1,6 +1,5 @@
 package com.example.sublet;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
@@ -89,13 +88,14 @@ public class ProfileFragment extends Fragment {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView profile_img,post_img;
+        ImageView profile_img,post_img, profilePostImg;
         TextView create_post_tv,username_tv,status_tv,location_tv,numOfPeople_tv,price_tv,dates_tv;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             profile_img = itemView.findViewById(R.id.post_profileImgPost_imageView);
             post_img = itemView.findViewById(R.id.post_img_imageView);
+            profilePostImg=itemView.findViewById(R.id.post_profileImgPost_imageView);
             create_post_tv = itemView.findViewById(R.id.post_createDay_tv);
             username_tv = itemView.findViewById(R.id.post_userName_tv);
             status_tv = itemView.findViewById(R.id.post_status_tv);
@@ -111,7 +111,21 @@ public class ProfileFragment extends Fragment {
                     listener.onItemClick(v,pos);
                 }
             });
+        }
 
+        public void bind(Post p){
+
+            status_tv.setText(Integer.toString(p.getNumRoommate()));
+            location_tv.setText(p.getLocation());
+            numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
+            price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
+            dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
+            post_img.setImageResource(R.drawable.room);
+            if(p.getPostImgUrl() !=null) {
+                Picasso.get()
+                        .load(p.getPostImgUrl())
+                        .into(post_img);
+            }
         }
     }
 
@@ -136,12 +150,17 @@ public class ProfileFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            //TODO: add image post + image profile
             Post p = viewModel.getData().getValue().get(position);
             String userNamePost = p.getPostId().split("-")[1];
 
             Model.instance.getUser(userNamePost,user -> {
                 holder.username_tv.setText(user.getUserName());
+                holder.profilePostImg.setImageResource(R.drawable.woman);
+                if(user.getProfileUrl()!=null) {
+                    Picasso.get()
+                            .load(user.getProfileUrl())
+                            .into(holder.profilePostImg);
+                }
             });
 
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
@@ -151,6 +170,7 @@ public class ProfileFragment extends Fragment {
             holder.dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
             //holder.create_post_tv.setText(Integer.toString(resultDays));
 
+            holder.bind(p);
         }
 
 

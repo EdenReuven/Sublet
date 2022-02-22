@@ -12,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,7 +24,6 @@ import android.widget.TextView;
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import com.squareup.picasso.Picasso;
-
 import java.util.Date;
 import java.util.List;
 
@@ -216,7 +214,6 @@ public class HomePageFragment extends Fragment {
             });
             //holder.create_post_tv.setText(Integer.toString(resultDays));
             holder.bind(p);
-
         }
 
         @Override
