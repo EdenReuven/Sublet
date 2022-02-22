@@ -110,7 +110,7 @@ public class HomePageFragment extends Fragment {
 
     private void refresh() {
         adapter.notifyDataSetChanged();
-        swipeRefresh.setRefreshing(false);
+//        swipeRefresh.setRefreshing(false);
         /*swipeRefresh.setRefreshing(true); //show progress bar , not have to use .
         Model.instance.getAllPosts(postList -> {
             viewModel.setDataPost(postList);

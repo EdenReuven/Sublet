@@ -155,7 +155,10 @@ public class Model {
         postsListLoadingState.setValue(PostsListLoadingState.loading);
 
         Long postLastUpdate = MyApplication.getContext().getSharedPreferences("TAG", Context.MODE_PRIVATE).getLong("PostLastUpdate", 0);
-
+        executor.execute(() -> {
+            List<Post>poList=AppLocalDb.db.postDao().getAllPost();
+            postsList.postValue(poList);
+        });
         modelFirebase.getAllPosts(postLastUpdate, new ModelFirebase.GetAllPostsListener() {
             @Override
             public void onComplete(List<Post> postList) {
