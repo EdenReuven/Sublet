@@ -28,6 +28,7 @@ import java.util.Map;
 
 public class ModelFirebase {
 
+
     public interface GetAllPostsListener{
         void onComplete(List<Post> postList);
     }
@@ -156,18 +157,11 @@ public class ModelFirebase {
                     addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
-                    db.collection(User.COLLECTION_NAME).document(Model.instance.getCurrentUser().getUserName())
-                            .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            listener.onComplete();
-                        }
-                    });
+                    listener.onComplete();
                 }
             });
         });
     }
-
 
     public void createUserWithEmailAndPassword(String email, String password, Model.createUserWithEmailAndPasswordListener listener) {
         Log.d("TAG",email + password);
