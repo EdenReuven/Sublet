@@ -26,7 +26,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#F2F1F4"
+        android:background="#DBDCDD"
+        android:backgroundTint="#00FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/homePage_postList_SR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,29 +50,22 @@
 
         <TextView
             android:id="@+id/homePage_username_tv"
-            android:layout_width="66dp"
-            android:layout_height="19dp"
+            android:layout_width="129dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="23dp"
             android:layout_marginEnd="233dp"
             android:layout_marginBottom="34dp"
+            android:fontFamily="@font/dosis"
             android:text="user name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/homePage_profile_img"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="#9F9F9F"
-            android:orientation="vertical"
+            android:textColor="@color/blue"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/homePage_username_tv"
-            app:layout_constraintVertical_bias="1.0"></LinearLayout>
+            app:layout_constraintStart_toEndOf="@+id/homePage_profile_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
