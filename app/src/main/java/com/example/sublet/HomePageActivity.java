@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.sublet.model.Model;
+
 public class HomePageActivity extends AppCompatActivity {
     NavController navController;
     @Override
@@ -33,6 +35,8 @@ public class HomePageActivity extends AppCompatActivity {
         if(!super.onOptionsItemSelected(item)){
             switch(item.getItemId()){
                 case android.R.id.home:
+                    //////////////////////////////////////////////////////////////////////////
+                    Model.instance.refreshPostList();
                     navController.navigateUp();
                     return true;
             }

@@ -6,4 +6,7 @@
     <style name="ShapeAppearanceOverlay.App.CornerSize8Percent" parent="">
         <item name="cornerSize">8%</item>
     </style>
+    <style name="MyHintStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/pink</item>
+    </style>
 </resources>
