@@ -48,6 +48,7 @@ public class HomePageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
+
         swipeRefresh =view.findViewById(R.id.homePage_postList_SR);
         swipeRefresh.setOnRefreshListener(() -> Model.instance.refreshPostList());
 

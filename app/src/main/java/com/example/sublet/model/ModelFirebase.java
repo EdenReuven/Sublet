@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -250,6 +251,15 @@ public class ModelFirebase {
                 });
             }
         });
-
     }
+
+    /////////////////Authentication////////////////
+
+    private FirebaseAuth myAuth =FirebaseAuth.getInstance();
+
+    public boolean isSignedIn(){
+        FirebaseUser currentUser = myAuth.getCurrentUser();
+        return (currentUser != null);
+    }
+
 }
