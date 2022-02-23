@@ -139,21 +139,23 @@
                 app:layout_constraintStart_toEndOf="@+id/signUp3_freg_gallery_imgbtn"
                 app:layout_constraintTop_toBottomOf="@+id/signUp3_freg_image_imgview" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/signUp3_freg_image_imgview"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_marginStart="112dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="112dp"
                 android:layout_marginBottom="115dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@+id/signUp3_freg_continue_btn"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:layout_constraintVertical_bias="0.294"
-                tools:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"/>
 
             <ImageButton
                 android:id="@+id/signUp3_freg_gallery_imgbtn"

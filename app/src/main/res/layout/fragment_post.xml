@@ -34,16 +34,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/post_frag_profilePic_img"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/woman"
                     app:layout_constraintDimensionRatio=""
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
                 <TextView
                     android:id="@+id/post_frag_userName_tv"
@@ -78,17 +80,19 @@
                     app:layout_constraintStart_toEndOf="@+id/post_frag_profilePic_img"
                     app:layout_constraintTop_toBottomOf="@+id/post_frag_phone_tv" />
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/post_frag_images_img"
                     android:layout_width="290dp"
                     android:layout_height="185dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/room"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/post_frag_email_tv" />
+                    app:layout_constraintTop_toBottomOf="@+id/post_frag_email_tv"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
 
                 <ImageView
                     android:id="@+id/imageView20"
