@@ -110,14 +110,16 @@ public class SignUp_3Fragment extends Fragment {
     private void save() {
         continue_Btn.setEnabled(false);
         if(profileImageBitmap!=null){
-            Model.instance.saveProfileImage(profileImageBitmap, viewModel.getUser().getUserName() + ".jpg", url -> {
-                viewModel.getUser().setProfileUrl(url);
-                Model.instance.addUser(viewModel.getUser(), () -> {
-                    Model.instance.setCurrentUser(viewModel.getUser());
-                    Intent intent = new Intent(getActivity(), HomePageActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    getActivity().finish();
+            Model.instance.createUserWithEmailAndPassword(viewModel.getUser().getEmail(),viewModel.getUser().getPassword(),() -> {
+                Model.instance.saveProfileImage(profileImageBitmap, viewModel.getUser().getUserName() + ".jpg", url -> {
+                    viewModel.getUser().setProfileUrl(url);
+                    Model.instance.addUser(viewModel.getUser(), () -> {
+                        Model.instance.setCurrentUser(viewModel.getUser());
+                        Intent intent = new Intent(getActivity(), HomePageActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        getActivity().finish();
+                    });
                 });
             });
         }
