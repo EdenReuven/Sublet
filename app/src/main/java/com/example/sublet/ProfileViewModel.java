@@ -20,12 +20,12 @@ public class ProfileViewModel extends ViewModel{
     public LiveData<List<Post>> getData() {
         dataForProfile = data;
         for(int i=0;i<data.getValue().size();i++){
-            if(!data.getValue().get(i).getPostId().contains(Model.instance.getCurrentUser().getUserName())
-                || data.getValue().get(i).isDeleted() == true){
+
+            if(!data.getValue().get(i).getPostId().contains("-"+Model.instance.getCurrentUser().getUserName())
+                || data.getValue().get(i).isDeleted())
                 dataForProfile.getValue().remove(data.getValue().get(i));
-            }
-            return  dataForProfile;
         }
+
         Model.instance.refreshPostList();
         return dataForProfile;
     }
