@@ -102,7 +102,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView6">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost_freg_dateFrom_et"
+                    android:id="@+id/addPost_freg_dateFrom_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView6">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost_freg_dateTo_et"
+                    android:id="@+id/addPost_freg_dateTo_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="200dp"
@@ -152,7 +152,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/date_picker_actionsInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost_freg_rommaite_et"
+                    android:id="@+id/addPost_freg_rommaite_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -178,7 +178,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rommaiteTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost_freg_location_et"
+                    android:id="@+id/addPost_freg_location_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -204,7 +204,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/locationTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost_freg_price_et"
+                    android:id="@+id/addPost_freg_price_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -230,7 +230,7 @@
                 app:layout_constraintTop_toTopOf="@+id/bathroomTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost_freg_bedroom_et"
+                    android:id="@+id/addPost_freg_bedroom_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -256,7 +256,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/priceTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost_freg_bathroom_et"
+                    android:id="@+id/addPost_freg_bathroom_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="200dp"
@@ -276,13 +276,13 @@
                 android:layout_marginEnd="8dp"
                 android:hint="@string/people"
                 android:textColorHint="@color/blue"
-                app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
+                app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bedroomTextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost_freg_people_et"
+                    android:id="@+id/addPost_freg_people_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -295,7 +295,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/editPost2_freg_post_btn"
+                android:id="@+id/addPost2_freg_post_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"

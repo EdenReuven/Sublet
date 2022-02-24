@@ -53,11 +53,11 @@ public class EditPost2Fragment extends Fragment {
 
         progressBar = view.findViewById(R.id.edit_progressBar);
         progressBar.setVisibility(View.GONE);
-        description_et = view.findViewById(R.id.editPost2_frag_description_et);
-        camera_imgBtn = view.findViewById(R.id.editPost2_frag_camera_btnimg);
+        description_et = view.findViewById(R.id.addPost2_frag_description_et);
+        camera_imgBtn = view.findViewById(R.id.addPost2_frag_camera_btnimg);
         gallery_imgBtn = view.findViewById(R.id.editPost2_frag_gallery_btnimg);
         image_imgView = view.findViewById(R.id.editPost2_frag_picture_imgview);
-        post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
+        post_btn = view.findViewById(R.id.addPost2_freg_post_btn);
         description_et.setText(viewModel.getPostToEdit().getPostContent());
         image_imgView.setImageResource(R.drawable.room);
         if(viewModel.getPostToEdit().getPostImgUrl() !=null) {

@@ -42,7 +42,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="35dp"
                 android:fontFamily="@font/dosis"
                 android:text="Create New Post"
                 android:textColor="#1C3144"
@@ -55,7 +55,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/dosis"
                 android:text="Details"
                 android:textColor="#1C3144"
@@ -68,7 +68,7 @@
                 android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="25dp"
                 android:src="@drawable/ic_circle_full_blue"
                 app:layout_constraintEnd_toStartOf="@+id/imageView8"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -76,7 +76,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Button
-                android:id="@+id/editPost2_freg_post_btn"
+                android:id="@+id/addPost2_freg_post_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -97,7 +97,7 @@
                 android:id="@+id/imageView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="25dp"
                 android:src="@drawable/ic_circle_full_blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -105,13 +105,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <ImageButton
-                android:id="@+id/editPost2_frag_camera_btnimg"
+                android:id="@+id/addPost2_frag_camera_btnimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/ic_galleryicon"
-                app:layout_constraintBottom_toBottomOf="@+id/editPost2_frag_photo_btnimg"
-                app:layout_constraintEnd_toStartOf="@+id/editPost2_frag_photo_btnimg"
+                app:layout_constraintBottom_toBottomOf="@+id/addPost2_frag_photo_btnimg"
+                app:layout_constraintEnd_toStartOf="@+id/addPost2_frag_photo_btnimg"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -123,14 +123,14 @@
                 android:layout_marginEnd="8dp"
                 android:hint="@string/description"
                 android:textColorHint="@color/blue"
-                app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
+                app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_camera_btnimg">
+                app:layout_constraintTop_toBottomOf="@+id/addPost2_frag_camera_btnimg">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editPost2_frag_description_et"
+                    android:id="@+id/addPost2_frag_description_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -142,31 +142,33 @@
 
 
             <ImageButton
-                android:id="@+id/editPost2_frag_photo_btnimg"
+                android:id="@+id/addPost2_frag_photo_btnimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="140dp"
                 android:src="@drawable/ic_addphotoblue"
-                app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
+                app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/editPost2_frag_camera_btnimg"
-                app:layout_constraintTop_toTopOf="@+id/editPost2_frag_camera_btnimg" />
+                app:layout_constraintStart_toEndOf="@+id/addPost2_frag_camera_btnimg"
+                app:layout_constraintTop_toTopOf="@+id/addPost2_frag_camera_btnimg" />
 
-            <ImageView
-                android:id="@+id/editPost2_frag_image_imgview"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="96dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginEnd="97dp"
-                android:layout_marginBottom="14dp"
-                app:layout_constraintBottom_toTopOf="@+id/editPost2_frag_camera_btnimg"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/addPost2_frag_image_imgview"
+                android:layout_width="210dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="50dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@+id/addPost2_frag_camera_btnimg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
                 tools:src="@tools:sample/avatars" />
 
             <ProgressBar
@@ -175,7 +177,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="60dp"
-                app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
+                app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView6" />

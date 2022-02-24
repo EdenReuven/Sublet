@@ -51,11 +51,11 @@ public class AddPost2Fragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_add_post2, container, false);
         progressBar = view.findViewById(R.id.add_progressBar);
         progressBar.setVisibility(View.GONE);
-        description_et=view.findViewById(R.id.editPost2_frag_description_et);
-        image_imageView=view.findViewById(R.id.editPost2_frag_image_imgview);
-        gallery_imgBtn=view.findViewById(R.id.editPost2_frag_camera_btnimg);
-        camera_imgBtn=view.findViewById(R.id.editPost2_frag_photo_btnimg);
-        post_btn = view.findViewById(R.id.editPost2_freg_post_btn);
+        description_et=view.findViewById(R.id.addPost2_frag_description_et);
+        image_imageView=view.findViewById(R.id.addPost2_frag_image_imgview);
+        gallery_imgBtn=view.findViewById(R.id.addPost2_frag_camera_btnimg);
+        camera_imgBtn=view.findViewById(R.id.addPost2_frag_photo_btnimg);
+        post_btn = view.findViewById(R.id.addPost2_freg_post_btn);
 
         viewModel.setNewPost(AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj());
 

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +16,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sublet.model.Model;
-import com.example.sublet.model.Post;
-
-import java.util.List;
 
 public class EditPostFragment extends Fragment {
     EditText dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et;
@@ -39,15 +35,15 @@ public class EditPostFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_edit_post, container, false);
 
-        dateFrom_et = view.findViewById(R.id.editPost_freg_dateFrom_et);
-        dateTo_et = view.findViewById(R.id.editPost_freg_dateTo_et);
-        location_et = view.findViewById(R.id.editPost_freg_location_et);
-        roommate_et = view.findViewById(R.id.editPost_freg_rommaite_et);
-        price_et = view.findViewById(R.id.editPost_freg_price_et);
-        people_et = view.findViewById(R.id.editPost_freg_people_et);
-        bathroom_et = view.findViewById(R.id.editPost_freg_bathroom_et);
-        bedroom_et = view.findViewById(R.id.editPost_freg_bedroom_et);
-        continue_btn = view.findViewById(R.id.editPost2_freg_post_btn);
+        dateFrom_et = view.findViewById(R.id.addPost_freg_dateFrom_et);
+        dateTo_et = view.findViewById(R.id.addPost_freg_dateTo_et);
+        location_et = view.findViewById(R.id.addPost_freg_location_et);
+        roommate_et = view.findViewById(R.id.addPost_freg_rommaite_et);
+        price_et = view.findViewById(R.id.addPost_freg_price_et);
+        people_et = view.findViewById(R.id.addPost_freg_people_et);
+        bathroom_et = view.findViewById(R.id.addPost_freg_bathroom_et);
+        bedroom_et = view.findViewById(R.id.addPost_freg_bedroom_et);
+        continue_btn = view.findViewById(R.id.addPost2_freg_post_btn);
 
         Model.instance.getPostById(Model.instance.getCurrentPostId(),post -> {
             dateFrom_et.setText(post.getFromDate());
