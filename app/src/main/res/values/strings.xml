@@ -8,4 +8,13 @@
     <string name="user_name">User Name</string>
     <string name="phone">Phone</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="roommate">Roommate</string>
+    <string name="location">Location</string>
+    <string name="price">Price</string>
+    <string name="bathroom">Bathroom</string>
+    <string name="bedroom">Bedroom</string>
+    <string name="people">People</string>
+    <string name="description">Description</string>
 </resources>

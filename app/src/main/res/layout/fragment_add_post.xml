@@ -43,7 +43,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="35dp"
                 android:fontFamily="@font/dosis"
                 android:text="Create New Post"
                 android:textColor="#1C3144"
@@ -56,7 +56,7 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/dosis"
                 android:text="Details"
                 android:textColor="#1C3144"
@@ -69,7 +69,7 @@
                 android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:src="@drawable/ic_circle_full_blue"
                 app:layout_constraintEnd_toStartOf="@+id/imageView7"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -80,112 +80,219 @@
                 android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:src="@drawable/ic_circle_empty_blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-            <EditText
-                android:id="@+id/editPost_freg_dateFrom_et"
-                android:layout_width="145dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="30dp"
-                android:ems="10"
-                android:hint="From"
-                android:inputType="date"
-                app:layout_constraintEnd_toStartOf="@+id/editPost_freg_dateTo_et"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-            <EditText
-                android:id="@+id/editPost_freg_dateTo_et"
-                android:layout_width="145dp"
-                android:layout_height="43dp"
-                android:ems="10"
-                android:hint="To"
-                android:inputType="date"
-                app:layout_constraintBottom_toBottomOf="@+id/editPost_freg_dateFrom_et"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/date_picker_actionsInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/from"
+                android:textColorHint="@color/blue"
+                app:layout_constraintBottom_toTopOf="@+id/rommaiteTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/editPost_freg_dateFrom_et"
-                app:layout_constraintTop_toTopOf="@+id/editPost_freg_dateFrom_et" />
-
-            <EditText
-                android:id="@+id/editPost_freg_rommaite_et"
-                android:layout_width="312dp"
-                android:layout_height="50dp"
-                android:ems="10"
-                android:hint="Number of Rommaite"
-                android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@+id/editPost_freg_people_et"
-                app:layout_constraintStart_toStartOf="@+id/editPost_freg_price_et"
-                app:layout_constraintTop_toBottomOf="@+id/editPost_freg_location_et" />
-
-            <EditText
-                android:id="@+id/editPost_freg_location_et"
-                android:layout_width="308dp"
-                android:layout_height="53dp"
-                android:ems="10"
-                android:hint="Location"
-                android:inputType="textPostalAddress"
-                app:layout_constraintBottom_toTopOf="@+id/editPost_freg_rommaite_et"
-                app:layout_constraintStart_toStartOf="@+id/editPost_freg_rommaite_et"
-                app:layout_constraintTop_toBottomOf="@+id/editPost_freg_dateTo_et" />
-
-            <EditText
-                android:id="@+id/editPost_freg_price_et"
-                android:layout_width="145dp"
-                android:layout_height="42dp"
-                android:ems="10"
-                android:hint="Price"
-                android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="@+id/editPost_freg_people_et"
-                app:layout_constraintEnd_toStartOf="@+id/editPost_freg_people_et"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editPost_freg_people_et" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView6">
 
-            <EditText
-                android:id="@+id/editPost_freg_bedroom_et"
-                android:layout_width="145dp"
-                android:layout_height="42dp"
-                android:ems="10"
-                android:hint="Bedroom"
-                android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="@+id/editPost_freg_bathroom_et"
-                app:layout_constraintEnd_toStartOf="@+id/editPost_freg_bathroom_et"
-                app:layout_constraintHorizontal_bias="0.5"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPost_freg_dateFrom_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="200dp"
+                    android:background="#FFFFFF"
+                    android:inputType="datetime"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@id/date_picker_actionsInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/to"
+                android:textColorHint="@color/blue"
+                app:layout_constraintBottom_toTopOf="@+id/rommaiteTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editPost_freg_bathroom_et" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView6">
 
-            <EditText
-                android:id="@+id/editPost_freg_bathroom_et"
-                android:layout_width="145dp"
-                android:layout_height="42dp"
-                android:ems="10"
-                android:hint="Bathroom"
-                android:inputType="number"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPost_freg_dateTo_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#FFFFFF"
+                    android:inputType="datetime"
+                    android:maxLines="1"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/blue" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rommaiteTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/roommate"
+                android:textColorHint="@color/blue"
+                app:layout_constraintBottom_toTopOf="@+id/locationTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_picker_actionsInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPost_freg_rommaite_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#FFFFFF"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/blue" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/locationTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/location"
+                android:textColorHint="@color/blue"
+                app:layout_constraintBottom_toTopOf="@+id/priceTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rommaiteTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPost_freg_location_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#FFFFFF"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/blue" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/priceTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/price"
+                android:textColorHint="@color/blue"
+                app:layout_constraintBottom_toTopOf="@+id/bedroomTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/locationTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPost_freg_price_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#FFFFFF"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/blue" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bedroomTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:hint="@string/bedroom"
+                android:textColorHint="@color/blue"
+                app:layout_constraintBottom_toBottomOf="@+id/bathroomTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bathroomTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPost_freg_bedroom_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="200dp"
+                    android:background="#FFFFFF"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/blue" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bathroomTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/bathroom"
+                android:textColorHint="@color/blue"
+                app:layout_constraintBottom_toTopOf="@+id/peopleTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/priceTextInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPost_freg_bathroom_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#FFFFFF"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/blue" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/peopleTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/people"
+                android:textColorHint="@color/blue"
                 app:layout_constraintBottom_toTopOf="@+id/editPost2_freg_post_btn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/editPost_freg_bedroom_et"
-                app:layout_constraintTop_toBottomOf="@+id/editPost_freg_people_et" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bedroomTextInputLayout">
 
-            <EditText
-                android:id="@+id/editPost_freg_people_et"
-                android:layout_width="145dp"
-                android:layout_height="42dp"
-                android:ems="10"
-                android:hint="People"
-                android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@+id/editPost_freg_bathroom_et"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/editPost_freg_price_et"
-                app:layout_constraintTop_toBottomOf="@+id/editPost_freg_rommaite_et" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPost_freg_people_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#FFFFFF"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/blue" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/editPost2_freg_post_btn"
