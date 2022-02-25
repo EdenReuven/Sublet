@@ -60,7 +60,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onItemClick(View v, int position) {
                 int pos=position;
-                String postId= Model.instance.getAll().getValue().get(pos).getPostId();
+                String postId = Model.instance.getCurrentUser().getPostList().get(position);
                 Navigation.findNavController(v).navigate(ProfileFragmentDirections.actionProfileFragmentToPostFragment(postId));
             }
         });
