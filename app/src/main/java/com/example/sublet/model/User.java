@@ -2,7 +2,6 @@ package com.example.sublet.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +15,7 @@ public class User implements Parcelable {
     String email = "";
     String phone = "";
     String password = "";
+    String nickName="";
     List<String> postListId = new ArrayList<String>();
 
     private String profileUrl;
@@ -101,6 +101,14 @@ public class User implements Parcelable {
         this.password = password;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -114,6 +122,7 @@ public class User implements Parcelable {
         dest.writeString(phone);
         dest.writeString(password);
         dest.writeString(String.valueOf(postListId));
+        dest.writeString(nickName);
     }
 
     public Map<String, Object> toJson() {
@@ -125,6 +134,7 @@ public class User implements Parcelable {
         json.put("postList",postListId);
         json.put("password","");
         json.put("profileUrl",profileUrl);
+        json.put("nickName", nickName);
         return json;
     }
 
@@ -136,9 +146,11 @@ public class User implements Parcelable {
         String phone = (String) json.get("phone");
         String url = (String)json.get("profileUrl");
         List<String> postListId = (List<String>) json.get("postList");
+        String nickName=(String) json.get("nickName");
 
         User user = new User(fullName,userName,email,phone,password, (ArrayList<String>) postListId);
         user.setProfileUrl(url);
+        user.setNickName(userName);
         return user;
     }
 
