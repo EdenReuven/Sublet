@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="135dp"
                 android:fontFamily="@font/dosis"
-                android:text="Create New Accont"
+                android:text="Create New Account"
                 android:textColor="#BCA3AC"
                 android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -132,6 +132,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/ConfirmPassword_text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:endIconMode="password_toggle"
                 app:layout_constraintTop_toBottomOf="@+id/textView">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -151,6 +152,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/signUp3_freg_continue_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:endIconMode="password_toggle"
                 app:layout_constraintTop_toBottomOf="@+id/password_text_input">
 
                 <com.google.android.material.textfield.TextInputEditText

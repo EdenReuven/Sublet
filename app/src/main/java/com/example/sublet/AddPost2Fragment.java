@@ -127,7 +127,7 @@ public class AddPost2Fragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         post_btn.setEnabled(false);
         if(imageBitmap!=null){
-            Model.instance.saveimage(imageBitmap, Model.instance.getCurrentUser().getUserName() + ".jpg", new Model.SaveImageListener() {
+            Model.instance.saveimage(imageBitmap, Model.instance.getGeneratePostId() + ".jpg", new Model.SaveImageListener() {
                 @Override
                 public void onComplete(String url) {
                     viewModel.getNewPost().setPostImgUrl(url);

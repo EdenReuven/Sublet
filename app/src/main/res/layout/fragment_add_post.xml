@@ -99,7 +99,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6">
+                app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                app:startIconDrawable="@drawable/ic_home_date">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_dateFrom_et"
@@ -123,7 +124,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/rommaiteTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6">
+                app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                app:startIconDrawable="@drawable/ic_home_date">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_dateTo_et"
@@ -149,7 +151,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/locationTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/date_picker_actionsInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/date_picker_actionsInputLayout"
+                app:startIconDrawable="@drawable/ic_groups_black_24dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_rommaite_et"
@@ -175,7 +178,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/priceTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rommaiteTextInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/rommaiteTextInputLayout"
+                app:startIconDrawable="@drawable/ic_home_location">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_location_et"
@@ -201,7 +205,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/bedroomTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/locationTextInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/locationTextInputLayout"
+                app:startIconDrawable="@drawable/ic_home_price">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_price_et"
@@ -227,7 +232,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/bathroomTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/bathroomTextInputLayout">
+                app:layout_constraintTop_toTopOf="@+id/bathroomTextInputLayout"
+                app:startIconDrawable="@drawable/ic_bed_24dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_bedroom_et"
@@ -253,7 +259,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/peopleTextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/priceTextInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/priceTextInputLayout"
+                app:startIconDrawable="@drawable/ic_bathtub_24dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_bathroom_et"
@@ -279,7 +286,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bedroomTextInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/bedroomTextInputLayout"
+                app:startIconDrawable="@drawable/ic_home_people">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_people_et"
