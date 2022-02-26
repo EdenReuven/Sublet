@@ -27,7 +27,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 
-
 public class EditProfileFragment extends Fragment {
     ImageView profileImg;
     EditText userName_et, phone_et , fullName_et;

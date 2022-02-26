@@ -59,9 +59,8 @@ public class ProfileFragment extends Fragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                int pos=position;
-                String postId = Model.instance.getCurrentUser().getPostList().get(position);
-                Navigation.findNavController(v).navigate(ProfileFragmentDirections.actionProfileFragmentToPostFragment(postId));
+                Post p = viewModel.getData().getValue().get(position);
+                Navigation.findNavController(v).navigate(ProfileFragmentDirections.actionProfileFragmentToPostFragment(p.getPostId()));
             }
         });
 
@@ -178,7 +177,7 @@ public class ProfileFragment extends Fragment {
         public int getItemCount() {
             if(viewModel.getData().getValue() == null)
                 return 0;
-            return viewModel.getData().getValue().size();
+            return viewModel.getSize();
         }
     }
 

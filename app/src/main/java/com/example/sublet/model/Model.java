@@ -56,7 +56,6 @@ public class Model {
 
 
     List<User> usersList = new LinkedList<>();
-    //List<Post> postListCurrentUser = new LinkedList<>();
     User currentUser = null;
 
     public interface GetAllUsersListener {
@@ -65,7 +64,6 @@ public class Model {
 
     public void getAllUsers(GetAllUsersListener listener) {
         modelFirebase.getAllUsers(listener);
-//        return usersList;
     }
 
     public User getCurrentUser() {
@@ -76,26 +74,12 @@ public class Model {
         currentUser = user;
     }
 
-    public boolean userExists(String userName, String password) {
-        for (int i = 0; i < usersList.size(); i++) {
-            if (usersList.get(i).getUserName().equals(userName) && usersList.get(i).getPassword().equals(password))
-                return true;
-        }
-        return false;
-    }
-
     public interface AddUserListener {
         void onComplete();
     }
 
     public void addUser(User newUser, AddUserListener listener) {
         modelFirebase.addUser(newUser, listener);
-
-//        usersList.add(newUser);
-    }
-
-    public void addPostToCurrentUser(Post newPost) {
-//        currentUser.getPostList().add(newPost);
     }
 
     public interface GetUserListener {
@@ -128,21 +112,7 @@ public class Model {
 
     ////////////////////////////////////***POST***//////////////////////////////////////////////
 
-    ArrayList<Post> userPostList = new ArrayList<>();
     String currentPostId;
-
-
-
-   /* public void getAllPosts(GetAllPostsListener listener) {
-        modelFirebase.getAllPosts( listener);
-        *//*executor.execute(() -> {
-            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
-            mainThread.post(() -> {
-                listener.onComplete(postList);
-            });
-        });*//*
-
-    }*/
 
     MutableLiveData<List<Post>> postsList = new MutableLiveData<List<Post>>();
 
@@ -190,14 +160,6 @@ public class Model {
 
             }
         });
-        //TODO: DELETE
-//        modelFirebase.getAllPosts(postLastUpdate, new ModelFirebase.GetAllPostsListener() {
-//            @Override
-//            public void onComplete(List<Post> postList) {
-//                postsList.setValue(postList);
-//                postsListLoadingState.setValue(PostsListLoadingState.loaded);
-//            }
-//        });
     }
 
     public interface AddPostListener {
@@ -212,12 +174,6 @@ public class Model {
                 listener.onComplete();
             }
         });
-        /*executor.execute(() -> {
-            AppLocalDb.db.postDao().insertAll(newPost);
-            mainThread.post(() -> {
-                listener.onComplete();
-            });
-        });*/
     }
 
 
@@ -227,17 +183,6 @@ public class Model {
 
     public void getPostById(String postId, GetPostByIdListener listener) {
         modelFirebase.getPostById(postId, listener);
-        /*executor.execute(() -> {
-            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
-            for (int i=0;i<postList.size();i++){
-                if(postList.get(i).getPostId().equals(postId)){
-                    Post post = postList.get(i);
-                    mainThread.post(() -> {
-                        listener.onComplete(post);
-                    });
-                }
-            }
-        });*/
     }
 
     public interface DeletePostsListener {
@@ -246,18 +191,6 @@ public class Model {
 
     public void deletePost(String postId, DeletePostsListener listener) {
         modelFirebase.deletePost(postId, listener);
-        /*executor.execute(() -> {
-            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
-            for (int i=0;i<postList.size();i++){
-                if(postList.get(i).getPostId().equals(postId)){
-                    Post p = postList.get(i);
-                    AppLocalDb.db.postDao().deletePost(p);
-                    mainThread.post(() -> {
-                        listener.onComplete();
-                    });
-                }
-            }
-        });*/
     }
 
     public interface UpdateProfileListener {
@@ -283,21 +216,6 @@ public class Model {
         return currentPostId;
     }
 
-
-    //    public interface GetPostsListener{
-//        void onComplete(Post post);
-//    }
-//
-//    public void getPost(int pos,GetPostsListener listener) {
-//        modelFirebase.getPost(pos,listener);
-//        executor.execute(() -> {
-//            List<Post> postList = AppLocalDb.db.postDao().getAllPost();
-//            Post post = postList.get(pos);
-//            mainThread.post(() -> {
-//                listener.onComplete(post);
-//            });
-//        });
-//    }
     /////////////////Authentication////////////////
 
     public boolean isSignedIn() {

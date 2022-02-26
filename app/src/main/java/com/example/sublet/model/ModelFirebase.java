@@ -255,8 +255,6 @@ public class ModelFirebase {
 
     /////////////////Authentication////////////////
 
-//    private FirebaseAuth myAuth =FirebaseAuth.getInstance();
-
     public boolean isSignedIn(){
         FirebaseUser currentUser = mAuth.getCurrentUser();
         return (currentUser != null);

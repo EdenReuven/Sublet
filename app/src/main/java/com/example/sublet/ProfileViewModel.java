@@ -29,4 +29,8 @@ public class ProfileViewModel extends ViewModel{
         Model.instance.refreshPostList();
         return dataForProfile;
     }
+
+    public int getSize() {
+        return  dataForProfile.getValue().size();
+    }
 }
