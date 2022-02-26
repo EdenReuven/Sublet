@@ -40,7 +40,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/password_text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView12">
+                app:layout_constraintTop_toBottomOf="@+id/imageView12"
+                app:startIconDrawable="@drawable/ic_emailicon">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/loginFragment_email_pText"
