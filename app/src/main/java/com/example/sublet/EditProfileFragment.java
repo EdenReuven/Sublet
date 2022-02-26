@@ -46,7 +46,7 @@ public class EditProfileFragment extends Fragment {
         phone_et=view.findViewById(R.id.editProfile_freg_phone_et);
 
         User user = Model.instance.getCurrentUser();
-        userName_et.setText(user.getUserName());
+        userName_et.setText(user.getNickName());
         fullName_et.setText(user.getFullName());
         phone_et.setText(user.getPhone());
         profileImg.setImageResource(R.drawable.woman);
@@ -61,7 +61,7 @@ public class EditProfileFragment extends Fragment {
                 save_btn.setEnabled(false);
                 if(editProfileImageBitmap!=null){
                     Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user1 -> {
-                        user1.setUserName(userName_et.getText().toString());
+                        user1.setNickName(userName_et.getText().toString());
                         user1.setFullName(fullName_et.getText().toString());
                         user1.setPhone(phone_et.getText().toString());
                         Model.instance.saveProfileImage(editProfileImageBitmap,userName_et.getText().toString() + ".jpg",url -> {
@@ -74,7 +74,7 @@ public class EditProfileFragment extends Fragment {
                     });
                 }else{
                     Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user1 -> {
-                        user1.setUserName(userName_et.getText().toString());
+                        user1.setNickName(userName_et.getText().toString());
                         user1.setFullName(fullName_et.getText().toString());
                         user1.setPhone(phone_et.getText().toString());
                         Model.instance.UpdateProfile(user1,() -> {

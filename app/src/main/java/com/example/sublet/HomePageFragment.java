@@ -54,7 +54,7 @@ public class HomePageFragment extends Fragment {
 
         profile_img=view.findViewById(R.id.homePage_profile_img);
         userName_tv=view.findViewById(R.id.homePage_username_tv);
-        userName_tv.setText(Model.instance.getCurrentUser().getUserName()); //show login user name
+        userName_tv.setText(Model.instance.getCurrentUser().getNickName()); //show login user name
 
         //currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
@@ -111,13 +111,6 @@ public class HomePageFragment extends Fragment {
 
     private void refresh() {
         adapter.notifyDataSetChanged();
-//        swipeRefresh.setRefreshing(false);
-        /*swipeRefresh.setRefreshing(true); //show progress bar , not have to use .
-        Model.instance.getAllPosts(postList -> {
-            viewModel.setDataPost(postList);
-            adapter.notifyDataSetChanged();
-            swipeRefresh.setRefreshing(false);
-        });*/
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -205,7 +198,7 @@ public class HomePageFragment extends Fragment {
             String userNamePost = p.getPostId().split("-")[1];
 
             Model.instance.getUser(userNamePost,user -> {
-                holder.username_tv.setText(user.getUserName());
+                holder.username_tv.setText(user.getNickName());
                 holder.profile_img_Post.setImageResource(R.drawable.woman);
                 if(user.getProfileUrl() != null) {
                     Picasso.get()

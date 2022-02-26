@@ -17,9 +17,7 @@ public class User implements Parcelable {
     String password = "";
     String nickName="";
     List<String> postListId = new ArrayList<String>();
-
     private String profileUrl;
-    //Image
 
     public User(){}
 
@@ -39,6 +37,7 @@ public class User implements Parcelable {
         phone = in.readString();
         password = in.readString();
         postListId = Collections.singletonList(in.readString());
+        userName = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -150,7 +149,7 @@ public class User implements Parcelable {
 
         User user = new User(fullName,userName,email,phone,password, (ArrayList<String>) postListId);
         user.setProfileUrl(url);
-        user.setNickName(userName);
+        user.setNickName(nickName);
         return user;
     }
 

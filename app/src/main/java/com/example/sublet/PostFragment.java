@@ -63,7 +63,7 @@ public class PostFragment extends Fragment {
         profile_img = view.findViewById(R.id.post_frag_profilePic_img);
 
         Model.instance.getUser(userName,user -> {
-            username_tv.setText(user.getUserName());
+            username_tv.setText(user.getNickName());
             phone_tv.setText(user.getPhone());
             email_tv.setText(user.getEmail());
 

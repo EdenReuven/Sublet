@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
             if(Model.instance.getCurrentUser().getUserName().equals(userName)){
                 setHasOptionsMenu(true);
             }
-            name_tv.setText(user.getUserName());
+            name_tv.setText(user.getNickName());
             phone_tv.setText(user.getPhone());
             email_tv.setText(user.getEmail());
             profileImg.setImageResource(R.drawable.woman);
@@ -153,7 +153,7 @@ public class ProfileFragment extends Fragment {
             String userNamePost = p.getPostId().split("-")[1];
 
             Model.instance.getUser(userNamePost,user -> {
-                holder.username_tv.setText(user.getUserName());
+                holder.username_tv.setText(user.getNickName());
                 holder.profilePostImg.setImageResource(R.drawable.woman);
                 if(user.getProfileUrl()!=null) {
                     Picasso.get()

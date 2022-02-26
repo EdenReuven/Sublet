@@ -149,19 +149,14 @@ public class ModelFirebase {
 
     public void UpdateProfile(User user, Model.UpdateProfileListener listener) {
         Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user1 -> {
-            user1.setUserName(user.getUserName());
             user1.setFullName(user.getFullName());
             user1.setPhone(user.getPhone());
             user1.setProfileUrl(user.getProfileUrl());
-
-            db.collection(User.COLLECTION_NAME).document(Model.instance.getCurrentUser().getUserName()).delete().addOnSuccessListener(command -> {
-                db.collection(User.COLLECTION_NAME).document(user1.getUserName()).set(user1.toJson()).
-                        addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                listener.onComplete();
-                            }});
-            });
+            user1.setNickName(user.getNickName());
+            db.collection(User.COLLECTION_NAME).document(user1.getUserName()).set(user1.toJson()).
+                    addOnSuccessListener(command -> {
+                       listener.onComplete();
+                    });
         });
     }
 
