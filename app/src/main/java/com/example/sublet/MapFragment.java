@@ -2,8 +2,14 @@ package com.example.sublet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
+import android.app.Application;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +22,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapFragment extends Fragment {
+import java.util.Vector;
 
+public class MapFragment extends Fragment {
+    MarkerOptions marker;
+    LatLng centerLocation;
+    Vector<MarkerOptions> markerOptions;
+    GoogleMap googleMap;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -31,10 +42,14 @@ public class MapFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng israel = new LatLng(	31.771959, 35.217018);
+//            LatLng israel = new LatLng(	31.771959, 35.217018);
             googleMap.setMinZoomPreference(8.0f);
-            googleMap.addMarker(new MarkerOptions().position(israel).title("Marker in Israel"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(israel));
+//            googleMap.addMarker(new MarkerOptions().position(israel).title("Marker in Israel"));
+            for(MarkerOptions marker : markerOptions){
+                googleMap.addMarker(marker);
+            }
+            enableMyLocation();
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerLocation,8));
         }
     };
 
@@ -43,7 +58,23 @@ public class MapFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
+        centerLocation = new LatLng(31.973001,34.792501);
+        markerOptions = new Vector<>();
+
+        markerOptions.add(new MarkerOptions().title("First Location")
+                .position(new LatLng(31.771959, 35.217018))
+                .snippet("Hello"));
+
+        markerOptions.add(new MarkerOptions().title("Second Location")
+                .position(new LatLng(32.771959, 35.217018))
+                .snippet("Hello"));
+
+        markerOptions.add(new MarkerOptions().title("Third Location")
+                .position(new LatLng(32.771959, 34.217018))
+                .snippet("Hello"));
+
+        return view;
     }
 
     @Override
@@ -53,6 +84,18 @@ public class MapFragment extends Fragment {
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
+        }
+    }
+
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(MyApplication.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            if ( googleMap!= null) {
+                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+            }
+        } else {
+            String perms [] = {"android.permission.ACCESS_FINE_LOCATION"};
+            ActivityCompat.requestPermissions(getActivity(),perms,200);
         }
     }
 }
