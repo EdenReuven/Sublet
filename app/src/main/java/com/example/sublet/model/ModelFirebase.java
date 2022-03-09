@@ -29,7 +29,6 @@ import java.util.Map;
 
 public class ModelFirebase {
 
-
     public interface GetAllPostsListener{
         void onComplete(List<Post> postList);
     }
@@ -66,6 +65,10 @@ public class ModelFirebase {
                 .set(json)
                 .addOnSuccessListener(unused -> listener.onComplete())
                 .addOnFailureListener(e -> listener.onComplete());
+    }
+
+    public void saveLocation(String postId, Model.AddPostLocationListener listener) {
+        //TODO: add location
     }
 
     public void getPostById(String postId, Model.GetPostByIdListener listener) {

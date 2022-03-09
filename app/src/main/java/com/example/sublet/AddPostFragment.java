@@ -7,11 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.sublet.model.Model;
@@ -22,6 +25,7 @@ import java.util.Date;
 public class AddPostFragment extends Fragment {
    EditText  dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et;
    Button continue_btn;
+   ImageView addLocation_ImV;
    Date createTimeDate;
    boolean validOk;
    AddPostViewModel viewModel;
@@ -47,6 +51,19 @@ public class AddPostFragment extends Fragment {
         bedroom_et=view.findViewById(R.id.addPost_freg_bedroom_et);
         continue_btn=view.findViewById(R.id.addPost2_freg_post_btn);
         createTimeDate = Calendar.getInstance().getTime();
+        addLocation_ImV = view.findViewById(R.id.addPostLocation_freg_location_imV);
+
+        viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
+
+        addLocation_ImV.setOnClickListener(v -> {
+            Log.d("TAG","CLICKED");
+            //TODO: get location from map by click
+
+            //TODO: add model + fireBase model functionality according postId
+            Model.instance.saveLocation(viewModel.getNewPost().getPostId(),()->{
+
+            });
+        });
 
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +76,7 @@ public class AddPostFragment extends Fragment {
 
                 continue_btn.setEnabled(false);
                 viewModel.newPost = new Post();
-                viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
+//                viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
                 viewModel.getNewPost().setFromDate(dateFrom_et.getText().toString());
                 viewModel.getNewPost().setToDate(dateTo_et.getText().toString());
                 viewModel.getNewPost().setLocation(location_et.getText().toString());

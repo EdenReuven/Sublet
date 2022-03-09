@@ -171,8 +171,7 @@
                 android:id="@+id/locationTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="80dp"
                 android:hint="@string/location"
                 android:textColorHint="@color/blue"
                 app:layout_constraintBottom_toTopOf="@+id/priceTextInputLayout"
@@ -183,7 +182,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost_freg_location_et"
-                    android:layout_width="match_parent"
+                    android:layout_width="297dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
@@ -316,6 +315,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/addPostLocation_freg_location_imV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_location_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/locationTextInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/locationTextInputLayout"
+                app:layout_constraintTop_toTopOf="@+id/locationTextInputLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
