@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.sublet.model.Location;
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import com.google.firebase.firestore.GeoPoint;
@@ -64,12 +65,7 @@ public class AddPostFragment extends Fragment {
         Model.instance.setCurrentPostId(viewModel.getNewPost().getPostId());
 
         addLocation_ImV.setOnClickListener(v -> {
-            //TODO: get location from map by click
             Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionGlobalMapFragment());
-            //TODO: add model + fireBase model functionality according postId
-//            Model.instance.saveLocation(viewModel.getNewPost().getPostId(),()->{
-//
-//            });
         });
 
         continue_btn.setOnClickListener(new View.OnClickListener() {
@@ -102,12 +98,21 @@ public class AddPostFragment extends Fragment {
         EditText[] validArray = {dateFrom_et,dateTo_et,location_et,roommate_et
                 ,price_et,people_et,bedroom_et,bathroom_et};
 
-        for(int i=0;i<validArray.length;i++){
-            if(validArray[i].getText().toString().length() == 0){
-                validOk = false;
-                Toast.makeText(MyApplication.getContext(), "All Fields are required!", Toast.LENGTH_SHORT).show();
-                return;
+        Model.instance.getAllLocations(locationList -> {
+            for (Location location : locationList){
+                if(location.getPostId().equals(viewModel.newPost.getPostId())){
+                    Toast.makeText(MyApplication.getContext(), "Add Location is required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
-        }
+
+            for(int i=0;i<validArray.length;i++){
+                if(validArray[i].getText().toString().length() == 0){
+                    validOk = false;
+                    Toast.makeText(MyApplication.getContext(), "All Fields are required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        });
     }
 }

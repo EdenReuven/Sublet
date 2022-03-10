@@ -120,6 +120,20 @@ public class ModelFirebase {
                 });
     }
 
+    public void getAllLocations(Model.getAllLocationsListener listener) {
+        db.collection(Location.COLLECTION_NAME).get().addOnCompleteListener(task -> {
+            List<Location> locationList = new LinkedList<>();
+            if(task.isSuccessful()){
+                for (QueryDocumentSnapshot doc : task.getResult()) {
+                    Location location = Location.create(doc.getData());
+                    if (location != null)
+                        locationList.add(location);
+                }
+                listener.onComplete(locationList);
+            }
+        });
+    }
+
     public void addUser(User newUser, Model.AddUserListener listener) {
         Map<String, Object> json = newUser.toJson();
         db.collection(User.COLLECTION_NAME)

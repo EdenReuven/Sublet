@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.app.Application;
@@ -32,6 +33,7 @@ public class MapFragment extends Fragment {
     Vector<MarkerOptions> markerOptions;
     GoogleMap googleMap;
     double latitude,longitude;
+    View view;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -61,12 +63,11 @@ public class MapFragment extends Fragment {
                 public void onMapClick(LatLng latLng)
                 {
                     Log.d("TAG","Clicked");
-                    //TODO: save lat and lan in fireBase
                     latitude = latLng.latitude;
                     longitude = latLng.longitude;
                     String currentPostId = Model.instance.getCurrentPostId();
                     Model.instance.saveLocation(currentPostId,latitude,longitude,()->{
-                        //TODO: back to add post fragment
+                        Navigation.findNavController(view).navigateUp(); // TODO: check if back to the add post fragment
                     });
 //                    String url = "https://www.google.com/maps/dir/?api=1&destination=" + latLng.latitude + "," + latLng.longitude + "&travelmode=driving";
 //                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -81,7 +82,7 @@ public class MapFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
+        view = inflater.inflate(R.layout.fragment_map, container, false);
         centerLocation = new LatLng(31.973001,34.792501);
         markerOptions = new Vector<>();
 

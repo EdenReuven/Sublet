@@ -21,7 +21,6 @@ public class Model {
     public Executor executor = Executors.newFixedThreadPool(1);
     public Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
 
-
     public interface saveProfileImageListener {
         void onComplete(String url);
     }
@@ -183,6 +182,14 @@ public class Model {
 
     public void saveLocation(String postId, double latitude, double longitude, AddPostLocationListener listener) {
         modelFirebase.saveLocation(postId,latitude,longitude,listener);
+    }
+
+    public interface getAllLocationsListener {
+        void onComplete(List<Location> locationList);
+    }
+
+    public void getAllLocations(getAllLocationsListener listener) {
+        modelFirebase.getAllLocations(listener);
     }
 
     public interface GetPostByIdListener {

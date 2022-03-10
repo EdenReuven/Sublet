@@ -49,14 +49,12 @@ public class Location {
 
     public Map<String, Object> toJson() {
         Map<String, Object> json = new HashMap<String, Object>();
-        json.put("id" ,postId);
         json.put("latitude" ,latitude);
         json.put("longitude" ,longitude);
         return json;
     }
 
     public static Location create(Map<String, Object> json) {
-        String id = (String) json.get("id");
         Double latitude = (double) json.get("latitude");
         Double longitude = (double) json.get("longitude");
         Location location = new Location(latitude,longitude);
