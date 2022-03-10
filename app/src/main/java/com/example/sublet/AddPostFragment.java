@@ -27,6 +27,7 @@ import com.google.firebase.firestore.GeoPoint;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AddPostFragment extends Fragment {
@@ -36,6 +37,7 @@ public class AddPostFragment extends Fragment {
    Date createTimeDate;
    boolean validOk;
    AddPostViewModel viewModel;
+   List<Location> locations;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -68,6 +70,10 @@ public class AddPostFragment extends Fragment {
             Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionGlobalMapFragment());
         });
 
+        Model.instance.getAllLocations(locationList -> {
+            locations = locationList;
+        });
+
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,21 +104,27 @@ public class AddPostFragment extends Fragment {
         EditText[] validArray = {dateFrom_et,dateTo_et,location_et,roommate_et
                 ,price_et,people_et,bedroom_et,bathroom_et};
 
-        Model.instance.getAllLocations(locationList -> {
-            for (Location location : locationList){
-                if(location.getPostId().equals(viewModel.newPost.getPostId())){
-                    Toast.makeText(MyApplication.getContext(), "Add Location is required!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            }
+        //TODO: validation for location doesn't work
+        if(locations == null){
+            validOk = false;
+            Toast.makeText(MyApplication.getContext(), "Add Location is required!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            for(int i=0;i<validArray.length;i++){
-                if(validArray[i].getText().toString().length() == 0){
-                    validOk = false;
-                    Toast.makeText(MyApplication.getContext(), "All Fields are required!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        for (Location location : locations){
+            if(!location.getPostId().equals(viewModel.newPost.getPostId())){
+                Toast.makeText(MyApplication.getContext(), "Add Location is required!", Toast.LENGTH_SHORT).show();
+                validOk = false;
+                return;
             }
-        });
+        }
+
+        for(int i=0;i<validArray.length;i++){
+            if(validArray[i].getText().toString().length() == 0){
+                validOk = false;
+                Toast.makeText(MyApplication.getContext(), "All Fields are required!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
     }
 }
