@@ -13,12 +13,12 @@ import java.util.Map;
 public class Location {
     final public static String COLLECTION_NAME = "location";
     String postId = "";
-    float latitude = 0;
-    float longitude = 0;
+    double latitude = 0;
+    double longitude = 0;
 
     public Location(){}
 
-    public Location(float latitude,float longitude){
+    public Location(double latitude,double longitude){
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -31,7 +31,7 @@ public class Location {
         this.postId = postId;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -39,7 +39,7 @@ public class Location {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -57,8 +57,8 @@ public class Location {
 
     public static Location create(Map<String, Object> json) {
         String id = (String) json.get("id");
-        float latitude = (float) json.get("latitude");
-        float longitude = (float) json.get("longitude");
+        Double latitude = (double) json.get("latitude");
+        Double longitude = (double) json.get("longitude");
         Location location = new Location(latitude,longitude);
         return location;
     }

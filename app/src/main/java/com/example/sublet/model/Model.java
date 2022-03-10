@@ -181,8 +181,8 @@ public class Model {
         void onComplete();
     }
 
-    public void saveLocation(String postId, AddPostLocationListener listener) {
-        modelFirebase.saveLocation(postId,listener);
+    public void saveLocation(String postId, double latitude, double longitude, AddPostLocationListener listener) {
+        modelFirebase.saveLocation(postId,latitude,longitude,listener);
     }
 
     public interface GetPostByIdListener {

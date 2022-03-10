@@ -11,10 +11,12 @@ import android.Manifest;
 import android.app.Application;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sublet.model.Model;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,6 +31,8 @@ public class MapFragment extends Fragment {
     LatLng centerLocation;
     Vector<MarkerOptions> markerOptions;
     GoogleMap googleMap;
+    double latitude,longitude;
+
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -50,6 +54,25 @@ public class MapFragment extends Fragment {
             }
             enableMyLocation();
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerLocation,8));
+
+            googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
+            {
+                @Override
+                public void onMapClick(LatLng latLng)
+                {
+                    Log.d("TAG","Clicked");
+                    //TODO: save lat and lan in fireBase
+                    latitude = latLng.latitude;
+                    longitude = latLng.longitude;
+                    String currentPostId = Model.instance.getCurrentPostId();
+                    Model.instance.saveLocation(currentPostId,latitude,longitude,()->{
+                        //TODO: back to add post fragment
+                    });
+//                    String url = "https://www.google.com/maps/dir/?api=1&destination=" + latLng.latitude + "," + latLng.longitude + "&travelmode=driving";
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//                    startActivity(intent);
+                }
+            });
         }
     };
 

@@ -67,8 +67,13 @@ public class ModelFirebase {
                 .addOnFailureListener(e -> listener.onComplete());
     }
 
-    public void saveLocation(String postId, Model.AddPostLocationListener listener) {
+    public void saveLocation(String postId, double latitude, double longitude, Model.AddPostLocationListener listener) {
         //TODO: add location
+        Location location = new Location(latitude,longitude);
+        Map<String, Object> json = location.toJson();
+        db.collection(Location.COLLECTION_NAME).document(postId).set(json).addOnCompleteListener(command -> {
+            listener.onComplete();
+        });
     }
 
     public void getPostById(String postId, Model.GetPostByIdListener listener) {
