@@ -33,7 +33,11 @@
         android:id="@+id/mapFragment"
         android:name="com.example.sublet.MapFragment"
         android:label="Map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+        <argument
+            android:name="postID"
+            app:argType="string" />
+    </fragment>
     <action
         android:id="@+id/action_global_mapFragment"
         app:destination="@id/mapFragment" />

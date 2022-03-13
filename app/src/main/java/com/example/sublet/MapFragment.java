@@ -62,10 +62,10 @@ public class MapFragment extends Fragment {
                 @Override
                 public void onMapClick(LatLng latLng)
                 {
-                    Log.d("TAG","Clicked");
+                    //        viewModel.setNewPost(AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj());
                     latitude = latLng.latitude;
                     longitude = latLng.longitude;
-                    String currentPostId = Model.instance.getCurrentPostId();
+                    String currentPostId = MapFragmentArgs.fromBundle(getArguments()).getPostID();
                     Model.instance.saveLocation(currentPostId,latitude,longitude,()->{
                         Navigation.findNavController(view).navigateUp(); // TODO: check if back to the add post fragment
                     });

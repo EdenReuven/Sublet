@@ -38,6 +38,7 @@ public class AddPost2Fragment extends Fragment {
     ProgressBar progressBar;
     boolean validOk;
     AddPostViewModel viewModel;
+    ImageView addLocation_ImV;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -56,8 +57,13 @@ public class AddPost2Fragment extends Fragment {
         gallery_imgBtn=view.findViewById(R.id.addPost2_frag_camera_btnimg);
         camera_imgBtn=view.findViewById(R.id.addPost2_frag_photo_btnimg);
         post_btn = view.findViewById(R.id.addPost2_freg_post_btn);
+        addLocation_ImV = view.findViewById(R.id.addPostLocation_freg_location_imV);
 
         viewModel.setNewPost(AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj());
+
+        addLocation_ImV.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(AddPost2FragmentDirections.actionGlobalMapFragment(viewModel.getNewPost().getPostId()));
+        });
 
         post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,5 +174,11 @@ public class AddPost2Fragment extends Fragment {
                 return;
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        image_imageView.setImageBitmap(imageBitmap);
     }
 }

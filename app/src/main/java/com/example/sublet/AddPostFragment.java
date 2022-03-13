@@ -33,7 +33,7 @@ import java.util.List;
 public class AddPostFragment extends Fragment {
    EditText  dateFrom_et, dateTo_et, location_et, roommate_et, price_et, people_et, bathroom_et, bedroom_et;
    Button continue_btn;
-   ImageView addLocation_ImV;
+//   ImageView addLocation_ImV;
    Date createTimeDate;
    boolean validOk;
    AddPostViewModel viewModel;
@@ -60,15 +60,15 @@ public class AddPostFragment extends Fragment {
         bedroom_et=view.findViewById(R.id.addPost_freg_bedroom_et);
         continue_btn=view.findViewById(R.id.addPost2_freg_post_btn);
         createTimeDate = Calendar.getInstance().getTime();
-        addLocation_ImV = view.findViewById(R.id.addPostLocation_freg_location_imV);
+//        addLocation_ImV = view.findViewById(R.id.addPostLocation_freg_location_imV);
 
-        viewModel.newPost = new Post();
-        viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
-        Model.instance.setCurrentPostId(viewModel.getNewPost().getPostId());
+//        viewModel.newPost = new Post();
+//        viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
+//        Model.instance.setCurrentPostId(viewModel.getNewPost().getPostId());
 
-        addLocation_ImV.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionGlobalMapFragment());
-        });
+//        addLocation_ImV.setOnClickListener(v -> {
+//            Navigation.findNavController(v).navigate(AddPostFragmentDirections.actionGlobalMapFragment());
+//        });
 
         Model.instance.getAllLocations(locationList -> {
             locations = locationList;
@@ -84,8 +84,8 @@ public class AddPostFragment extends Fragment {
                     return;
 
                 continue_btn.setEnabled(false);
-//                viewModel.newPost = new Post();
-//                viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
+                viewModel.newPost = new Post();
+                viewModel.getNewPost().setPostId(Model.instance.getGeneratePostId());
                 viewModel.getNewPost().setFromDate(dateFrom_et.getText().toString());
                 viewModel.getNewPost().setToDate(dateTo_et.getText().toString());
                 viewModel.getNewPost().setLocation(location_et.getText().toString());
@@ -111,13 +111,13 @@ public class AddPostFragment extends Fragment {
             return;
         }
 
-        for (Location location : locations){
-            if(!location.getPostId().equals(viewModel.newPost.getPostId())){
-                Toast.makeText(MyApplication.getContext(), "Add Location is required!", Toast.LENGTH_SHORT).show();
-                validOk = false;
-                return;
-            }
-        }
+//        for (Location location : locations){
+//            if(!location.getPostId().equals(viewModel.newPost.getPostId())){
+//                Toast.makeText(MyApplication.getContext(), "Add Location is required!", Toast.LENGTH_SHORT).show();
+//                validOk = false;
+//                return;
+//            }
+//        }
 
         for(int i=0;i<validArray.length;i++){
             if(validArray[i].getText().toString().length() == 0){

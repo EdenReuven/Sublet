@@ -29,11 +29,11 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="0dp"
+                android:layout_width="113dp"
                 android:layout_height="3dp"
                 android:background="#1C3144"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                 app:layout_constraintEnd_toStartOf="@+id/imageView8"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="@+id/imageView6"></LinearLayout>
@@ -77,21 +77,20 @@
 
             <Button
                 android:id="@+id/addPost2_freg_post_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_width="339dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="30dp"
                 android:backgroundTint="#1C3144"
                 android:text="Post"
                 android:textSize="20dp"
                 app:cornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -108,26 +107,20 @@
                 android:id="@+id/addPost2_frag_camera_btnimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="82dp"
                 android:src="@drawable/ic_galleryicon"
                 app:layout_constraintBottom_toBottomOf="@+id/addPost2_frag_photo_btnimg"
-                app:layout_constraintEnd_toStartOf="@+id/addPost2_frag_photo_btnimg"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
-                android:layout_width="0dp"
+                android:layout_width="327dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:hint="@string/description"
                 android:textColorHint="@color/blue"
                 app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addPost2_frag_camera_btnimg">
+                app:layout_constraintTop_toBottomOf="@+id/addPostLocation_freg_location_imV"
+                tools:layout_editor_absoluteX="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost2_frag_description_et"
@@ -140,34 +133,39 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <ImageView
+                android:id="@+id/addPostLocation_freg_location_imV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="173dp"
+                android:layout_marginEnd="174dp"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/ic_add_location_icon"
+                app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addPost2_frag_photo_btnimg" />
 
             <ImageButton
                 android:id="@+id/addPost2_frag_photo_btnimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="140dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="82dp"
                 android:src="@drawable/ic_addphotoblue"
-                app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
+                app:layout_constraintBottom_toTopOf="@+id/addPostLocation_freg_location_imV"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/addPost2_frag_camera_btnimg"
-                app:layout_constraintTop_toTopOf="@+id/addPost2_frag_camera_btnimg" />
+                app:layout_constraintTop_toBottomOf="@+id/addPost2_frag_image_imgview" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/addPost2_frag_image_imgview"
                 android:layout_width="210dp"
                 android:layout_height="180dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginTop="40dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintBottom_toTopOf="@+id/addPost2_frag_camera_btnimg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
                 tools:src="@tools:sample/avatars" />
 

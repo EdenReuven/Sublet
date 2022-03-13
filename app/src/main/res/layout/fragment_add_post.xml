@@ -316,16 +316,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
-                android:id="@+id/addPostLocation_freg_location_imV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_location_icon"
-                app:layout_constraintBottom_toBottomOf="@+id/locationTextInputLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/locationTextInputLayout"
-                app:layout_constraintTop_toTopOf="@+id/locationTextInputLayout" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
