@@ -39,25 +39,13 @@ public class MapFragment extends Fragment {
     View view;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
-
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
         @Override
         public void onMapReady(GoogleMap googleMap) {
 
             googleMap.setMinZoomPreference(8.0f);
             Model.instance.getAllLocations(locationList -> {
                 for (Location l : locationList){
-                    markerOptions.add(new MarkerOptions().title("title")
-                            .position(new LatLng(l.getLatitude(),l.getLongitude()))
-                            .snippet("Hello"));
+                    markerOptions.add(new MarkerOptions().position(new LatLng(l.getLatitude(),l.getLongitude())));
                 }
                 for(MarkerOptions marker : markerOptions){
                     googleMap.addMarker(marker);
@@ -75,7 +63,7 @@ public class MapFragment extends Fragment {
                         longitude = latLng.longitude;
                         String currentPostId = MapFragmentArgs.fromBundle(getArguments()).getPostID();
                         Model.instance.saveLocation(currentPostId, latitude, longitude, () -> {
-                            Navigation.findNavController(view).navigateUp(); // TODO: check if back to the add post fragment
+                            Navigation.findNavController(view).navigateUp();
                         });
                     }
                 });
@@ -89,7 +77,7 @@ public class MapFragment extends Fragment {
                         longitude = latLng.longitude;
                         String currentPostId = MapFragmentArgs.fromBundle(getArguments()).getPostID();
                         Model.instance.saveLocation(currentPostId, latitude, longitude, () -> {
-                            Navigation.findNavController(view).navigateUp(); // TODO: check if back to the add post fragment
+                            Navigation.findNavController(view).navigateUp();
                         });
                     }
                 });
