@@ -176,22 +176,6 @@ public class Model {
         });
     }
 
-    public interface AddPostLocationListener {
-        void onComplete();
-    }
-
-    public void saveLocation(String postId, double latitude, double longitude, AddPostLocationListener listener) {
-        modelFirebase.saveLocation(postId,latitude,longitude,listener);
-    }
-
-    public interface getAllLocationsListener {
-        void onComplete(List<Location> locationList);
-    }
-
-    public void getAllLocations(getAllLocationsListener listener) {
-        modelFirebase.getAllLocations(listener);
-    }
-
     public interface GetPostByIdListener {
         void onComplete(Post post);
     }
@@ -235,5 +219,23 @@ public class Model {
 
     public boolean isSignedIn() {
         return modelFirebase.isSignedIn();
+    }
+
+    /////////////////////MAP///////////////////////////
+
+    public interface AddPostLocationListener {
+        void onComplete();
+    }
+
+    public void saveLocation(String postId, double latitude, double longitude, AddPostLocationListener listener) {
+        modelFirebase.saveLocation(postId,latitude,longitude,listener);
+    }
+
+    public interface getAllLocationsListener {
+        void onComplete(List<Location> locationList);
+    }
+
+    public void getAllLocations(getAllLocationsListener listener) {
+        modelFirebase.getAllLocations(listener);
     }
 }

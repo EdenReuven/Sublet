@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sublet.model.Location;
 import com.example.sublet.model.Model;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,15 +26,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class MapFragment extends Fragment {
     MarkerOptions marker;
     LatLng centerLocation;
-    Vector<MarkerOptions> markerOptions;
+    List<MarkerOptions> markerOptions = new ArrayList<>();
     GoogleMap googleMap;
     double latitude,longitude;
     View view;
+    List<Location> locations;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -48,12 +52,19 @@ public class MapFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-//            LatLng israel = new LatLng(	31.771959, 35.217018);
+
             googleMap.setMinZoomPreference(8.0f);
-//            googleMap.addMarker(new MarkerOptions().position(israel).title("Marker in Israel"));
-            for(MarkerOptions marker : markerOptions){
-                googleMap.addMarker(marker);
-            }
+            Model.instance.getAllLocations(locationList -> {
+                for (Location l : locationList){
+                    markerOptions.add(new MarkerOptions().title("title")
+                            .position(new LatLng(l.getLatitude(),l.getLongitude()))
+                            .snippet("Hello"));
+                }
+                for(MarkerOptions marker : markerOptions){
+                    googleMap.addMarker(marker);
+                }
+            });
+
             enableMyLocation();
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerLocation,8));
 
@@ -61,17 +72,13 @@ public class MapFragment extends Fragment {
             {
                 @Override
                 public void onMapClick(LatLng latLng)
-                {
-                    //        viewModel.setNewPost(AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj());
+                { ;
                     latitude = latLng.latitude;
                     longitude = latLng.longitude;
                     String currentPostId = MapFragmentArgs.fromBundle(getArguments()).getPostID();
                     Model.instance.saveLocation(currentPostId,latitude,longitude,()->{
                         Navigation.findNavController(view).navigateUp(); // TODO: check if back to the add post fragment
                     });
-//                    String url = "https://www.google.com/maps/dir/?api=1&destination=" + latLng.latitude + "," + latLng.longitude + "&travelmode=driving";
-//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                    startActivity(intent);
                 }
             });
         }
@@ -84,20 +91,6 @@ public class MapFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_map, container, false);
         centerLocation = new LatLng(31.973001,34.792501);
-        markerOptions = new Vector<>();
-
-        markerOptions.add(new MarkerOptions().title("First Location")
-                .position(new LatLng(31.771959, 35.217018))
-                .snippet("Hello"));
-
-        markerOptions.add(new MarkerOptions().title("Second Location")
-                .position(new LatLng(32.771959, 35.217018))
-                .snippet("Hello"));
-
-        markerOptions.add(new MarkerOptions().title("Third Location")
-                .position(new LatLng(32.771959, 34.217018))
-                .snippet("Hello"));
-
         return view;
     }
 
