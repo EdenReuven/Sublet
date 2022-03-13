@@ -59,7 +59,7 @@ public class AddPost2Fragment extends Fragment {
         gallery_imgBtn=view.findViewById(R.id.addPost2_frag_camera_btnimg);
         camera_imgBtn=view.findViewById(R.id.addPost2_frag_photo_btnimg);
         post_btn = view.findViewById(R.id.addPost2_freg_post_btn);
-        addLocation_ImV = view.findViewById(R.id.addPostLocation_freg_location_imV);
+        addLocation_ImV = view.findViewById(R.id.editPostLocation_freg_location_imV);
 
         viewModel.setNewPost(AddPost2FragmentArgs.fromBundle(getArguments()).getPostObj());
 

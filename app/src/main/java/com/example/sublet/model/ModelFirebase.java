@@ -193,7 +193,6 @@ public class ModelFirebase {
                 });
     }
 
-
     public void UpdateProfile(User user, Model.UpdateProfileListener listener) {
         Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user1 -> {
             user1.setFullName(user.getFullName());

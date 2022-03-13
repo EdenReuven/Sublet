@@ -37,6 +37,7 @@ public class EditPost2Fragment extends Fragment {
     ProgressBar progressBar;
     EditPostViewModel viewModel;
     ImageView image_imgView;
+    ImageView addLocation_ImV;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -49,6 +50,8 @@ public class EditPost2Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_edit_post2, container, false);
+        Model.instance.setMapStatus("Edit");
+
         viewModel.setPostToEdit(EditPost2FragmentArgs.fromBundle(getArguments()).getEditPostObj());
 
         progressBar = view.findViewById(R.id.edit_progressBar);
@@ -59,6 +62,13 @@ public class EditPost2Fragment extends Fragment {
         image_imgView = view.findViewById(R.id.editPost2_frag_picture_imgview);
         post_btn = view.findViewById(R.id.addPost2_freg_post_btn);
         description_et.setText(viewModel.getPostToEdit().getPostContent());
+
+        addLocation_ImV = view.findViewById(R.id.editPostLocation_freg_location_imV);
+
+        addLocation_ImV.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(EditPost2FragmentDirections.actionGlobalMapFragment(viewModel.postToEdit.getPostId()));
+        });
+
         image_imgView.setImageResource(R.drawable.room);
         if(viewModel.getPostToEdit().getPostImgUrl() !=null) {
             Picasso.get()
