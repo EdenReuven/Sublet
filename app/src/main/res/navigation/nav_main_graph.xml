@@ -37,6 +37,9 @@
         <argument
             android:name="postID"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mapFragment_to_postFragment"
+            app:destination="@id/postFragment" />
     </fragment>
     <action
         android:id="@+id/action_global_mapFragment"

@@ -18,9 +18,10 @@ public class Location {
 
     public Location(){}
 
-    public Location(double latitude,double longitude){
+    public Location(double latitude,double longitude,String postId){
         this.latitude = latitude;
         this.longitude = longitude;
+        this.postId = postId;
     }
 
     public String getPostId() {
@@ -49,17 +50,17 @@ public class Location {
 
     public Map<String, Object> toJson() {
         Map<String, Object> json = new HashMap<String, Object>();
-//        json.put("postId" ,postId);
         json.put("latitude" ,latitude);
         json.put("longitude" ,longitude);
+        json.put("postId",postId);
         return json;
     }
 
     public static Location create(Map<String, Object> json) {
-//        String postId = (String) json.get("postId");
         Double latitude = (double) json.get("latitude");
         Double longitude = (double) json.get("longitude");
-        Location location = new Location(latitude,longitude);
+        String postId = (String) json.get("postId");
+        Location location = new Location(latitude,longitude,postId);
         return location;
     }
 }

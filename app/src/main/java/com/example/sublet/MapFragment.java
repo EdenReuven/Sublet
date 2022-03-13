@@ -13,6 +13,7 @@ import android.app.Application;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -31,7 +33,6 @@ import java.util.List;
 import java.util.Vector;
 
 public class MapFragment extends Fragment {
-    MarkerOptions marker;
     LatLng centerLocation;
     List<MarkerOptions> markerOptions = new ArrayList<>();
     GoogleMap googleMap;
@@ -45,10 +46,29 @@ public class MapFragment extends Fragment {
             googleMap.setMinZoomPreference(8.0f);
             Model.instance.getAllLocations(locationList -> {
                 for (Location l : locationList){
-                    markerOptions.add(new MarkerOptions().position(new LatLng(l.getLatitude(),l.getLongitude())));
+                    String title = l.getLatitude()+","+l.getLongitude();
+                    markerOptions.add(new MarkerOptions().position(new LatLng(l.getLatitude(),l.getLongitude())).title(title));
                 }
                 for(MarkerOptions marker : markerOptions){
                     googleMap.addMarker(marker);
+                }
+            });
+
+            googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(@NonNull Marker marker) {
+                    String lat = marker.getTitle().split(",")[0];
+                    String lon = marker.getTitle().split(",")[1];
+                    Model.instance.getAllLocations(locationList -> {
+                        for(Location l : locationList){
+                            if(lat.equals(Double.toString(l.getLatitude()))
+                                && lon.equals(Double.toString(l.getLongitude()))){
+                                Navigation.findNavController(view)
+                                        .navigate(MapFragmentDirections.actionMapFragmentToPostFragment(l.getPostId()));
+                            }
+                        }
+                    });
+                    return false;
                 }
             });
 
