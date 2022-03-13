@@ -50,6 +50,8 @@ public class AddPost2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceStat) {
         View view= inflater.inflate(R.layout.fragment_add_post2, container, false);
+        Model.instance.setMapStatus("Create");
+
         progressBar = view.findViewById(R.id.add_progressBar);
         progressBar.setVisibility(View.GONE);
         description_et=view.findViewById(R.id.addPost2_frag_description_et);

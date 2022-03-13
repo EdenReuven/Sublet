@@ -44,6 +44,7 @@ public class DialogPopUp extends DialogFragment {
                         });
                     });
                 });
+                Model.instance.deleteLocation(Model.instance.getCurrentPostId(),() -> {});
             }
         });
 

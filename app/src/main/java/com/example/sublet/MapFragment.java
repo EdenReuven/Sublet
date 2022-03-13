@@ -37,7 +37,6 @@ public class MapFragment extends Fragment {
     GoogleMap googleMap;
     double latitude,longitude;
     View view;
-    List<Location> locations;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -68,19 +67,19 @@ public class MapFragment extends Fragment {
             enableMyLocation();
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerLocation,8));
 
-            googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
-            {
-                @Override
-                public void onMapClick(LatLng latLng)
-                { ;
-                    latitude = latLng.latitude;
-                    longitude = latLng.longitude;
-                    String currentPostId = MapFragmentArgs.fromBundle(getArguments()).getPostID();
-                    Model.instance.saveLocation(currentPostId,latitude,longitude,()->{
-                        Navigation.findNavController(view).navigateUp(); // TODO: check if back to the add post fragment
-                    });
-                }
-            });
+            if(Model.instance.getMapStatus().equals("Create")) {
+                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        latitude = latLng.latitude;
+                        longitude = latLng.longitude;
+                        String currentPostId = MapFragmentArgs.fromBundle(getArguments()).getPostID();
+                        Model.instance.saveLocation(currentPostId, latitude, longitude, () -> {
+                            Navigation.findNavController(view).navigateUp(); // TODO: check if back to the add post fragment
+                        });
+                    }
+                });
+            }
         }
     };
 

@@ -92,7 +92,6 @@ public class ModelFirebase {
                 });
     }
 
-
     public void deletePost(String postId, Model.DeletePostsListener listener) {
         Model.instance.getPostById(postId,post -> {
             post.setDeleted(true);
@@ -105,6 +104,29 @@ public class ModelFirebase {
         });
 
     }
+
+    public void getLocationByPostId(String postId, Model.GetLocationByIdListener listener) {
+        db.collection(Location.COLLECTION_NAME).document(postId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        Location location = null;
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            location = Location.create(task.getResult().getData());
+                        }
+                        listener.onComplete(location);
+                    }
+                });
+    }
+
+    public void deleteLocation(String postId, Model.DeleteLocationListener listener) {
+        Model.instance.getLocationByPostId(postId ,location -> {
+            db.collection(Location.COLLECTION_NAME).document(postId).delete().addOnCompleteListener(command ->{
+                listener.onComplete();
+            });
+        });
+    }
+
 
     public void getAllUsers(Model.GetAllUsersListener listener) {
         db.collection(User.COLLECTION_NAME).get()

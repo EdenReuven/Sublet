@@ -20,6 +20,7 @@ public class Model {
     public static final Model instance = new Model();
     public Executor executor = Executors.newFixedThreadPool(1);
     public Handler mainThread = HandlerCompat.createAsync(Looper.getMainLooper());
+    public String mapStatus = "";
 
     public interface saveProfileImageListener {
         void onComplete(String url);
@@ -223,6 +224,14 @@ public class Model {
 
     /////////////////////MAP///////////////////////////
 
+    public String getMapStatus() {
+        return mapStatus;
+    }
+
+    public void setMapStatus(String mapStatus) {
+        this.mapStatus = mapStatus;
+    }
+
     public interface AddPostLocationListener {
         void onComplete();
     }
@@ -237,5 +246,21 @@ public class Model {
 
     public void getAllLocations(getAllLocationsListener listener) {
         modelFirebase.getAllLocations(listener);
+    }
+
+    public interface GetLocationByIdListener {
+        void onComplete(Location location);
+    }
+
+    public void getLocationByPostId(String postId, GetLocationByIdListener listener) {
+        modelFirebase.getLocationByPostId(postId, listener);
+    }
+
+    public interface DeleteLocationListener {
+        void onComplete();
+    }
+
+    public void deleteLocation(String postId, DeleteLocationListener listener) {
+        modelFirebase.deleteLocation(postId, listener);
     }
 }
