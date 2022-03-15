@@ -42,35 +42,39 @@ public class MapFragment extends Fragment {
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
         @Override
         public void onMapReady(GoogleMap googleMap) {
-
             googleMap.setMinZoomPreference(8.0f);
-            Model.instance.getAllLocations(locationList -> {
-                for (Location l : locationList){
-                    String title = l.getLatitude()+","+l.getLongitude();
-                    markerOptions.add(new MarkerOptions().position(new LatLng(l.getLatitude(),l.getLongitude())).title(title));
-                }
-                for(MarkerOptions marker : markerOptions){
-                    googleMap.addMarker(marker);
-                }
-            });
 
-            googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(@NonNull Marker marker) {
-                    String lat = marker.getTitle().split(",")[0];
-                    String lon = marker.getTitle().split(",")[1];
-                    Model.instance.getAllLocations(locationList -> {
-                        for(Location l : locationList){
-                            if(lat.equals(Double.toString(l.getLatitude()))
-                                && lon.equals(Double.toString(l.getLongitude()))){
-                                Navigation.findNavController(view)
-                                        .navigate(MapFragmentDirections.actionMapFragmentToPostFragment(l.getPostId()));
+            if(!Model.instance.getMapStatus().equals("Create") && !Model.instance.getMapStatus().equals("Edit")){
+                Model.instance.getAllLocations(locationList -> {
+                    for (Location l : locationList){
+                        String title = l.getLatitude()+","+l.getLongitude();
+                        markerOptions.add(new MarkerOptions().position(new LatLng(l.getLatitude(),l.getLongitude())).title(title));
+                    }
+                    for(MarkerOptions marker : markerOptions){
+                        googleMap.addMarker(marker);
+                    }
+                });
+            }
+
+            if(!Model.instance.getMapStatus().equals("Create") && !Model.instance.getMapStatus().equals("Edit")){
+                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(@NonNull Marker marker) {
+                        String lat = marker.getTitle().split(",")[0];
+                        String lon = marker.getTitle().split(",")[1];
+                        Model.instance.getAllLocations(locationList -> {
+                            for(Location l : locationList){
+                                if(lat.equals(Double.toString(l.getLatitude()))
+                                        && lon.equals(Double.toString(l.getLongitude()))){
+                                    Navigation.findNavController(view)
+                                            .navigate(MapFragmentDirections.actionMapFragmentToPostFragment(l.getPostId()));
+                                }
                             }
-                        }
-                    });
-                    return false;
-                }
-            });
+                        });
+                        return false;
+                    }
+                });
+            }
 
             enableMyLocation();
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centerLocation,8));
