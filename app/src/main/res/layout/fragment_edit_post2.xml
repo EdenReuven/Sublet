@@ -106,12 +106,14 @@
                 android:id="@+id/addPost2_frag_camera_btnimg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
                 android:layout_marginBottom="40dp"
                 android:src="@drawable/ic_addphotoblue"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/editPost2_frag_gallery_btnimg" />
+                app:layout_constraintStart_toEndOf="@+id/editPost2_frag_gallery_btnimg"
+                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_picture_imgview" />
 
             <ImageView
                 android:id="@+id/editPostLocation_freg_location_imV"
@@ -131,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="40dp"
                 android:hint="@string/description"
                 android:textColorHint="@color/blue"
                 app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
@@ -166,9 +168,8 @@
                 android:layout_width="210dp"
                 android:layout_height="180dp"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginBottom="50dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@+id/addPost2_frag_camera_btnimg"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -181,11 +182,13 @@
                 android:id="@+id/editPost2_frag_gallery_btnimg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
                 android:src="@drawable/ic_galleryicon"
                 app:layout_constraintBottom_toBottomOf="@+id/addPost2_frag_camera_btnimg"
                 app:layout_constraintEnd_toStartOf="@+id/addPost2_frag_camera_btnimg"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPost2_frag_picture_imgview" />
 
             <ProgressBar
                 android:id="@+id/edit_progressBar"

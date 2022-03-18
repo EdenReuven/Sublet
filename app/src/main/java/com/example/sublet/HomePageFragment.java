@@ -121,7 +121,6 @@ public class HomePageFragment extends Fragment {
             super(itemView);
             profile_img_Post = itemView.findViewById(R.id.post_profileImgPost_imageView);
             post_img = itemView.findViewById(R.id.post_img_imageView);
-            create_post_tv = itemView.findViewById(R.id.post_createDay_tv);
             username_tv = itemView.findViewById(R.id.post_userName_tv);
             status_tv = itemView.findViewById(R.id.post_status_tv);
             location_tv = itemView.findViewById(R.id.post_location_tv);

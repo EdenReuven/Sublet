@@ -107,20 +107,26 @@
                 android:id="@+id/addPost2_frag_camera_btnimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="82dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="34dp"
                 android:src="@drawable/ic_galleryicon"
                 app:layout_constraintBottom_toBottomOf="@+id/addPost2_frag_photo_btnimg"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toStartOf="@+id/addPost2_frag_photo_btnimg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addPost2_frag_image_imgview" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
                 android:layout_width="327dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:hint="@string/description"
                 android:textColorHint="@color/blue"
                 app:layout_constraintBottom_toTopOf="@+id/addPost2_freg_post_btn"
-                app:layout_constraintTop_toBottomOf="@+id/editPostLocation_freg_location_imV"
-                tools:layout_editor_absoluteX="30dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPostLocation_freg_location_imV">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/addPost2_frag_description_et"
@@ -138,11 +144,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="173dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="174dp"
                 android:layout_marginBottom="30dp"
                 android:src="@drawable/ic_add_location_icon"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addPost2_frag_photo_btnimg" />
 
@@ -151,10 +159,11 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="82dp"
+                android:layout_marginEnd="32dp"
                 android:src="@drawable/ic_addphotoblue"
                 app:layout_constraintBottom_toTopOf="@+id/editPostLocation_freg_location_imV"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/addPost2_frag_camera_btnimg"
                 app:layout_constraintTop_toBottomOf="@+id/addPost2_frag_image_imgview" />
 
             <com.google.android.material.imageview.ShapeableImageView
