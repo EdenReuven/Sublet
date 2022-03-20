@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.sublet.model.Model;
-import com.example.sublet.model.User;
-import java.util.List;
 
 public class LogInFragment extends Fragment {
     EditText email_et,password_et;
     Button login_btn;
-    TextView singUp_tv , forget_tv ;
+    TextView singUp_tv ;
     LoginViewModel viewModel;
-    boolean ok;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -42,7 +38,6 @@ public class LogInFragment extends Fragment {
         password_et = view.findViewById(R.id.loginFragment_passwoed_pText);
         login_btn = view.findViewById(R.id.loginFragment_logIn_btn);
         singUp_tv = view.findViewById(R.id.loginFragment_signUp_TV);
-        forget_tv = view.findViewById(R.id.loginFragment_forgetPassword_TV);
 
         Model.instance.getAllUsers(userList -> {
             viewModel.setUserListData(userList);
@@ -61,7 +56,6 @@ public class LogInFragment extends Fragment {
                     Model.instance.signInWithEmailAndPasswordListener(email, password, () -> {
                         login_btn.setEnabled(false);
                         singUp_tv.setEnabled(false);
-                        forget_tv.setEnabled(false);
                         for (int i = 0; i < viewModel.getUserListData().size(); i++) {
                             if (viewModel.getUserListData().get(i).getEmail().equals(email)) {
                                 Model.instance.getUser(viewModel.getUserListData().get(i).getUserName(), user -> {
@@ -87,12 +81,5 @@ public class LogInFragment extends Fragment {
             }
         });
         return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        //TODO :  Check if user is signed in (non-null) and update UI accordingly.
-        /*https://firebase.google.com/docs/auth/android/password-auth*/
     }
 }

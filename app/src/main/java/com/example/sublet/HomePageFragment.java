@@ -12,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,7 +32,6 @@ public class HomePageFragment extends Fragment {
     HomePageViewModel viewModel;
     MyAdapter adapter;
     SwipeRefreshLayout swipeRefresh;
-    Date currentDate;
     ImageView profile_img;
     TextView userName_tv;
 
@@ -56,7 +54,6 @@ public class HomePageFragment extends Fragment {
         userName_tv=view.findViewById(R.id.homePage_username_tv);
         userName_tv.setText(Model.instance.getCurrentUser().getNickName()); //show login user name
 
-        //currentDate = Calendar.getInstance().getTime();
         postList = view.findViewById(R.id.homePage_postList_rv);
         postList.setHasFixedSize(true);
         postList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -115,7 +112,7 @@ public class HomePageFragment extends Fragment {
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView profile_img_Post,post_img;
-        TextView create_post_tv,username_tv,status_tv,location_tv,numOfPeople_tv,price_tv,dates_tv;
+        TextView username_tv,status_tv,location_tv,numOfPeople_tv,price_tv,dates_tv;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
@@ -136,32 +133,13 @@ public class HomePageFragment extends Fragment {
                 }
             });
 
-
-//            cb.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int pos=getAdapterPosition();
-//                    Student s = data.get(pos);
-//                    s.setCheck(cb.isChecked());
-//                }
-//            });
-//              profile_img_Post.setOnClickListener(new View.OnClickListener() {
-//                  @Override
-//                  public void onClick(View v) {
-//                      //TODO: Open the profile page
-//                      Post p = viewModel.getDataPost().getValue().get(getAdapterPosition());
-//                      String userName = p.getPostId().split("-")[1];
-//                      Navigation.findNavController(profile_img).navigate(HomePageFragmentDirections.
-//                              actionHomePageFragmentToProfileFragment(userName));
-//                  }
-//              });
         }
         public void bind(Post p){
 
-            status_tv.setText(Integer.toString(p.getNumRoommate()));
+            status_tv.setText("you will have " +Integer.toString(p.getNumRoommate()) + " roommate");
             location_tv.setText(p.getLocation());
             numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
-            price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
+            price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC/DAY");
             dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
             post_img.setImageResource(R.drawable.room);
             if(p.getPostImgUrl() !=null) {
@@ -205,7 +183,6 @@ public class HomePageFragment extends Fragment {
                             .into(holder.profile_img_Post);
                 }
             });
-            //holder.create_post_tv.setText(Integer.toString(resultDays));
             holder.bind(p);
         }
 
@@ -217,10 +194,6 @@ public class HomePageFragment extends Fragment {
         }
 
     }
-
-//    public int differenceDays(Date fromDate,Date toDate){
-//        return (int) ((toDate.getTime() - fromDate.getTime())/(1000*60*60*24));
-//    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -239,7 +212,6 @@ public class HomePageFragment extends Fragment {
                 return true;
             case R.id.logOut_menu:
                 Model.instance.signOut();
-                /*Model.instance.setCurrentUser(null);*/
                 Intent intent = new Intent(getActivity(), LogInActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

@@ -9,7 +9,6 @@ import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.example.sublet.MyApplication;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -55,8 +54,6 @@ public class Model {
         postsListLoadingState.setValue(PostsListLoadingState.loaded);
     }
 
-
-    List<User> usersList = new LinkedList<>();
     User currentUser = null;
 
     public interface GetAllUsersListener {
@@ -139,7 +136,6 @@ public class Model {
                     @Override
                     public void run() {
                         Long lastUpdateDate = new Long(0);
-                        Log.d("TAG", "fb returned" + postList.size());
                         for (Post post : postList) {
                             if (post.isDeleted())
                                 AppLocalDb.db.postDao().deletePost(post);
@@ -204,7 +200,6 @@ public class Model {
     public String getGeneratePostId() {
         String postID = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
         postID = postID + "-" + currentUser.getUserName();
-        Log.d("TAG", postID);
         return postID;
     }
 

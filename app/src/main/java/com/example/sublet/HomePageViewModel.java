@@ -1,7 +1,6 @@
 package com.example.sublet;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.example.sublet.model.Model;
 import com.example.sublet.model.Post;
 import java.util.List;

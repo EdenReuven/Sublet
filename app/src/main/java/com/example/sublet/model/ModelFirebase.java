@@ -21,7 +21,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -205,14 +204,12 @@ public class ModelFirebase {
     }
 
     public void createUserWithEmailAndPassword(String email, String password, Model.createUserWithEmailAndPasswordListener listener) {
-        Log.d("TAG",email + password);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         listener.onComplete();
-//                        FirebaseUser user = mAuth.getCurrentUser();
                     } else {
-                        Log.d("TAG", "Add user is failed");
+                        Toast.makeText(MyApplication.getContext(), "Add user is failed", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

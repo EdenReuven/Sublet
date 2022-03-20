@@ -80,7 +80,7 @@
                 android:layout_width="339dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="30dp"
                 android:backgroundTint="#1C3144"
@@ -108,12 +108,10 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="34dp"
                 android:src="@drawable/ic_galleryicon"
                 app:layout_constraintBottom_toBottomOf="@+id/addPost2_frag_photo_btnimg"
                 app:layout_constraintEnd_toStartOf="@+id/addPost2_frag_photo_btnimg"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addPost2_frag_image_imgview" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
@@ -146,7 +144,7 @@
                 android:layout_marginStart="173dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="174dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_add_location_icon"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -158,7 +156,7 @@
                 android:id="@+id/addPost2_frag_photo_btnimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="45dp"
                 android:layout_marginEnd="32dp"
                 android:src="@drawable/ic_addphotoblue"
                 app:layout_constraintBottom_toTopOf="@+id/editPostLocation_freg_location_imV"

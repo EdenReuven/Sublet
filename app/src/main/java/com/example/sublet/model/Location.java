@@ -1,12 +1,5 @@
 package com.example.sublet.model;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.FieldValue;
-
 import java.util.HashMap;
 import java.util.Map;
 

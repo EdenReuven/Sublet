@@ -7,13 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,9 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.sublet.model.Model;
-
 import java.io.InputStream;
 
 public class AddPost2Fragment extends Fragment {
@@ -143,7 +139,7 @@ public class AddPost2Fragment extends Fragment {
                     Model.instance.addPost(viewModel.getNewPost(),()->{
                         Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user -> {
                             user.getPostList().add(viewModel.getNewPost().getPostId());
-                            Model.instance.addUser(user, () -> {}); // add the post to list post of the current user
+                            Model.instance.addUser(user, () -> {});
                         });
                         Navigation.findNavController(description_et).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
                     });
@@ -154,7 +150,7 @@ public class AddPost2Fragment extends Fragment {
             Model.instance.addPost(viewModel.getNewPost(),()->{
                 Model.instance.getUser(Model.instance.getCurrentUser().getUserName(),user -> {
                     user.getPostList().add(viewModel.getNewPost().getPostId());
-                    Model.instance.addUser(user, () -> {}); // add the post to list post of the current user
+                    Model.instance.addUser(user, () -> {});
                 });
                 Navigation.findNavController(description_et).navigate(AddPost2FragmentDirections.actionAddPost2FragmentToHomePageFragment());
             });

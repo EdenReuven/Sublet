@@ -1,39 +1,21 @@
 package com.example.sublet;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.sublet.model.Model;
-import com.example.sublet.model.Post;
-import com.example.sublet.model.User;
 import com.squareup.picasso.Picasso;
-
-import java.util.LinkedList;
-import java.util.List;
-
 
 public class PostFragment extends Fragment {
     TextView username_tv , phone_tv , email_tv, date_tv ,location_tv, roommate_tv, price_tv, people_tv,
@@ -83,13 +65,13 @@ public class PostFragment extends Fragment {
             postIdCurrent=post1.getPostId();
             date_tv.setText(post1.getFromDate()+" - "+post1.getToDate());
             location_tv.setText(post1.getLocation());
-            roommate_tv.setText(Integer.toString(post1.getNumRoommate()));
-            price_tv.setText(Integer.toString((int) post1.getPrice()) + " NIC");
+            roommate_tv.setText("you will have " +Integer.toString(post1.getNumRoommate()) + " roommate");
+            price_tv.setText(Integer.toString((int) post1.getPrice()) + " NIC/DAY");
             people_tv.setText("fit for " + Integer.toString(post1.getOverallPeople()) + " people");
             bathroom_tv.setText(Integer.toString(post1.getNumOfBathroom()) + " bathroom");
             bedroom_tv.setText(Integer.toString(post1.getNumOfBedroom()) + " bedroom");
             description_tv.setText(post1.getPostContent());
-            post_img.setImageResource(R.drawable.room); // need to delete the current pic!
+            post_img.setImageResource(R.drawable.room);
             if(post1.getPostImgUrl() !=null) {
                 Picasso.get()
                         .load(post1.getPostImgUrl())

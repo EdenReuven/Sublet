@@ -1,18 +1,12 @@
 package com.example.sublet.model;
-//TODO: connection the user to post list
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import androidx.annotation.NonNull;
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FieldValue;
-
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +19,7 @@ public class Post implements Parcelable {
     String postId = "";
     String fromDate = "";
     String toDate = "";
-    int numRoommate = 0;  // current num of people
+    int numRoommate = 0;
     String location = "";
     int overallPeople = 0;
     float price = 0;
@@ -40,8 +34,6 @@ public class Post implements Parcelable {
     }
 
     Long updateDate=new Long(0);
-    //    Date createDate = null;
-    //    List<Image> images = null;
     public Post(){}
 
     public Post(String fromDate, String toDate, int numRoommate,
@@ -235,7 +227,6 @@ public class Post implements Parcelable {
         post.setPostImgUrl(url);
         return post;
     }
-    //  TODO:...
     public Long getUpdateDate() {
         return updateDate;
     }

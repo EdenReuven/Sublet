@@ -1,7 +1,6 @@
 package com.example.sublet;
 
 import androidx.lifecycle.ViewModel;
-
 import com.example.sublet.model.User;
 
 public class SignUpViewModel extends ViewModel {

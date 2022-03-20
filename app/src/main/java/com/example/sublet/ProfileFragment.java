@@ -11,7 +11,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -79,8 +78,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
         return view;
     }
 
@@ -88,7 +85,7 @@ public class ProfileFragment extends Fragment {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView profile_img,post_img, profilePostImg;
-        TextView create_post_tv,username_tv,status_tv,location_tv,numOfPeople_tv,price_tv,dates_tv;
+        TextView username_tv,status_tv,location_tv,numOfPeople_tv,price_tv,dates_tv;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
@@ -116,7 +113,7 @@ public class ProfileFragment extends Fragment {
             status_tv.setText(Integer.toString(p.getNumRoommate()));
             location_tv.setText(p.getLocation());
             numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
-            price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
+            price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC/DAY");
             dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
             post_img.setImageResource(R.drawable.room);
             if(p.getPostImgUrl() !=null) {
@@ -164,10 +161,8 @@ public class ProfileFragment extends Fragment {
             holder.status_tv.setText(Integer.toString(p.getNumRoommate()));
             holder.location_tv.setText(p.getLocation());
             holder.numOfPeople_tv.setText("fit for " + Integer.toString(p.getOverallPeople())+ " people");
-            holder.price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC");
+            holder.price_tv.setText(Integer.toString((int)p.getPrice()) + " NIC/DAY");
             holder.dates_tv.setText(p.getFromDate() +" - " +p.getToDate());
-            //holder.create_post_tv.setText(Integer.toString(resultDays));
-
             holder.bind(p);
         }
 
